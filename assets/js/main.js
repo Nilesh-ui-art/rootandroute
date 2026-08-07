@@ -43,31 +43,43 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // ---- Trail log: category filter + live search
-  var filterButtons = document.querySelectorAll('.filter-btn');
+  var catButtons = Array.prototype.slice.call(document.querySelectorAll('.filter-btn[data-filter]'));
+  var tierButtons = Array.prototype.slice.call(document.querySelectorAll('.filter-btn[data-tier-filter]'));
   var rows = Array.prototype.slice.call(document.querySelectorAll('.post-row'));
   var searchInput = document.querySelector('#post-search');
   var noResults = document.querySelector('.no-results');
   var activeCat = 'all';
+  var activeTier = 'all';
 
   function applyFilters() {
     var q = searchInput ? searchInput.value.trim().toLowerCase() : '';
     var visible = 0;
     rows.forEach(function (row) {
       var catOk = activeCat === 'all' || row.getAttribute('data-category') === activeCat;
+      var tierOk = activeTier === 'all' || row.getAttribute('data-tier') === activeTier;
       var text = row.textContent.toLowerCase();
       var qOk = !q || text.indexOf(q) !== -1;
-      var show = catOk && qOk;
+      var show = catOk && tierOk && qOk;
       row.style.display = show ? '' : 'none';
       if (show) visible++;
     });
     if (noResults) noResults.style.display = visible === 0 ? 'block' : 'none';
   }
 
-  filterButtons.forEach(function (btn) {
+  catButtons.forEach(function (btn) {
     btn.addEventListener('click', function () {
-      filterButtons.forEach(function (b) { b.classList.remove('active'); });
+      catButtons.forEach(function (b) { b.classList.remove('active'); });
       btn.classList.add('active');
-      activeCat = btn.getAttribute('data-filter');
+      activeCat = btn.getAttribute('data-filter') || 'all';
+      applyFilters();
+    });
+  });
+
+  tierButtons.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      tierButtons.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      activeTier = btn.getAttribute('data-tier-filter') || 'all';
       applyFilters();
     });
   });
