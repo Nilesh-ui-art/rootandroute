@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Check Your Bearings — The Trail Quiz | Root &amp; Route</title>
+<meta name="description" content="Test your IT and cybersecurity knowledge with a fun 10-question trail quiz. Instant feedback, plain-English explanations, and a rank from Basecamp to Summit.">
+<meta name="keywords" content="IT quiz for beginners, cybersecurity quiz, networking quiz, test IT knowledge">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://rootandroute.online/quiz.html">
+<meta property="og:site_name" content="Root &amp; Route">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://rootandroute.online/quiz.html">
+<meta property="og:title" content="Check Your Bearings — The Trail Quiz | Root &amp; Route">
+<meta property="og:description" content="10 random questions from the trail. Instant feedback, no email address demanded, ranks from 'Lost in the Car Park' to 'Summit Ready'.">
+<meta property="og:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Check Your Bearings — The Trail Quiz | Root &amp; Route">
+<meta name="twitter:description" content="10 random questions from the trail. How far up the mountain are you?">
+<meta name="twitter:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta name="theme-color" content="#1D6F62">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Check Your Bearings — The Trail Quiz","url":"https://rootandroute.online/quiz.html","description":"A fun 10-question IT and cybersecurity knowledge quiz with instant feedback and explanations.","isPartOf":{"@type":"WebSite","name":"Root & Route","url":"https://rootandroute.online"}}</script>
+<script>(function(){try{var t=localStorage.getItem('rr-theme');if(t){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="index.html" class="logo">Root <span class="amp">&amp;</span> Route</a>
+    <button class="nav-toggle" aria-label="Toggle menu">MENU</button>
+    <nav class="main-nav">
+      <a href="index.html">Home</a>
+      <a href="trail-log.html">Trail Log</a>
+      <a href="quiz.html" class="active">Quiz</a>
+      <a href="about.html">About</a>
+    </nav>
+    <button class="theme-toggle" aria-label="Switch theme">☾</button>
+  </div>
+</header>
+
+<section id="main" class="post-hero">
+  <div class="wrap">
+    <div class="meta-row">
+      <span class="badge badge-trailhead">All levels</span>
+      <span class="tag">10 questions</span>
+      <span class="tag">No sign-up</span>
+    </div>
+    <h1>Check Your Bearings</h1>
+    <p class="lede dek">Ten random questions from the trail — hardware, networking, security, and the occasional Summit scramble. Instant feedback, plain-English explanations, and a rank at the end. No email address demanded, ever.</p>
+  </div>
+</section>
+
+<section class="post-body">
+  <div class="wrap content" id="quiz-app">
+
+    <div id="quiz-start" class="quiz-card">
+      <span class="eyebrow">Before you set off</span>
+      <p>Each round pulls <strong>10 random questions</strong> from a bigger bank, so you can hike it more than once. Wrong answers are the useful ones — every question links back to the post that explains it properly.</p>
+      <button class="quiz-btn quiz-btn-primary" id="quiz-begin">Start the trail →</button>
+    </div>
+
+    <div id="quiz-play" hidden>
+      <div class="quiz-topbar">
+        <span class="eyebrow" id="quiz-progress">Question 1 of 10</span>
+        <span class="eyebrow" id="quiz-score">Score: 0</span>
+      </div>
+      <div class="quiz-trail" aria-hidden="true"><div class="quiz-trail-fill" id="quiz-trail-fill"></div></div>
+      <div class="quiz-card">
+        <div class="meta-row" id="quiz-qmeta"></div>
+        <h2 id="quiz-question" style="margin-top:0.8rem;"></h2>
+        <div id="quiz-options" class="quiz-options" role="group" aria-label="Answer options"></div>
+        <div id="quiz-feedback" class="quiz-feedback" hidden>
+          <p id="quiz-verdict" class="quiz-verdict"></p>
+          <p id="quiz-explain"></p>
+          <p id="quiz-readmore" class="fine"></p>
+          <button class="quiz-btn quiz-btn-primary" id="quiz-next">Next question →</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="quiz-end" hidden>
+      <div class="quiz-card quiz-card-result">
+        <span class="eyebrow">Trail complete</span>
+        <h2 id="quiz-rank" style="margin-top:0.6rem;"></h2>
+        <p class="quiz-bigscore" id="quiz-final"></p>
+        <p id="quiz-rank-blurb"></p>
+        <div class="quiz-endrow">
+          <button class="quiz-btn quiz-btn-primary" id="quiz-again">Hike it again ↻</button>
+          <button class="quiz-btn" id="quiz-share">Copy my result</button>
+          <a class="quiz-btn" href="trail-log.html">Study the Trail Log</a>
+        </div>
+        <p class="fine" id="quiz-share-done" hidden>Copied — paste it anywhere.</p>
+      </div>
+      <div class="quiz-card" id="quiz-review"></div>
+    </div>
+
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span class="fine">© 2026 Root &amp; Route. Written by someone who's still on the trail too.</span>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="trail-log.html">Trail Log</a>
+      <a href="quiz.html">Quiz</a>
+      <a href="about.html">About</a>
+    </nav>
+  </div>
+</footer>
+
+<button class="to-top" aria-label="Back to top">↑</button>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/quiz.js"></script>
+</body>
+</html>
