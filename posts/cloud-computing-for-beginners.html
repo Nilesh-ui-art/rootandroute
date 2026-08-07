@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cloud Computing for People Who've Never Touched a Server | Root & Route</title>
+<meta name="description" content="IaaS, PaaS, and SaaS explained through renting instead of buying — plus where to get a free cloud server to practise on as a complete beginner.">
+<meta name="keywords" content="cloud computing for beginners, IaaS PaaS SaaS explained, what is the cloud, free cloud server practice">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://rootandroute.online/posts/cloud-computing-for-beginners.html">
+<meta name="author" content="Root & Route">
+<meta property="og:site_name" content="Root &amp; Route">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://rootandroute.online/posts/cloud-computing-for-beginners.html">
+<meta property="og:title" content="Cloud Computing for People Who've Never Touched a Server | Root & Route">
+<meta property="og:description" content="IaaS, PaaS, and SaaS explained through renting instead of buying — plus where to get a free cloud server to practise on as a complete beginner.">
+<meta property="og:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Cloud Computing for People Who've Never Touched a Server | Root & Route">
+<meta name="twitter:description" content="IaaS, PaaS, and SaaS explained through renting instead of buying — plus where to get a free cloud server to practise on as a complete beginner.">
+<meta name="twitter:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta name="theme-color" content="#1D6F62">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Cloud Computing for People Who've Never Touched a Server", "description": "IaaS, PaaS, and SaaS explained through renting instead of buying \u2014 plus where to get a free cloud server to practise on as a complete beginner.", "url": "https://rootandroute.online/posts/cloud-computing-for-beginners.html", "mainEntityOfPage": "https://rootandroute.online/posts/cloud-computing-for-beginners.html", "image": "https://rootandroute.online/assets/img/og-card.png", "articleSection": "Cloud", "datePublished": "2026-08-07", "dateModified": "2026-08-07", "author": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}, "publisher": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://rootandroute.online/"}, {"@type": "ListItem", "position": 2, "name": "Trail Log", "item": "https://rootandroute.online/trail-log.html"}, {"@type": "ListItem", "position": 3, "name": "Cloud Computing for People Who've Never Touched a Server", "item": "https://rootandroute.online/posts/cloud-computing-for-beginners.html"}]}</script>
+<script>(function(){try{var t=localStorage.getItem('rr-theme');if(t){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<div class="progress-track" aria-hidden="true"><div class="progress-fill"></div></div>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="../index.html" class="logo">Root <span class="amp">&amp;</span> Route</a>
+    <button class="nav-toggle" aria-label="Toggle menu">MENU</button>
+    <nav class="main-nav">
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html" class="active">Trail Log</a>
+      <a href="../about.html">About</a>
+    </nav>
+    <button class="theme-toggle" aria-label="Switch theme">☾</button>
+  </div>
+</header>
+
+<section id="main" class="post-hero">
+  <div class="wrap">
+    <div class="meta-row">
+      <span class="badge badge-basecamp">Basecamp</span>
+      <span class="tag">Cloud</span>
+      <span class="tag">Fundamentals</span>
+    </div>
+    <h1>Cloud Computing for People Who've Never Touched a Server</h1>
+    <p class="lede dek">IaaS, PaaS, and SaaS explained through renting, not buying — and where to get a free server to practise on.</p>
+    <div class="byline">9 MIN TREK — ROOT & ROUTE</div>
+  </div>
+</section>
+
+<section class="post-body">
+  <div class="wrap content">
+
+    <p>"The cloud" gets talked about like it's a weather system — vague, everywhere, slightly mystical. It isn't. The cloud is other people's computers, sitting in enormous warehouses called data centres, that you pay to use over the internet instead of buying and running the equivalent hardware yourself.</p>
+
+    <p>That's genuinely most of it. The rest of this post is just working out what "use" means, because that word covers a surprisingly wide range of arrangements.</p>
+
+    <h2>Renting a car vs. renting a driver</h2>
+
+    <p>The clearest way to understand the different flavours of cloud service is to think about how you'd get somewhere without owning a car.</p>
+
+    <ul>
+      <li><strong>You could rent a car.</strong> You still have to drive it, put fuel in it, and know the route. But you didn't have to buy it, maintain the engine, or find somewhere to park it long-term.</li>
+      <li><strong>You could hire a car with a driver.</strong> You just tell them the destination. You don't touch the engine, don't worry about the route, don't even need a licence.</li>
+      <li><strong>You could just take a taxi app and order a ride.</strong> You tap a button and a finished experience appears. You never think about the car at all.</li>
+    </ul>
+
+    <p>Cloud computing maps onto exactly this spectrum:</p>
+
+    <h3>IaaS — Infrastructure as a Service (renting the car)</h3>
+    <p>You get raw virtual machines, storage, and networking. You still install the operating system, patch it, configure it, and manage it — but you never had to buy a physical server, rack it, or replace a failed hard drive. Examples: Azure Virtual Machines, AWS EC2.</p>
+
+    <h3>PaaS — Platform as a Service (car with a driver)</h3>
+    <p>You hand over your application code, and the provider handles the operating system, patching, and scaling underneath it. You focus on your code; they focus on keeping the platform running. Examples: Azure App Service, AWS Elastic Beanstalk.</p>
+
+    <h3>SaaS — Software as a Service (the taxi app)</h3>
+    <p>You just use the finished product through a browser. No infrastructure to think about at all. Examples: Gmail, Microsoft 365, Slack — most of the software you already use daily without calling it "cloud" in your head.</p>
+
+    <div class="callout">
+      <span class="eyebrow">Trail note</span>
+      <p style="margin:0;">Notice the pattern: as you move from IaaS → PaaS → SaaS, you get less control but less responsibility. That trade-off — control versus responsibility — is the single most useful lens for understanding almost any cloud architecture decision you'll encounter later.</p>
+    </div>
+
+    <h2>Why companies actually moved to it</h2>
+
+    <p>Before the cloud existed at scale, a company that suddenly needed more computing power had to buy physical servers, wait for delivery, rack them, and configure them — a process measured in weeks. If that surge in demand turned out to be temporary, they were now stuck owning expensive hardware sitting mostly idle.</p>
+
+    <p>Cloud providers turned that into something you could switch on in minutes and switch off just as fast, paying only for what you actually used. That single shift — from buying capacity you hope you'll need, to renting capacity the moment you need it — is the entire economic argument for cloud computing. Everything else is a variation on that theme.</p>
+
+    <h2>What "the cloud" physically is</h2>
+
+    <p>It's worth grounding this in something concrete: a cloud provider's data centre is a real building, often the size of several warehouses, packed with server racks, cooling systems, and redundant power supplies. When you spin up a virtual machine on a public cloud, you are — however indirectly — renting a slice of physical hardware sitting in one of those specific buildings, in a specific region of the world you usually get to choose. It's not abstract. It's just far away and shared.</p>
+
+    <h2>Get your hands on it, for free</h2>
+
+    <p>You don't need permission from an employer to start learning this hands-on:</p>
+
+    <ul>
+      <li>Most major providers (Azure, AWS, Google Cloud) offer a free tier or trial credit for new accounts — enough to run a small virtual machine for genuine practice.</li>
+      <li>Spin up one virtual machine. Just one. Connect to it. Install something on it. Break it. Rebuild it. That single loop teaches you more than reading ten explainer articles.</li>
+      <li>Set a calendar reminder to check your usage and turn things off — free tiers have limits, and it's a useful habit to build early regardless of whose money you're eventually spending.</li>
+    </ul>
+
+    <p>The vocabulary will keep coming — regions, availability zones, resource groups, subscriptions — but none of it will stick properly until you've actually clicked "create" on something and watched it come to life.</p>
+
+  </div>
+
+  <div class="next-waypoint wrap">
+    <a href="first-30-days-in-cybersecurity.html">
+      <span class="eyebrow">Next waypoint — Trailhead</span>
+      <h3 style="margin-top:0.6rem;">Your First 30 Days in Cybersecurity: What Actually Matters →</h3>
+    </a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span class="fine">© 2026 Root & Route. Written by someone who's still on the trail too.</span>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html">Trail Log</a>
+      <a href="../about.html">About</a>
+    </nav>
+  </div>
+</footer>
+
+<button class="to-top" aria-label="Back to top">↑</button>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

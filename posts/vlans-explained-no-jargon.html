@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What Is a VLAN, Actually? (No Jargon) | Root & Route</title>
+<meta name="description" content="VLANs and broadcast domains explained with the apartment-building analogy that finally makes them make sense — plus how to try it at home for free.">
+<meta name="keywords" content="what is a VLAN, VLAN explained simply, broadcast domain, network segmentation for beginners">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://rootandroute.online/posts/vlans-explained-no-jargon.html">
+<meta name="author" content="Root & Route">
+<meta property="og:site_name" content="Root &amp; Route">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://rootandroute.online/posts/vlans-explained-no-jargon.html">
+<meta property="og:title" content="What Is a VLAN, Actually? (No Jargon) | Root & Route">
+<meta property="og:description" content="VLANs and broadcast domains explained with the apartment-building analogy that finally makes them make sense — plus how to try it at home for free.">
+<meta property="og:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="What Is a VLAN, Actually? (No Jargon) | Root & Route">
+<meta name="twitter:description" content="VLANs and broadcast domains explained with the apartment-building analogy that finally makes them make sense — plus how to try it at home for free.">
+<meta name="twitter:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta name="theme-color" content="#1D6F62">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "What Is a VLAN, Actually? (No Jargon)", "description": "VLANs and broadcast domains explained with the apartment-building analogy that finally makes them make sense \u2014 plus how to try it at home for free.", "url": "https://rootandroute.online/posts/vlans-explained-no-jargon.html", "mainEntityOfPage": "https://rootandroute.online/posts/vlans-explained-no-jargon.html", "image": "https://rootandroute.online/assets/img/og-card.png", "articleSection": "Networking", "datePublished": "2026-08-07", "dateModified": "2026-08-07", "author": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}, "publisher": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://rootandroute.online/"}, {"@type": "ListItem", "position": 2, "name": "Trail Log", "item": "https://rootandroute.online/trail-log.html"}, {"@type": "ListItem", "position": 3, "name": "What Is a VLAN, Actually? (No Jargon)", "item": "https://rootandroute.online/posts/vlans-explained-no-jargon.html"}]}</script>
+<script>(function(){try{var t=localStorage.getItem('rr-theme');if(t){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<div class="progress-track" aria-hidden="true"><div class="progress-fill"></div></div>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="../index.html" class="logo">Root <span class="amp">&amp;</span> Route</a>
+    <button class="nav-toggle" aria-label="Toggle menu">MENU</button>
+    <nav class="main-nav">
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html" class="active">Trail Log</a>
+      <a href="../about.html">About</a>
+    </nav>
+    <button class="theme-toggle" aria-label="Switch theme">☾</button>
+  </div>
+</header>
+
+<section id="main" class="post-hero">
+  <div class="wrap">
+    <div class="meta-row">
+      <span class="badge badge-trailhead">Trailhead</span>
+      <span class="tag">Networking</span>
+    </div>
+    <h1>What Is a VLAN, Actually? (No Jargon)</h1>
+    <p class="lede dek">The apartment-building analogy that finally makes broadcast domains make sense — plus how to try it at home.</p>
+    <div class="byline">8 MIN TREK — ROOT & ROUTE</div>
+  </div>
+</section>
+
+<section class="post-body">
+  <div class="wrap content">
+
+    <p>Here's a definition of VLAN you've probably already read somewhere: "a Virtual Local Area Network logically segments a physical network into multiple broadcast domains." Technically correct. Almost completely useless if you don't already know what a broadcast domain is, which is the whole problem with how this topic usually gets taught.</p>
+
+    <p>Let's start from the actual problem VLANs solve, and the jargon will make sense on the way there instead of before it.</p>
+
+    <h2>The problem: everyone's shouting in one room</h2>
+
+    <p>Imagine every device on a network — laptops, printers, phones, smart TVs — is a person standing in one giant room. When any device wants to find another device on the same network for the first time, it doesn't whisper directly to it. It shouts to the whole room: "Who has this address?" Every single device in that room hears the shout, even though the message was only meant for one of them.</p>
+
+    <p>That shout is called a <strong>broadcast</strong>, and the entire room of devices that hears it is called a <strong>broadcast domain</strong>. A small room is fine. A room with thousands of devices in it means constant background noise — and it means that if one device in the room is compromised or misbehaving, it can potentially see or interfere with everyone else in the same room, because they're all in earshot of each other.</p>
+
+    <h2>The fix: build walls, not new buildings</h2>
+
+    <p>The obvious answer would be to give every department its own physical switch and its own physical cabling — its own separate building, essentially. That works, but it's expensive and rigid. Every time someone changes team or desk, you're re-running cables.</p>
+
+    <p>A VLAN is what happens when you take that one big open-plan room and put up internal walls, without constructing a new building. Physically, it's still one switch and one set of cables. Logically, the switch is configured to treat different groups of ports as if they were in entirely separate rooms. A device plugged into a "Finance" VLAN port shouts, and only the other "Finance" devices hear it — even if the "Engineering" VLAN is running through the exact same physical switch, one rack unit away.</p>
+
+    <div class="callout">
+      <span class="eyebrow">Trail note</span>
+      <p style="margin:0;">Think of an apartment building: one physical structure, one set of pipes and wiring running through the walls, but each flat is a separate, private unit. Nobody in Flat 3 can wander into Flat 7 just because they share a building. VLANs give you that same separation on a shared piece of network hardware.</p>
+    </div>
+
+    <h2>Why anyone bothers doing this</h2>
+
+    <ul>
+      <li><strong>Security:</strong> a compromised device on one VLAN can't freely reach devices on another VLAN without going through a router or firewall first — which gives you a checkpoint to control and monitor that traffic.</li>
+      <li><strong>Noise reduction:</strong> smaller broadcast domains mean less background shouting, which means better performance at scale.</li>
+      <li><strong>Organisation:</strong> you can group devices by function (guest Wi-Fi, staff laptops, security cameras, VoIP phones) rather than by which physical port they happen to be plugged into.</li>
+    </ul>
+
+    <h2>The one extra word: trunking</h2>
+
+    <p>You might wonder: if VLAN traffic is walled off, how does it get from one switch to another switch elsewhere in the building without spilling everything together? The answer is a <strong>trunk port</strong> — a connection between switches that's allowed to carry traffic from multiple VLANs at once, with each frame "tagged" with a label saying which VLAN it belongs to. It's less important to memorise the mechanism right now than to know the word exists, so it doesn't blindside you later.</p>
+
+    <h2>Try it yourself, at home, for free</h2>
+
+    <p>You don't need enterprise gear to see this in action. Most consumer routers and mesh systems now offer a "guest network" toggle — turn it on, and you've just created a simple VLAN-style separation. Your guest's phone can get to the internet, but it can't see your NAS, your smart plugs, or your work laptop sitting on the main network. That's the exact same principle, in miniature, that a company uses to keep its finance servers away from its guest Wi-Fi.</p>
+
+    <p>If you want to go one step further, a cheap managed switch (even a second-hand one) will let you create two or three VLANs manually and watch, with a packet capture tool, how devices on one VLAN genuinely cannot see broadcast traffic from the other. Seeing it fail to cross over is a much better teacher than any diagram.</p>
+
+  </div>
+
+  <div class="next-waypoint wrap">
+    <a href="cloud-computing-for-beginners.html">
+      <span class="eyebrow">Next waypoint — Basecamp</span>
+      <h3 style="margin-top:0.6rem;">Cloud Computing for People Who've Never Touched a Server →</h3>
+    </a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span class="fine">© 2026 Root & Route. Written by someone who's still on the trail too.</span>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html">Trail Log</a>
+      <a href="../about.html">About</a>
+    </nav>
+  </div>
+</footer>
+
+<button class="to-top" aria-label="Back to top">↑</button>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>
