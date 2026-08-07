@@ -1,10 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://rootandroute.online/</loc><lastmod>2026-08-07</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://rootandroute.online/trail-log.html</loc><lastmod>2026-08-07</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://rootandroute.online/</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://rootandroute.online/trail-log.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://rootandroute.online/about.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://rootandroute.online/posts/osi-model-explained.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://rootandroute.online/posts/vlans-explained-no-jargon.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://rootandroute.online/posts/cloud-computing-for-beginners.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://rootandroute.online/posts/first-30-days-in-cybersecurity.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://rootandroute.online/posts/what-a-cpu-actually-does.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://rootandroute.online/posts/ram-vs-storage-two-kinds-of-memory.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://rootandroute.online/posts/ssd-vs-hdd-explained.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://rootandroute.online/posts/motherboard-explained.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://rootandroute.online/posts/what-is-a-gpu-really-for.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://rootandroute.online/posts/power-supplies-the-ignored-component.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://rootandroute.online/posts/beginners-method-diagnosing-hardware.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://rootandroute.online/posts/bios-uefi-firmware-explained.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://rootandroute.online/posts/supporting-laptops-vs-desktops.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://rootandroute.online/posts/field-guide-to-ports-usb-hdmi-thunderbolt.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://rootandroute.online/posts/ip-addresses-postal-system.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://rootandroute.online/posts/dns-the-internets-phone-book.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://rootandroute.online/posts/dhcp-explained-simply.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://rootandroute.online/posts/routers-vs-switches-who-does-what.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://rootandroute.online/posts/nat-how-your-house-shares-one-address.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://rootandroute.online/posts/tcp-vs-udp-tracked-delivery-vs-paper-planes.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://rootandroute.online/posts/firewalls-bouncers-with-a-guest-list.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://rootandroute.online/posts/wifi-why-your-signal-dies-in-the-kitchen.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://rootandroute.online/posts/subnetting-without-tears.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://rootandroute.online/posts/vpns-private-tunnel-public-road.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://rootandroute.online/posts/cia-triad-explained.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://rootandroute.online/posts/phishing-why-smart-people-click.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://rootandroute.online/posts/passwords-are-broken-what-mfa-fixes.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://rootandroute.online/posts/malware-field-guide-to-the-species.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://rootandroute.online/posts/encryption-locked-boxes-public-padlocks.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://rootandroute.online/posts/least-privilege-nobody-gets-all-the-keys.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://rootandroute.online/posts/patching-boring-thing-preventing-breaches.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://rootandroute.online/posts/social-engineering-hacking-people.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://rootandroute.online/posts/vulnerability-exploit-threat-getting-words-right.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://rootandroute.online/posts/logs-security-camera-footage-of-your-network.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://rootandroute.online/posts/zero-trust-explained-like-youre-smart-but-new.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://rootandroute.online/posts/what-happens-in-a-tls-handshake.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://rootandroute.online/posts/kerberos-without-the-migraine.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://rootandroute.online/posts/bgp-how-the-internet-decides-where-to-send-things.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://rootandroute.online/posts/dns-attacks-poisoning-tunnelling-hijacking.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://rootandroute.online/posts/hybrid-identity-users-in-two-worlds.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://rootandroute.online/posts/conditional-access-if-this-then-that-security.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://rootandroute.online/posts/beyond-vlans-microsegmentation-east-west.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://rootandroute.online/posts/anatomy-of-a-ransomware-attack.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://rootandroute.online/posts/from-logs-to-alerts-detection-engineering.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 </urlset>

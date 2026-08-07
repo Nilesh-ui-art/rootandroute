@@ -55,9 +55,17 @@
     </div>
     <div class="filter-bar">
       <button class="filter-btn active" data-filter="all">All posts</button>
+      <button class="filter-btn" data-filter="hardware">Hardware</button>
       <button class="filter-btn" data-filter="networking">Networking</button>
+      <button class="filter-btn" data-filter="security">Security</button>
       <button class="filter-btn" data-filter="cloud">Cloud</button>
-      <button class="filter-btn" data-filter="career">Career &amp; Security</button>
+      <button class="filter-btn" data-filter="career">Career</button>
+      <span class="filter-sep" aria-hidden="true"></span>
+      <button class="filter-btn tier-btn active" data-tier-filter="all">All levels</button>
+      <button class="filter-btn tier-btn" data-tier-filter="basecamp">Basecamp</button>
+      <button class="filter-btn tier-btn" data-tier-filter="trailhead">Trailhead</button>
+      <button class="filter-btn tier-btn" data-tier-filter="ridge">Ridge</button>
+      <button class="filter-btn tier-btn" data-tier-filter="summit">Summit</button>
     </div>
   </div>
 </section>
@@ -67,7 +75,407 @@
 
     <p class="no-results">No posts match that search yet — try a broader term, or clear the filter.</p>
 
-    <a class="post-row" href="posts/osi-model-explained.html" data-category="networking">
+    <a class="post-row" href="posts/what-a-cpu-actually-does.html" data-category="hardware" data-tier="basecamp">
+      <span class="post-meta-col"><span class="badge badge-basecamp">Basecamp</span></span>
+      <div>
+        <h3>What a CPU Actually Does All Day</h3>
+        <p>It's not a brain. It's a very fast, very obedient clerk — and that distinction changes how you think about slow computers.</p>
+        <div class="post-tags"><span class="tag">Hardware</span><span class="tag">Fundamentals</span></div>
+      </div>
+      <span class="trek-time">6 min trek</span>
+    </a>
+
+    <a class="post-row" href="posts/ram-vs-storage-two-kinds-of-memory.html" data-category="hardware" data-tier="basecamp">
+      <span class="post-meta-col"><span class="badge badge-basecamp">Basecamp</span></span>
+      <div>
+        <h3>RAM vs Storage: Why Your Computer Has Two Kinds of Memory</h3>
+        <p>The desk-and-filing-cabinet model that ends the 'I have 512GB of RAM' confusion forever.</p>
+        <div class="post-tags"><span class="tag">Hardware</span><span class="tag">Fundamentals</span></div>
+      </div>
+      <span class="trek-time">6 min trek</span>
+    </a>
+
+    <a class="post-row" href="posts/ssd-vs-hdd-explained.html" data-category="hardware" data-tier="basecamp">
+      <span class="post-meta-col"><span class="badge badge-basecamp">Basecamp</span></span>
+      <div>
+        <h3>SSDs vs Hard Drives: The Record Player and the Notebook</h3>
+        <p>One has a spinning disk and a moving arm; the other has no moving parts at all. That single difference explains almost everything.</p>
+        <div class="post-tags"><span class="tag">Hardware</span></div>
+      </div>
+      <span class="trek-time">6 min trek</span>
+    </a>
+
+    <a class="post-row" href="posts/motherboard-explained.html" data-category="hardware" data-tier="basecamp">
+      <span class="post-meta-col"><span class="badge badge-basecamp">Basecamp</span></span>
+      <div>
+        <h3>The Motherboard: The City Your Components Live In</h3>
+        <p>CPU, RAM, storage, and graphics are the famous residents. The motherboard is the roads, plumbing, and postal service connecting them.</p>
+        <div class="post-tags"><span class="tag">Hardware</span></div>
+      </div>
+      <span class="trek-time">6 min trek</span>
+    </a>
+
+    <a class="post-row" href="posts/what-is-a-gpu-really-for.html" data-category="hardware" data-tier="trailhead">
+      <span class="post-meta-col"><span class="badge badge-trailhead">Trailhead</span></span>
+      <div>
+        <h3>GPUs: Why Graphics Cards Now Run More Than Graphics</h3>
+        <p>One professor doing calculus versus a thousand students doing arithmetic — and why that second model ended up running AI.</p>
+        <div class="post-tags"><span class="tag">Hardware</span></div>
+      </div>
+      <span class="trek-time">7 min trek</span>
+    </a>
+
+    <a class="post-row" href="posts/power-supplies-the-ignored-component.html" data-category="hardware" data-tier="trailhead">
+      <span class="post-meta-col"><span class="badge badge-trailhead">Trailhead</span></span>
+      <div>
+        <h3>Power Supplies: The Most Ignored Part That Causes the Weirdest Faults</h3>
+        <p>Nobody brags about their PSU. But when one goes marginal, it produces the most confusing symptoms in all of hardware.</p>
+        <div class="post-tags"><span class="tag">Hardware</span><span class="tag">Troubleshooting</span></div>
+      </div>
+      <span class="trek-time">6 min trek</span>
+    </a>
+
+    <a class="post-row" href="posts/beginners-method-diagnosing-hardware.html" data-category="hardware" data-tier="trailhead">
+      <span class="post-meta-col"><span class="badge badge-trailhead">Trailhead</span></span>
+      <div>
+        <h3>A Beginner's Method for Diagnosing Hardware Faults</h3>
+        <p>You don't need encyclopaedic knowledge to troubleshoot hardware. You need a repeatable method and the discipline to change one thing at a time.</p>
+        <div class="post-tags"><span class="tag">Hardware</span><span class="tag">Troubleshooting</span></div>
+      </div>
+      <span class="trek-time">7 min trek</span>
+    </a>
+
+    <a class="post-row" href="posts/bios-uefi-firmware-explained.html" data-category="hardware" data-tier="trailhead">
+      <span class="post-meta-col"><span class="badge badge-trailhead">Trailhead</span></span>
+      <div>
+        <h3>BIOS, UEFI, and Firmware: The Software That Runs Before Software</h3>
+        <p>Something has to wake the hardware up and find the operating system. Meet the code that runs before anything you'd recognise as a computer.</p>
+        <div class="post-tags"><span class="tag">Hardware</span><span class="tag">Fundamentals</span></div>
+      </div>
+      <span class="trek-time">6 min trek</span>
+    </a>
+
+    <a class="post-row" href="posts/supporting-laptops-vs-desktops.html" data-category="hardware" data-tier="trailhead">
+      <span class="post-meta-col"><span class="badge badge-trailhead">Trailhead</span></span>
+      <div>
+        <h3>Why Supporting Laptops Is a Different Job From Supporting Desktops</h3>
+        <p>Same operating system, same apps — completely different failure modes. Batteries, hinges, heat, and the economics of soldered everything.</p>
+        <div class="post-tags"><span class="tag">Hardware</span><span class="tag">Support</span></div>
+      </div>
+      <span class="trek-time">7 min trek</span>
+    </a>
+
+    <a class="post-row" href="posts/field-guide-to-ports-usb-hdmi-thunderbolt.html" data-category="hardware" data-tier="basecamp">
+      <span class="post-meta-col"><span class="badge badge-basecamp">Basecamp</span></span>
+      <div>
+        <h3>USB, HDMI, DisplayPort, Thunderbolt: A Field Guide to Ports</h3>
+        <p>The shape of the plug no longer tells you what the port can do — and that one fact explains half of all docking-station tickets.</p>
+        <div class="post-tags"><span class="tag">Hardware</span><span class="tag">Support</span></div>
+      </div>
+      <span class="trek-time">6 min trek</span>
+    </a>
+
+    <a class="post-row" href="posts/ip-addresses-postal-system.html" data-category="networking" data-tier="basecamp">
+      <span class="post-meta-col"><span class="badge badge-basecamp">Basecamp</span></span>
+      <div>
+        <h3>IP Addresses: The Postal System of the Internet</h3>
+        <p>Every device needs an address before anyone can send it anything. Here's how the numbering actually works — and why we're running two systems at once.</p>
+        <div class="post-tags"><span class="tag">Networking</span><span class="tag">Fundamentals</span></div>
+      </div>
+      <span class="trek-time">6 min trek</span>
+    </a>
+
+    <a class="post-row" href="posts/dns-the-internets-phone-book.html" data-category="networking" data-tier="basecamp">
+      <span class="post-meta-col"><span class="badge badge-basecamp">Basecamp</span></span>
+      <div>
+        <h3>DNS: The Internet's Phone Book (and Why It Breaks Everything)</h3>
+        <p>Humans remember names; networks route numbers. DNS is the translation layer between them — which is why when it fails, it looks like everything failed.</p>
+        <div class="post-tags"><span class="tag">Networking</span><span class="tag">Fundamentals</span></div>
+      </div>
+      <span class="trek-time">7 min trek</span>
+    </a>
+
+    <a class="post-row" href="posts/dhcp-explained-simply.html" data-category="networking" data-tier="basecamp">
+      <span class="post-meta-col"><span class="badge badge-basecamp">Basecamp</span></span>
+      <div>
+        <h3>DHCP: How Devices Get Addresses Without Asking You</h3>
+        <p>You've connected hundreds of devices to networks and never once typed an IP address. Something did it for you — here's the four-step conversation.</p>
+        <div class="post-tags"><span class="tag">Networking</span><span class="tag">Fundamentals</span></div>
+      </div>
+      <span class="trek-time">6 min trek</span>
+    </a>
+
+    <a class="post-row" href="posts/routers-vs-switches-who-does-what.html" data-category="networking" data-tier="basecamp">
+      <span class="post-meta-col"><span class="badge badge-basecamp">Basecamp</span></span>
+      <div>
+        <h3>Routers vs Switches: Who Actually Does What</h3>
+        <p>One connects devices into a network; the other connects networks to each other. The corridor-and-border analogy that keeps them straight.</p>
+        <div class="post-tags"><span class="tag">Networking</span><span class="tag">Fundamentals</span></div>
+      </div>
+      <span class="trek-time">6 min trek</span>
+    </a>
+
+    <a class="post-row" href="posts/nat-how-your-house-shares-one-address.html" data-category="networking" data-tier="trailhead">
+      <span class="post-meta-col"><span class="badge badge-trailhead">Trailhead</span></span>
+      <div>
+        <h3>NAT: How Your Whole House Shares One Internet Address</h3>
+        <p>Dozens of devices, one public IP. The receptionist trick that quietly saved the internet from running out of addresses.</p>
+        <div class="post-tags"><span class="tag">Networking</span></div>
+      </div>
+      <span class="trek-time">6 min trek</span>
+    </a>
+
+    <a class="post-row" href="posts/tcp-vs-udp-tracked-delivery-vs-paper-planes.html" data-category="networking" data-tier="trailhead">
+      <span class="post-meta-col"><span class="badge badge-trailhead">Trailhead</span></span>
+      <div>
+        <h3>TCP vs UDP: Tracked Delivery vs Throwing Paper Planes</h3>
+        <p>Two ways to send data: one guarantees everything arrives in order, one just throws and keeps moving. Both are the right choice — for different jobs.</p>
+        <div class="post-tags"><span class="tag">Networking</span></div>
+      </div>
+      <span class="trek-time">7 min trek</span>
+    </a>
+
+    <a class="post-row" href="posts/firewalls-bouncers-with-a-guest-list.html" data-category="security" data-tier="basecamp">
+      <span class="post-meta-col"><span class="badge badge-basecamp">Basecamp</span></span>
+      <div>
+        <h3>Firewalls: Bouncers With a Guest List</h3>
+        <p>A firewall doesn't understand 'good' or 'bad' traffic. It checks packets against a list of rules, top to bottom, and does what the first match says.</p>
+        <div class="post-tags"><span class="tag">Security</span><span class="tag">Networking</span></div>
+      </div>
+      <span class="trek-time">6 min trek</span>
+    </a>
+
+    <a class="post-row" href="posts/wifi-why-your-signal-dies-in-the-kitchen.html" data-category="networking" data-tier="basecamp">
+      <span class="post-meta-col"><span class="badge badge-basecamp">Basecamp</span></span>
+      <div>
+        <h3>Wi-Fi: Why Your Signal Dies in the Kitchen</h3>
+        <p>Wi-Fi is radio, and radio obeys physics. Frequencies, walls, and interference — the three ideas behind almost every 'Wi-Fi is bad' complaint.</p>
+        <div class="post-tags"><span class="tag">Networking</span></div>
+      </div>
+      <span class="trek-time">7 min trek</span>
+    </a>
+
+    <a class="post-row" href="posts/subnetting-without-tears.html" data-category="networking" data-tier="ridge">
+      <span class="post-meta-col"><span class="badge badge-ridge">Ridge</span></span>
+      <div>
+        <h3>Subnetting Without Tears</h3>
+        <p>The /24 notation, the network-vs-host split, and why subnetting is really just deciding how to slice a street into postcodes.</p>
+        <div class="post-tags"><span class="tag">Networking</span></div>
+      </div>
+      <span class="trek-time">8 min trek</span>
+    </a>
+
+    <a class="post-row" href="posts/vpns-private-tunnel-public-road.html" data-category="networking" data-tier="trailhead">
+      <span class="post-meta-col"><span class="badge badge-trailhead">Trailhead</span></span>
+      <div>
+        <h3>VPNs: A Private Tunnel Through a Public Road</h3>
+        <p>One technology, two very different jobs: getting you inside the office network from home, and hiding your traffic from the coffee shop.</p>
+        <div class="post-tags"><span class="tag">Networking</span><span class="tag">Security</span></div>
+      </div>
+      <span class="trek-time">7 min trek</span>
+    </a>
+
+    <a class="post-row" href="posts/cia-triad-explained.html" data-category="security" data-tier="basecamp">
+      <span class="post-meta-col"><span class="badge badge-basecamp">Basecamp</span></span>
+      <div>
+        <h3>The CIA Triad: The Three Questions Behind All of Security</h3>
+        <p>Confidentiality, integrity, availability — not a checklist to memorise, but the three ways anything can go wrong with information.</p>
+        <div class="post-tags"><span class="tag">Security</span><span class="tag">Fundamentals</span></div>
+      </div>
+      <span class="trek-time">6 min trek</span>
+    </a>
+
+    <a class="post-row" href="posts/phishing-why-smart-people-click.html" data-category="security" data-tier="basecamp">
+      <span class="post-meta-col"><span class="badge badge-basecamp">Basecamp</span></span>
+      <div>
+        <h3>Phishing: Why Smart People Click</h3>
+        <p>Phishing doesn't exploit stupidity — it exploits urgency, authority, and busy Tuesday afternoons. Understanding the mechanics beats mocking the victims.</p>
+        <div class="post-tags"><span class="tag">Security</span><span class="tag">Fundamentals</span></div>
+      </div>
+      <span class="trek-time">7 min trek</span>
+    </a>
+
+    <a class="post-row" href="posts/passwords-are-broken-what-mfa-fixes.html" data-category="security" data-tier="basecamp">
+      <span class="post-meta-col"><span class="badge badge-basecamp">Basecamp</span></span>
+      <div>
+        <h3>Passwords Are Broken. Here's What MFA Actually Fixes</h3>
+        <p>Something you know, something you have, something you are — and why one stolen password shouldn't be enough to become you.</p>
+        <div class="post-tags"><span class="tag">Security</span><span class="tag">Fundamentals</span></div>
+      </div>
+      <span class="trek-time">6 min trek</span>
+    </a>
+
+    <a class="post-row" href="posts/malware-field-guide-to-the-species.html" data-category="security" data-tier="basecamp">
+      <span class="post-meta-col"><span class="badge badge-basecamp">Basecamp</span></span>
+      <div>
+        <h3>Malware: A Field Guide to the Species</h3>
+        <p>Virus, worm, trojan, ransomware, spyware — the words get used interchangeably in headlines, but each names a genuinely different behaviour.</p>
+        <div class="post-tags"><span class="tag">Security</span><span class="tag">Fundamentals</span></div>
+      </div>
+      <span class="trek-time">7 min trek</span>
+    </a>
+
+    <a class="post-row" href="posts/encryption-locked-boxes-public-padlocks.html" data-category="security" data-tier="trailhead">
+      <span class="post-meta-col"><span class="badge badge-trailhead">Trailhead</span></span>
+      <div>
+        <h3>Encryption: Locked Boxes and Public Padlocks</h3>
+        <p>Symmetric and asymmetric encryption in one analogy each — and the elegant trick where anyone can lock a box that only you can open.</p>
+        <div class="post-tags"><span class="tag">Security</span></div>
+      </div>
+      <span class="trek-time">7 min trek</span>
+    </a>
+
+    <a class="post-row" href="posts/least-privilege-nobody-gets-all-the-keys.html" data-category="security" data-tier="trailhead">
+      <span class="post-meta-col"><span class="badge badge-trailhead">Trailhead</span></span>
+      <div>
+        <h3>Least Privilege: Why Nobody Should Have All the Keys</h3>
+        <p>Not about distrust — about limiting how much any single mistake, phish, or breach can cost. The principle behind half of IT's 'annoying' rules.</p>
+        <div class="post-tags"><span class="tag">Security</span></div>
+      </div>
+      <span class="trek-time">6 min trek</span>
+    </a>
+
+    <a class="post-row" href="posts/patching-boring-thing-preventing-breaches.html" data-category="security" data-tier="basecamp">
+      <span class="post-meta-col"><span class="badge badge-basecamp">Basecamp</span></span>
+      <div>
+        <h3>Patching: The Most Boring Thing That Prevents the Most Breaches</h3>
+        <p>A patch is a published confession that a lock was broken. From that moment, attackers and defenders are in a race — and the race is the whole story.</p>
+        <div class="post-tags"><span class="tag">Security</span><span class="tag">Fundamentals</span></div>
+      </div>
+      <span class="trek-time">6 min trek</span>
+    </a>
+
+    <a class="post-row" href="posts/social-engineering-hacking-people.html" data-category="security" data-tier="trailhead">
+      <span class="post-meta-col"><span class="badge badge-trailhead">Trailhead</span></span>
+      <div>
+        <h3>Social Engineering: Hacking People Instead of Computers</h3>
+        <p>Why break encryption when you can just ask? Pretexts, tailgating, and the uncomfortable truth that politeness is a vulnerability.</p>
+        <div class="post-tags"><span class="tag">Security</span></div>
+      </div>
+      <span class="trek-time">7 min trek</span>
+    </a>
+
+    <a class="post-row" href="posts/vulnerability-exploit-threat-getting-words-right.html" data-category="security" data-tier="trailhead">
+      <span class="post-meta-col"><span class="badge badge-trailhead">Trailhead</span></span>
+      <div>
+        <h3>Vulnerability, Exploit, Threat, Risk: Getting the Words Right</h3>
+        <p>Security has a precise vocabulary that news headlines blend into mush. Four words, one burglary metaphor, permanent clarity.</p>
+        <div class="post-tags"><span class="tag">Security</span><span class="tag">Fundamentals</span></div>
+      </div>
+      <span class="trek-time">6 min trek</span>
+    </a>
+
+    <a class="post-row" href="posts/logs-security-camera-footage-of-your-network.html" data-category="security" data-tier="trailhead">
+      <span class="post-meta-col"><span class="badge badge-trailhead">Trailhead</span></span>
+      <div>
+        <h3>Logs: The Security Camera Footage of Your Network</h3>
+        <p>Every login, connection, and error leaves a record. Security work is largely learning to read — and centralise — the footage.</p>
+        <div class="post-tags"><span class="tag">Security</span></div>
+      </div>
+      <span class="trek-time">7 min trek</span>
+    </a>
+
+    <a class="post-row" href="posts/zero-trust-explained-like-youre-smart-but-new.html" data-category="security" data-tier="ridge">
+      <span class="post-meta-col"><span class="badge badge-ridge">Ridge</span></span>
+      <div>
+        <h3>Zero Trust, Explained Like You're Smart But New</h3>
+        <p>'Never trust, always verify' is the slogan. The castle that stopped working is the actual story.</p>
+        <div class="post-tags"><span class="tag">Security</span><span class="tag">Architecture</span></div>
+      </div>
+      <span class="trek-time">8 min trek</span>
+    </a>
+
+    <a class="post-row" href="posts/what-happens-in-a-tls-handshake.html" data-category="security" data-tier="summit">
+      <span class="post-meta-col"><span class="badge badge-summit">Summit</span></span>
+      <div>
+        <h3>What Actually Happens in a TLS Handshake</h3>
+        <p>Every padlock icon hides a rapid negotiation: prove who you are, agree on maths, build a shared secret in plain sight of eavesdroppers.</p>
+        <div class="post-tags"><span class="tag">Security</span><span class="tag">Networking</span></div>
+      </div>
+      <span class="trek-time">9 min trek</span>
+    </a>
+
+    <a class="post-row" href="posts/kerberos-without-the-migraine.html" data-category="security" data-tier="summit">
+      <span class="post-meta-col"><span class="badge badge-summit">Summit</span></span>
+      <div>
+        <h3>Kerberos: Ticket-Based Authentication Without the Migraine</h3>
+        <p>The protocol behind every corporate Windows login, explained as a festival wristband system — including why attackers love golden tickets.</p>
+        <div class="post-tags"><span class="tag">Security</span><span class="tag">Identity</span></div>
+      </div>
+      <span class="trek-time">9 min trek</span>
+    </a>
+
+    <a class="post-row" href="posts/bgp-how-the-internet-decides-where-to-send-things.html" data-category="networking" data-tier="summit">
+      <span class="post-meta-col"><span class="badge badge-summit">Summit</span></span>
+      <div>
+        <h3>BGP: How the Internet Decides Where to Send Everything</h3>
+        <p>The internet has no map and no manager. It has 70,000 networks gossiping routes to each other — on the honour system.</p>
+        <div class="post-tags"><span class="tag">Networking</span><span class="tag">Architecture</span></div>
+      </div>
+      <span class="trek-time">9 min trek</span>
+    </a>
+
+    <a class="post-row" href="posts/dns-attacks-poisoning-tunnelling-hijacking.html" data-category="security" data-tier="ridge">
+      <span class="post-meta-col"><span class="badge badge-ridge">Ridge</span></span>
+      <div>
+        <h3>DNS Under Attack: Poisoning, Tunnelling, and Hijacking</h3>
+        <p>The internet's phone book was designed with no security at all. Here's how attackers abuse that — and how defenders fought back.</p>
+        <div class="post-tags"><span class="tag">Security</span><span class="tag">Networking</span></div>
+      </div>
+      <span class="trek-time">8 min trek</span>
+    </a>
+
+    <a class="post-row" href="posts/hybrid-identity-users-in-two-worlds.html" data-category="cloud" data-tier="summit">
+      <span class="post-meta-col"><span class="badge badge-summit">Summit</span></span>
+      <div>
+        <h3>Hybrid Identity: When Your Users Live in Two Worlds</h3>
+        <p>One identity on-premises, one in the cloud, and the synchronisation machinery that lets 'one username, everywhere' actually work.</p>
+        <div class="post-tags"><span class="tag">Cloud</span><span class="tag">Identity</span></div>
+      </div>
+      <span class="trek-time">9 min trek</span>
+    </a>
+
+    <a class="post-row" href="posts/conditional-access-if-this-then-that-security.html" data-category="cloud" data-tier="ridge">
+      <span class="post-meta-col"><span class="badge badge-ridge">Ridge</span></span>
+      <div>
+        <h3>Conditional Access: The If-This-Then-That of Enterprise Security</h3>
+        <p>Zero trust sounds abstract until you see the policy engine that enforces it: signals in, decision out, on every single sign-in.</p>
+        <div class="post-tags"><span class="tag">Cloud</span><span class="tag">Identity</span><span class="tag">Security</span></div>
+      </div>
+      <span class="trek-time">8 min trek</span>
+    </a>
+
+    <a class="post-row" href="posts/beyond-vlans-microsegmentation-east-west.html" data-category="networking" data-tier="summit">
+      <span class="post-meta-col"><span class="badge badge-summit">Summit</span></span>
+      <div>
+        <h3>Beyond VLANs: Microsegmentation and the East-West Problem</h3>
+        <p>VLANs guard the borders between network zones. But most attack traffic moves sideways, inside zones — and that needed a new answer.</p>
+        <div class="post-tags"><span class="tag">Networking</span><span class="tag">Security</span><span class="tag">Architecture</span></div>
+      </div>
+      <span class="trek-time">8 min trek</span>
+    </a>
+
+    <a class="post-row" href="posts/anatomy-of-a-ransomware-attack.html" data-category="security" data-tier="ridge">
+      <span class="post-meta-col"><span class="badge badge-ridge">Ridge</span></span>
+      <div>
+        <h3>Anatomy of a Ransomware Attack: The Full Kill Chain</h3>
+        <p>The encryption is the last five percent. Walking the whole chain — access, foothold, escalation, exfiltration — is how defenders learn where it breaks.</p>
+        <div class="post-tags"><span class="tag">Security</span></div>
+      </div>
+      <span class="trek-time">9 min trek</span>
+    </a>
+
+    <a class="post-row" href="posts/from-logs-to-alerts-detection-engineering.html" data-category="security" data-tier="summit">
+      <span class="post-meta-col"><span class="badge badge-summit">Summit</span></span>
+      <div>
+        <h3>From Logs to Alerts: How Detection Engineering Actually Works</h3>
+        <p>Someone has to write the rules that turn a billion log lines into the one alert that matters — and not the thousand that don't.</p>
+        <div class="post-tags"><span class="tag">Security</span></div>
+      </div>
+      <span class="trek-time">9 min trek</span>
+    </a>
+
+    <a class="post-row" href="posts/osi-model-explained.html" data-category="networking" data-tier="basecamp">
       <span class="post-meta-col"><span class="badge badge-basecamp">Basecamp</span></span>
       <div>
         <h3>You Don't Need to Memorise the OSI Model. You Need to Understand It.</h3>
@@ -77,7 +485,7 @@
       <span class="trek-time">7 min trek</span>
     </a>
 
-    <a class="post-row" href="posts/vlans-explained-no-jargon.html" data-category="networking">
+    <a class="post-row" href="posts/vlans-explained-no-jargon.html" data-category="networking" data-tier="trailhead">
       <span class="post-meta-col"><span class="badge badge-trailhead">Trailhead</span></span>
       <div>
         <h3>What Is a VLAN, Actually? (No Jargon)</h3>
@@ -87,7 +495,7 @@
       <span class="trek-time">8 min trek</span>
     </a>
 
-    <a class="post-row" href="posts/cloud-computing-for-beginners.html" data-category="cloud">
+    <a class="post-row" href="posts/cloud-computing-for-beginners.html" data-category="cloud" data-tier="basecamp">
       <span class="post-meta-col"><span class="badge badge-basecamp">Basecamp</span></span>
       <div>
         <h3>Cloud Computing for People Who've Never Touched a Server</h3>
@@ -97,7 +505,7 @@
       <span class="trek-time">9 min trek</span>
     </a>
 
-    <a class="post-row" href="posts/first-30-days-in-cybersecurity.html" data-category="career">
+    <a class="post-row" href="posts/first-30-days-in-cybersecurity.html" data-category="career" data-tier="trailhead">
       <span class="post-meta-col"><span class="badge badge-trailhead">Trailhead</span></span>
       <div>
         <h3>Your First 30 Days in Cybersecurity: What Actually Matters</h3>
