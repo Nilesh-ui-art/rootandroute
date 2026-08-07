@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kerberos: Ticket-Based Authentication Without the Migraine | Root &amp; Route</title>
+<meta name="description" content="Kerberos authentication explained simply: KDC, TGT and service tickets as a festival wristband model, plus why Kerberos attacks matter.">
+<meta name="keywords" content="Kerberos explained simply, how Kerberos authentication works, TGT ticket granting ticket, golden ticket attack explained">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://rootandroute.online/posts/kerberos-without-the-migraine.html">
+<meta name="author" content="Root & Route">
+<meta property="og:site_name" content="Root &amp; Route">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://rootandroute.online/posts/kerberos-without-the-migraine.html">
+<meta property="og:title" content="Kerberos: Ticket-Based Authentication Without the Migraine | Root &amp; Route">
+<meta property="og:description" content="Kerberos authentication explained simply: KDC, TGT and service tickets as a festival wristband model, plus why Kerberos attacks matter.">
+<meta property="og:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Kerberos: Ticket-Based Authentication Without the Migraine | Root &amp; Route">
+<meta name="twitter:description" content="Kerberos authentication explained simply: KDC, TGT and service tickets as a festival wristband model, plus why Kerberos attacks matter.">
+<meta name="twitter:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta name="theme-color" content="#1D6F62">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Kerberos: Ticket-Based Authentication Without the Migraine", "description": "Kerberos authentication explained simply: KDC, TGT and service tickets as a festival wristband model, plus why Kerberos attacks matter.", "url": "https://rootandroute.online/posts/kerberos-without-the-migraine.html", "mainEntityOfPage": "https://rootandroute.online/posts/kerberos-without-the-migraine.html", "image": "https://rootandroute.online/assets/img/og-card.png", "articleSection": "Security", "datePublished": "2026-08-07", "dateModified": "2026-08-07", "author": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}, "publisher": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://rootandroute.online/"}, {"@type": "ListItem", "position": 2, "name": "Trail Log", "item": "https://rootandroute.online/trail-log.html"}, {"@type": "ListItem", "position": 3, "name": "Kerberos: Ticket-Based Authentication Without the Migraine", "item": "https://rootandroute.online/posts/kerberos-without-the-migraine.html"}]}</script>
+<script>(function(){try{var t=localStorage.getItem('rr-theme');if(t){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<div class="progress-track" aria-hidden="true"><div class="progress-fill"></div></div>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="../index.html" class="logo">Root <span class="amp">&amp;</span> Route</a>
+    <button class="nav-toggle" aria-label="Toggle menu">MENU</button>
+    <nav class="main-nav">
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html" class="active">Trail Log</a>
+      <a href="../about.html">About</a>
+    </nav>
+    <button class="theme-toggle" aria-label="Switch theme">☾</button>
+  </div>
+</header>
+
+<section id="main" class="post-hero">
+  <div class="wrap">
+    <div class="meta-row">
+      <span class="badge badge-summit">Summit</span>
+      <span class="tag">Security</span><span class="tag">Identity</span>
+    </div>
+    <h1>Kerberos: Ticket-Based Authentication Without the Migraine</h1>
+    <p class="lede dek">The protocol behind every corporate Windows login, explained as a festival wristband system — including why attackers love golden tickets.</p>
+    <div class="byline">9 MIN TREK — ROOT &amp; ROUTE</div>
+  </div>
+</section>
+
+<section class="post-body">
+  <div class="wrap content">
+<p>Every morning, millions of people type a password into a Windows machine once, then open file shares, printers, intranets and databases all day without ever being asked again. The machinery behind that quiet magic is Kerberos — a protocol with a fearsome textbook reputation (named after the three-headed dog of Greek myth, taught with diagrams of arrows everywhere) that becomes almost obvious once you swap the diagrams for a festival.</p>
+
+    <h2>The festival model</h2>
+    <p>Imagine a huge music festival with dozens of venues, each with its own door staff. Checking everyone's ID at every door would be miserable, so the festival does what festivals do:</p>
+    <ul>
+      <li><strong>The box office (Authentication Service):</strong> you prove who you are <em>once</em> — ID checked properly — and receive a <strong>wristband</strong>. In Kerberos this is the <strong>TGT (Ticket-Granting Ticket)</strong>, and the box office lives inside the <strong>KDC (Key Distribution Center)</strong> — which, in a Windows network, is the domain controller. Your password never travels across the network; the exchange uses keys derived from it.</li>
+      <li><strong>The ticket desk (Ticket-Granting Service):</strong> want into a specific venue — say, the file server? Show your wristband at the desk and receive a <strong>venue-specific ticket</strong> (a <em>service ticket</em>): valid for that venue only, for a limited time, non-transferable.</li>
+      <li><strong>The venue door (the service):</strong> the file server checks your service ticket's cryptographic seal and lets you in. Crucially, <em>the venue never phones the box office</em> — the ticket itself is verifiable, because it's sealed with a secret the venue shares with the KDC. That's the scalability trick: the central authority isn't consulted on every access.</li>
+    </ul>
+
+    <p>Everything Kerberos-y follows from the model. Tickets expire (wristbands are dated — limiting how long stolen ones work). Tickets are encrypted and bound to you (names checked against wearers). And the entire day of seamless access is just: one box-office visit, then wristband → desk → venue, repeated invisibly, service after service.</p>
+
+    <div class="callout">
+      <span class="eyebrow">Trail note</span>
+      <p style="margin:0;">Where the model earns its Summit badge: <strong>attacks on Kerberos are attacks on the ticketing.</strong> Steal a ticket from a machine's memory and replay it — that's <em>pass-the-ticket</em>. Request tickets for services and crack their encryption offline to recover a service account's weak password — that's <em>Kerberoasting</em>, a staple of real intrusions and the best argument you'll ever meet for long random service-account passwords. And if attackers steal the box office's own master stamp (the <code>krbtgt</code> account's key), they can <em>print wristbands</em> — arbitrary, long-lived, for anyone, including invented users. That's the <strong>golden ticket</strong>, it means total domain compromise, and it's why recovering from one requires re-keying the box office itself, twice.</p>
+    </div>
+
+    <p>Why care, beyond exams? Because Kerberos quietly underpins Active Directory — still the identity backbone of most enterprises — and because the festival model is the fastest route to understanding both the daily support tickets ("clock skew" errors: your watch disagrees with the box office's, so your tickets look forged) and the incident reports (nearly every major Windows-network intrusion story includes at least one of the ticket attacks above). Three-headed dog; one wristband; whole protocol.</p>
+  </div>
+
+  <div class="next-waypoint wrap">
+    <a href="bgp-how-the-internet-decides-where-to-send-things.html">
+      <span class="eyebrow">Next waypoint — Summit</span>
+      <h3 style="margin-top:0.6rem;">BGP: How the Internet Decides Where to Send Everything →</h3>
+    </a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span class="fine">© 2026 Root &amp; Route. Written by someone who's still on the trail too.</span>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html">Trail Log</a>
+      <a href="../about.html">About</a>
+    </nav>
+  </div>
+</footer>
+
+<button class="to-top" aria-label="Back to top">↑</button>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

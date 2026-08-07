@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Logs: The Security Camera Footage of Your Network | Root &amp; Route</title>
+<meta name="description" content="Security logging explained: what logs record, why centralising them in a SIEM matters, and how logs power detection and incident response.">
+<meta name="keywords" content="security logs explained, what is a SIEM, log analysis beginners, why logging matters security">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://rootandroute.online/posts/logs-security-camera-footage-of-your-network.html">
+<meta name="author" content="Root & Route">
+<meta property="og:site_name" content="Root &amp; Route">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://rootandroute.online/posts/logs-security-camera-footage-of-your-network.html">
+<meta property="og:title" content="Logs: The Security Camera Footage of Your Network | Root &amp; Route">
+<meta property="og:description" content="Security logging explained: what logs record, why centralising them in a SIEM matters, and how logs power detection and incident response.">
+<meta property="og:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Logs: The Security Camera Footage of Your Network | Root &amp; Route">
+<meta name="twitter:description" content="Security logging explained: what logs record, why centralising them in a SIEM matters, and how logs power detection and incident response.">
+<meta name="twitter:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta name="theme-color" content="#1D6F62">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Logs: The Security Camera Footage of Your Network", "description": "Security logging explained: what logs record, why centralising them in a SIEM matters, and how logs power detection and incident response.", "url": "https://rootandroute.online/posts/logs-security-camera-footage-of-your-network.html", "mainEntityOfPage": "https://rootandroute.online/posts/logs-security-camera-footage-of-your-network.html", "image": "https://rootandroute.online/assets/img/og-card.png", "articleSection": "Security", "datePublished": "2026-08-07", "dateModified": "2026-08-07", "author": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}, "publisher": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://rootandroute.online/"}, {"@type": "ListItem", "position": 2, "name": "Trail Log", "item": "https://rootandroute.online/trail-log.html"}, {"@type": "ListItem", "position": 3, "name": "Logs: The Security Camera Footage of Your Network", "item": "https://rootandroute.online/posts/logs-security-camera-footage-of-your-network.html"}]}</script>
+<script>(function(){try{var t=localStorage.getItem('rr-theme');if(t){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<div class="progress-track" aria-hidden="true"><div class="progress-fill"></div></div>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="../index.html" class="logo">Root <span class="amp">&amp;</span> Route</a>
+    <button class="nav-toggle" aria-label="Toggle menu">MENU</button>
+    <nav class="main-nav">
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html" class="active">Trail Log</a>
+      <a href="../about.html">About</a>
+    </nav>
+    <button class="theme-toggle" aria-label="Switch theme">☾</button>
+  </div>
+</header>
+
+<section id="main" class="post-hero">
+  <div class="wrap">
+    <div class="meta-row">
+      <span class="badge badge-trailhead">Trailhead</span>
+      <span class="tag">Security</span>
+    </div>
+    <h1>Logs: The Security Camera Footage of Your Network</h1>
+    <p class="lede dek">Every login, connection, and error leaves a record. Security work is largely learning to read — and centralise — the footage.</p>
+    <div class="byline">7 MIN TREK — ROOT &amp; ROUTE</div>
+  </div>
+</section>
+
+<section class="post-body">
+  <div class="wrap content">
+<p>Almost everything a computer does leaves a written record: every login attempt, every file accessed, every connection made, every error thrown. These records — logs — pile up by the millions, unread, on every system you'll ever manage. Security work, to a degree that surprises newcomers, is the craft of making that footage useful: knowing what's recorded where, gathering it, and spotting the frames that matter.</p>
+
+    <h2>The footage analogy, taken seriously</h2>
+    <p>Think of logs exactly as security camera recordings, because the parallels run deep. Cameras don't prevent burglaries — they let you <em>detect</em> one, reconstruct what happened, and prove it afterwards. Footage is only useful if the cameras were actually recording <em>before</em> the incident, pointed at the right places, and kept long enough. And crucially: footage stored inside the building can be stolen or wiped by the burglar. Every one of those sentences translates directly into a principle of security logging — including the last one, which is why serious environments ship logs off each machine to central storage the attacker can't quietly edit. Deleting local logs to cover tracks is a standard attacker move; centralised copies are the counter.</p>
+
+    <h2>What the everyday footage shows</h2>
+    <ul>
+      <li><strong>Authentication logs</strong> — every success and failure. A thousand failures then one success is a brute-force attack narrated in plain text. A user logging in from London and Singapore within an hour is an "impossible travel" alert writing itself.</li>
+      <li><strong>Network logs</strong> — who connected to what. A workstation suddenly sending gigabytes to an unknown external server at 3am is data theft with a timestamp.</li>
+      <li><strong>Endpoint logs</strong> — processes started, changes made on each machine. Word launching PowerShell is one of the most classic malicious patterns in existence, and it appears here.</li>
+    </ul>
+
+    <h2>The tool you'll hear about constantly: SIEM</h2>
+    <p>A <strong>SIEM</strong> (Security Information and Event Management — everyone says "sim") is the central control room: it ingests logs from everywhere, normalises them into a common format, and runs detection rules across the combined stream. Its real power is <em>correlation</em> — no single log line looks alarming, but a failed VPN login, then a success, then a new admin account, then a large outbound transfer, stitched across four systems in twenty minutes, is an intrusion story no individual system could have told. Detection engineering — writing the rules that spot such stories — is an entire career, and this trail has a Summit post on it.</p>
+
+    <div class="callout">
+      <span class="eyebrow">Trail note</span>
+      <p style="margin:0;">A beginner habit that pays off immediately: when anything odd happens — a lockout, a weird crash, an alert — <em>go find the log line for it.</em> Not because each instance matters, but because you're learning what normal looks like on your systems. Every experienced responder's "that's weird" instinct was built exactly this way, one boring log at a time.</p>
+    </div>
+
+    <p>Last, a truth that shapes real budgets: logging is a trade-off. Recording everything forever costs real money (SIEMs often charge by data volume), so organisations choose what to record and how long to keep it — and incident responders regularly discover the one log they needed was never enabled. "What should we log?" is a genuine design question, and now you know why it gets asked.</p>
+  </div>
+
+  <div class="next-waypoint wrap">
+    <a href="zero-trust-explained-like-youre-smart-but-new.html">
+      <span class="eyebrow">Next waypoint — Ridge</span>
+      <h3 style="margin-top:0.6rem;">Zero Trust, Explained Like You're Smart But New →</h3>
+    </a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span class="fine">© 2026 Root &amp; Route. Written by someone who's still on the trail too.</span>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html">Trail Log</a>
+      <a href="../about.html">About</a>
+    </nav>
+  </div>
+</footer>
+
+<button class="to-top" aria-label="Back to top">↑</button>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

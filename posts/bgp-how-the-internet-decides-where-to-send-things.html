@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BGP: How the Internet Decides Where to Send Everything | Root &amp; Route</title>
+<meta name="description" content="BGP explained in plain language: autonomous systems, route advertisement, why BGP works on trust, and how route hijacks break the internet.">
+<meta name="keywords" content="BGP explained simply, how internet routing works, BGP hijack explained, autonomous system AS explained">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://rootandroute.online/posts/bgp-how-the-internet-decides-where-to-send-things.html">
+<meta name="author" content="Root & Route">
+<meta property="og:site_name" content="Root &amp; Route">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://rootandroute.online/posts/bgp-how-the-internet-decides-where-to-send-things.html">
+<meta property="og:title" content="BGP: How the Internet Decides Where to Send Everything | Root &amp; Route">
+<meta property="og:description" content="BGP explained in plain language: autonomous systems, route advertisement, why BGP works on trust, and how route hijacks break the internet.">
+<meta property="og:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="BGP: How the Internet Decides Where to Send Everything | Root &amp; Route">
+<meta name="twitter:description" content="BGP explained in plain language: autonomous systems, route advertisement, why BGP works on trust, and how route hijacks break the internet.">
+<meta name="twitter:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta name="theme-color" content="#1D6F62">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "BGP: How the Internet Decides Where to Send Everything", "description": "BGP explained in plain language: autonomous systems, route advertisement, why BGP works on trust, and how route hijacks break the internet.", "url": "https://rootandroute.online/posts/bgp-how-the-internet-decides-where-to-send-things.html", "mainEntityOfPage": "https://rootandroute.online/posts/bgp-how-the-internet-decides-where-to-send-things.html", "image": "https://rootandroute.online/assets/img/og-card.png", "articleSection": "Networking", "datePublished": "2026-08-07", "dateModified": "2026-08-07", "author": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}, "publisher": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://rootandroute.online/"}, {"@type": "ListItem", "position": 2, "name": "Trail Log", "item": "https://rootandroute.online/trail-log.html"}, {"@type": "ListItem", "position": 3, "name": "BGP: How the Internet Decides Where to Send Everything", "item": "https://rootandroute.online/posts/bgp-how-the-internet-decides-where-to-send-things.html"}]}</script>
+<script>(function(){try{var t=localStorage.getItem('rr-theme');if(t){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<div class="progress-track" aria-hidden="true"><div class="progress-fill"></div></div>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="../index.html" class="logo">Root <span class="amp">&amp;</span> Route</a>
+    <button class="nav-toggle" aria-label="Toggle menu">MENU</button>
+    <nav class="main-nav">
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html" class="active">Trail Log</a>
+      <a href="../about.html">About</a>
+    </nav>
+    <button class="theme-toggle" aria-label="Switch theme">☾</button>
+  </div>
+</header>
+
+<section id="main" class="post-hero">
+  <div class="wrap">
+    <div class="meta-row">
+      <span class="badge badge-summit">Summit</span>
+      <span class="tag">Networking</span><span class="tag">Architecture</span>
+    </div>
+    <h1>BGP: How the Internet Decides Where to Send Everything</h1>
+    <p class="lede dek">The internet has no map and no manager. It has 70,000 networks gossiping routes to each other — on the honour system.</p>
+    <div class="byline">9 MIN TREK — ROOT &amp; ROUTE</div>
+  </div>
+</section>
+
+<section class="post-body">
+  <div class="wrap content">
+<p>Here's a question that sounds naive and is actually profound: when you load a website hosted on another continent, <em>who decided the path your packets took?</em> There's no internet headquarters, no master map, no company that runs routing. The answer is a thirty-year-old protocol called BGP — Border Gateway Protocol — and understanding it changes how you see every "half the internet is down" headline.</p>
+
+    <h2>The internet is a federation, not a network</h2>
+    <p>First, reframe what "the internet" is: roughly 70,000+ independent networks — ISPs, cloud providers, big enterprises, universities — each called an <strong>autonomous system (AS)</strong>, each with a number (Google is AS15169). The internet is nothing more than these networks agreeing to exchange traffic. BGP is the language of that agreement.</p>
+
+    <h2>Routing by gossip</h2>
+    <p>BGP works like neighbourhood gossip between border routers. Each AS <strong>advertises</strong> to its neighbours: "I can reach these address blocks." Neighbours pass it on, appending themselves: "I can reach those blocks <em>via them</em>." Every advertisement carries the accumulating path of AS numbers it travelled — so routers across the world end up holding, for every destination block, a set of candidate paths, and they generally prefer shorter ones (fewer networks to cross). No one holds a map of the internet; everyone holds directions their neighbours claimed, which is a very different thing.</p>
+
+    <p>The elegance: when a cable is cut or a network dies, its routes get withdrawn, the gossip propagates, and traffic re-converges around the damage in seconds to minutes — no coordinator required. This is why the internet survives earthquakes, wars, and backhoes. Now the flaw.</p>
+
+    <h2>The honour system</h2>
+    <p>Classic BGP has no built-in way to verify that an advertisement is <em>true</em>. If a network announces "I can reach YouTube's addresses," neighbours historically just… believed it. And because routers prefer more-specific announcements, a false, more-specific route can out-compete the real one globally within minutes. This is a <strong>BGP hijack</strong>, and it's not theoretical: misconfigurations and deliberate hijacks have repeatedly redirected chunks of the world's traffic through the wrong country, blackholed major services, or enabled cryptocurrency theft — including famous incidents where a single small ISP's mistake took a global platform offline. When you see "configuration error at one provider broke the internet for hours," the mechanism underneath is very often BGP propagating a bad announcement at gossip speed.</p>
+
+    <div class="callout">
+      <span class="eyebrow">Trail note</span>
+      <p style="margin:0;">The fix rolling out across the industry is <strong>RPKI</strong> — cryptographic statements ("this AS is authorised to announce these blocks") that routers can check before believing gossip. Adoption is real but incomplete, which is the honest state of the art: the internet's routing still runs substantially on trust, patched gradually with cryptography.</p>
+    </div>
+
+    <p>Why a Summit post on a beginners' site bothers with BGP: because it completes your mental model. LANs, switches, and OSPF-style routing explain your building; BGP explains the world — and once you know the internet is a gossip federation on the honour system, entire categories of outage news stop being mysterious and start being legible.</p>
+  </div>
+
+  <div class="next-waypoint wrap">
+    <a href="dns-attacks-poisoning-tunnelling-hijacking.html">
+      <span class="eyebrow">Next waypoint — Ridge</span>
+      <h3 style="margin-top:0.6rem;">DNS Under Attack: Poisoning, Tunnelling, and Hijacking →</h3>
+    </a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span class="fine">© 2026 Root &amp; Route. Written by someone who's still on the trail too.</span>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html">Trail Log</a>
+      <a href="../about.html">About</a>
+    </nav>
+  </div>
+</footer>
+
+<button class="to-top" aria-label="Back to top">↑</button>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

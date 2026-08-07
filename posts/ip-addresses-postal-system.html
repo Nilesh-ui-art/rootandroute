@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IP Addresses: The Postal System of the Internet | Root &amp; Route</title>
+<meta name="description" content="IP addresses explained for beginners: what they are, public vs private addresses, and why IPv4 and IPv6 both exist.">
+<meta name="keywords" content="what is an IP address, IP address explained beginners, public vs private IP, IPv4 vs IPv6 difference">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://rootandroute.online/posts/ip-addresses-postal-system.html">
+<meta name="author" content="Root & Route">
+<meta property="og:site_name" content="Root &amp; Route">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://rootandroute.online/posts/ip-addresses-postal-system.html">
+<meta property="og:title" content="IP Addresses: The Postal System of the Internet | Root &amp; Route">
+<meta property="og:description" content="IP addresses explained for beginners: what they are, public vs private addresses, and why IPv4 and IPv6 both exist.">
+<meta property="og:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="IP Addresses: The Postal System of the Internet | Root &amp; Route">
+<meta name="twitter:description" content="IP addresses explained for beginners: what they are, public vs private addresses, and why IPv4 and IPv6 both exist.">
+<meta name="twitter:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta name="theme-color" content="#1D6F62">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "IP Addresses: The Postal System of the Internet", "description": "IP addresses explained for beginners: what they are, public vs private addresses, and why IPv4 and IPv6 both exist.", "url": "https://rootandroute.online/posts/ip-addresses-postal-system.html", "mainEntityOfPage": "https://rootandroute.online/posts/ip-addresses-postal-system.html", "image": "https://rootandroute.online/assets/img/og-card.png", "articleSection": "Networking", "datePublished": "2026-08-07", "dateModified": "2026-08-07", "author": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}, "publisher": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://rootandroute.online/"}, {"@type": "ListItem", "position": 2, "name": "Trail Log", "item": "https://rootandroute.online/trail-log.html"}, {"@type": "ListItem", "position": 3, "name": "IP Addresses: The Postal System of the Internet", "item": "https://rootandroute.online/posts/ip-addresses-postal-system.html"}]}</script>
+<script>(function(){try{var t=localStorage.getItem('rr-theme');if(t){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<div class="progress-track" aria-hidden="true"><div class="progress-fill"></div></div>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="../index.html" class="logo">Root <span class="amp">&amp;</span> Route</a>
+    <button class="nav-toggle" aria-label="Toggle menu">MENU</button>
+    <nav class="main-nav">
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html" class="active">Trail Log</a>
+      <a href="../about.html">About</a>
+    </nav>
+    <button class="theme-toggle" aria-label="Switch theme">☾</button>
+  </div>
+</header>
+
+<section id="main" class="post-hero">
+  <div class="wrap">
+    <div class="meta-row">
+      <span class="badge badge-basecamp">Basecamp</span>
+      <span class="tag">Networking</span><span class="tag">Fundamentals</span>
+    </div>
+    <h1>IP Addresses: The Postal System of the Internet</h1>
+    <p class="lede dek">Every device needs an address before anyone can send it anything. Here's how the numbering actually works — and why we're running two systems at once.</p>
+    <div class="byline">6 MIN TREK — ROOT &amp; ROUTE</div>
+  </div>
+</section>
+
+<section class="post-body">
+  <div class="wrap content">
+<p>Nothing on a network can receive anything until it has an address — same as post. An IP address is that address: a number like <code>192.168.1.42</code> that identifies one device on one network at one point in time. Every website you visit, every message you send, is packets of data with a destination IP written on the front and your IP as the return address.</p>
+
+    <h2>Reading the number</h2>
+    <p>An IPv4 address is four numbers from 0–255 separated by dots. The useful intuition: it reads like a postal address from big to small — the early parts identify the network (the city and street), the last part identifies the specific device (the house number). Exactly where "network part" ends and "device part" begins is configurable, which is the entire subject of subnetting — a later stop on this trail. For now: left is neighbourhood, right is house.</p>
+
+    <h2>Public vs private: the crucial split</h2>
+    <p>Not all addresses are reachable from the internet. Certain ranges — most famously <code>192.168.x.x</code>, <code>10.x.x.x</code>, and <code>172.16–31.x.x</code> — are reserved as <strong>private</strong>: usable inside any home or office, invisible from outside. Your laptop's <code>192.168.1.42</code> exists in millions of houses simultaneously without conflict, like every town having its own High Street. Your router holds the single <strong>public</strong> address your whole household shares, and translates between the two worlds (that trick is called NAT — it gets its own post).</p>
+
+    <div class="callout">
+      <span class="eyebrow">Trail note</span>
+      <p style="margin:0;">This split is the first question of network troubleshooting made concrete: a device with a private address and no route out can talk to the printer but not to Google. "Can you reach things on your own network?" and "can you reach the internet?" are two different tests for two different failures.</p>
+    </div>
+
+    <h2>Why there are two versions</h2>
+    <p>IPv4's four numbers give about 4.3 billion possible addresses — which sounded infinite in the 1980s and ran out decades ago. <strong>IPv6</strong> is the replacement: vastly longer addresses (they look like <code>2001:db8::8a2e:370:7334</code>) with enough space to address every grain of sand on Earth many times over. The two run side by side today, which is why your machine typically has both. For beginners the practical takeaway is simply: IPv6 isn't a different concept, just a bigger address book — everything you learn about addressing carries over.</p>
+
+    <p>One habit worth building immediately: learn to find your own IP (<code>ipconfig</code> on Windows, <code>ip addr</code> on Linux). It's the "where am I?" of networking — the starting point of nearly every diagnosis you'll ever run.</p>
+  </div>
+
+  <div class="next-waypoint wrap">
+    <a href="dns-the-internets-phone-book.html">
+      <span class="eyebrow">Next waypoint — Basecamp</span>
+      <h3 style="margin-top:0.6rem;">DNS: The Internet's Phone Book (and Why It Breaks Everything) →</h3>
+    </a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span class="fine">© 2026 Root &amp; Route. Written by someone who's still on the trail too.</span>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html">Trail Log</a>
+      <a href="../about.html">About</a>
+    </nav>
+  </div>
+</footer>
+
+<button class="to-top" aria-label="Back to top">↑</button>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

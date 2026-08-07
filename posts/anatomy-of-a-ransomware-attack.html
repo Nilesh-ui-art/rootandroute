@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anatomy of a Ransomware Attack: The Full Kill Chain | Root &amp; Route</title>
+<meta name="description" content="How a ransomware attack actually unfolds step by step: initial access, persistence, privilege escalation, lateral movement, exfiltration and encryption.">
+<meta name="keywords" content="ransomware attack stages explained, ransomware kill chain, double extortion explained, how ransomware attacks work">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://rootandroute.online/posts/anatomy-of-a-ransomware-attack.html">
+<meta name="author" content="Root & Route">
+<meta property="og:site_name" content="Root &amp; Route">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://rootandroute.online/posts/anatomy-of-a-ransomware-attack.html">
+<meta property="og:title" content="Anatomy of a Ransomware Attack: The Full Kill Chain | Root &amp; Route">
+<meta property="og:description" content="How a ransomware attack actually unfolds step by step: initial access, persistence, privilege escalation, lateral movement, exfiltration and encryption.">
+<meta property="og:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Anatomy of a Ransomware Attack: The Full Kill Chain | Root &amp; Route">
+<meta name="twitter:description" content="How a ransomware attack actually unfolds step by step: initial access, persistence, privilege escalation, lateral movement, exfiltration and encryption.">
+<meta name="twitter:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta name="theme-color" content="#1D6F62">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Anatomy of a Ransomware Attack: The Full Kill Chain", "description": "How a ransomware attack actually unfolds step by step: initial access, persistence, privilege escalation, lateral movement, exfiltration and encryption.", "url": "https://rootandroute.online/posts/anatomy-of-a-ransomware-attack.html", "mainEntityOfPage": "https://rootandroute.online/posts/anatomy-of-a-ransomware-attack.html", "image": "https://rootandroute.online/assets/img/og-card.png", "articleSection": "Security", "datePublished": "2026-08-07", "dateModified": "2026-08-07", "author": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}, "publisher": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://rootandroute.online/"}, {"@type": "ListItem", "position": 2, "name": "Trail Log", "item": "https://rootandroute.online/trail-log.html"}, {"@type": "ListItem", "position": 3, "name": "Anatomy of a Ransomware Attack: The Full Kill Chain", "item": "https://rootandroute.online/posts/anatomy-of-a-ransomware-attack.html"}]}</script>
+<script>(function(){try{var t=localStorage.getItem('rr-theme');if(t){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<div class="progress-track" aria-hidden="true"><div class="progress-fill"></div></div>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="../index.html" class="logo">Root <span class="amp">&amp;</span> Route</a>
+    <button class="nav-toggle" aria-label="Toggle menu">MENU</button>
+    <nav class="main-nav">
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html" class="active">Trail Log</a>
+      <a href="../about.html">About</a>
+    </nav>
+    <button class="theme-toggle" aria-label="Switch theme">☾</button>
+  </div>
+</header>
+
+<section id="main" class="post-hero">
+  <div class="wrap">
+    <div class="meta-row">
+      <span class="badge badge-ridge">Ridge</span>
+      <span class="tag">Security</span>
+    </div>
+    <h1>Anatomy of a Ransomware Attack: The Full Kill Chain</h1>
+    <p class="lede dek">The encryption is the last five percent. Walking the whole chain — access, foothold, escalation, exfiltration — is how defenders learn where it breaks.</p>
+    <div class="byline">9 MIN TREK — ROOT &amp; ROUTE</div>
+  </div>
+</section>
+
+<section class="post-body">
+  <div class="wrap content">
+<p>The public image of ransomware is a single catastrophic moment: screens lock, a ransom note appears. In reality, that moment is the <em>end</em> of an operation that typically ran for days or weeks inside the network — and every earlier stage was a chance to catch it. Walking the chain stage by stage is one of the most instructive exercises in all of security, because nearly every concept from this trail shows up along the way, playing its position.</p>
+
+    <h2>Stage 1: Initial access</h2>
+    <p>Attackers get in through one of a familiar trio: a phishing email delivering a trojan (the phishing and malware posts, in the wild), stolen credentials on a remote-access service without MFA (the passwords post, ignored), or an unpatched internet-facing system (the patching post, ignored). Increasingly there's a division of labour: <em>initial access brokers</em> breach networks wholesale and sell the footholds to ransomware crews. The person who broke in is often not the person who will encrypt you.</p>
+
+    <h2>Stage 2: Foothold and persistence</h2>
+    <p>First priority inside: don't get evicted. Malware installs itself to survive reboots, and attackers frequently add quieter insurance — creating accounts, or installing the same legitimate remote-management tools IT uses, which blend into normal noise beautifully. This stage is patient and deliberately boring.</p>
+
+    <h2>Stage 3: Escalation and lateral movement</h2>
+    <p>A foothold on one workstation is nearly worthless; the crown jewels need admin rights on everything. So attackers harvest credentials from memory, hunt for over-privileged accounts (least privilege's revenge), Kerberoast weak service accounts, and move east-west through the flat internal network — every hop a bet that nobody's watching internal traffic (the microsegmentation post's entire thesis). The strategic prize is domain admin, and with it, one target above all: <strong>the backups</strong>. Modern crews locate and destroy backup infrastructure <em>before</em> revealing themselves, because backups are the victim's alternative to paying.</p>
+
+    <h2>Stage 4: Exfiltration — the quiet theft</h2>
+    <p>Before encrypting anything, gigabytes of the most sensitive data flow out — sometimes disguised as innocent traffic (the DNS tunnelling post, weaponised). This is <strong>double extortion</strong>: pay to decrypt, and pay again so the data isn't published. It's why "we restored from backups" no longer ends the incident, and why these events are now data breaches with legal obligations, not just outages.</p>
+
+    <h2>Stage 5: Detonation</h2>
+    <p>Only now — often at 2am on a holiday weekend, when response is slowest — does encryption launch everywhere simultaneously, and the note appears. The stage everyone pictures is the last five percent of the operation.</p>
+
+    <div class="callout">
+      <span class="eyebrow">Trail note</span>
+      <p style="margin:0;">Now reread the chain as a defender and notice: <strong>every stage has a tripwire.</strong> MFA and patching gate stage 1. New accounts and odd remote tools light up in logs at stage 2. Credential harvesting and lateral movement trip endpoint detection and impossible-travel alerts at stage 3. Massive outbound transfers scream at stage 4. Offline, immutable backups defang stage 5. This is why defence-in-depth isn't a platitude — the attack is a <em>chain</em>, and a chain breaks at any link. The famous framework name for mapping all this is MITRE ATT&CK, and having walked one chain, you now know how to read it.</p>
+    </div>
+  </div>
+
+  <div class="next-waypoint wrap">
+    <a href="from-logs-to-alerts-detection-engineering.html">
+      <span class="eyebrow">Next waypoint — Summit</span>
+      <h3 style="margin-top:0.6rem;">From Logs to Alerts: How Detection Engineering Actually Works →</h3>
+    </a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span class="fine">© 2026 Root &amp; Route. Written by someone who's still on the trail too.</span>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html">Trail Log</a>
+      <a href="../about.html">About</a>
+    </nav>
+  </div>
+</footer>
+
+<button class="to-top" aria-label="Back to top">↑</button>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

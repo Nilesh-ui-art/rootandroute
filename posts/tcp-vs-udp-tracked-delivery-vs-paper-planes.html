@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TCP vs UDP: Tracked Delivery vs Throwing Paper Planes | Root &amp; Route</title>
+<meta name="description" content="TCP vs UDP explained with a simple analogy: reliable ordered delivery versus fast fire-and-forget, and which applications use which.">
+<meta name="keywords" content="TCP vs UDP difference explained, when is UDP used, TCP handshake explained simply, why video calls use UDP">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://rootandroute.online/posts/tcp-vs-udp-tracked-delivery-vs-paper-planes.html">
+<meta name="author" content="Root & Route">
+<meta property="og:site_name" content="Root &amp; Route">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://rootandroute.online/posts/tcp-vs-udp-tracked-delivery-vs-paper-planes.html">
+<meta property="og:title" content="TCP vs UDP: Tracked Delivery vs Throwing Paper Planes | Root &amp; Route">
+<meta property="og:description" content="TCP vs UDP explained with a simple analogy: reliable ordered delivery versus fast fire-and-forget, and which applications use which.">
+<meta property="og:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="TCP vs UDP: Tracked Delivery vs Throwing Paper Planes | Root &amp; Route">
+<meta name="twitter:description" content="TCP vs UDP explained with a simple analogy: reliable ordered delivery versus fast fire-and-forget, and which applications use which.">
+<meta name="twitter:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta name="theme-color" content="#1D6F62">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "TCP vs UDP: Tracked Delivery vs Throwing Paper Planes", "description": "TCP vs UDP explained with a simple analogy: reliable ordered delivery versus fast fire-and-forget, and which applications use which.", "url": "https://rootandroute.online/posts/tcp-vs-udp-tracked-delivery-vs-paper-planes.html", "mainEntityOfPage": "https://rootandroute.online/posts/tcp-vs-udp-tracked-delivery-vs-paper-planes.html", "image": "https://rootandroute.online/assets/img/og-card.png", "articleSection": "Networking", "datePublished": "2026-08-07", "dateModified": "2026-08-07", "author": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}, "publisher": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://rootandroute.online/"}, {"@type": "ListItem", "position": 2, "name": "Trail Log", "item": "https://rootandroute.online/trail-log.html"}, {"@type": "ListItem", "position": 3, "name": "TCP vs UDP: Tracked Delivery vs Throwing Paper Planes", "item": "https://rootandroute.online/posts/tcp-vs-udp-tracked-delivery-vs-paper-planes.html"}]}</script>
+<script>(function(){try{var t=localStorage.getItem('rr-theme');if(t){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<div class="progress-track" aria-hidden="true"><div class="progress-fill"></div></div>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="../index.html" class="logo">Root <span class="amp">&amp;</span> Route</a>
+    <button class="nav-toggle" aria-label="Toggle menu">MENU</button>
+    <nav class="main-nav">
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html" class="active">Trail Log</a>
+      <a href="../about.html">About</a>
+    </nav>
+    <button class="theme-toggle" aria-label="Switch theme">☾</button>
+  </div>
+</header>
+
+<section id="main" class="post-hero">
+  <div class="wrap">
+    <div class="meta-row">
+      <span class="badge badge-trailhead">Trailhead</span>
+      <span class="tag">Networking</span>
+    </div>
+    <h1>TCP vs UDP: Tracked Delivery vs Throwing Paper Planes</h1>
+    <p class="lede dek">Two ways to send data: one guarantees everything arrives in order, one just throws and keeps moving. Both are the right choice — for different jobs.</p>
+    <div class="byline">7 MIN TREK — ROOT &amp; ROUTE</div>
+  </div>
+</section>
+
+<section class="post-body">
+  <div class="wrap content">
+<p>Once data knows <em>where</em> it's going (IP's job), there's a second decision: <em>how carefully</em> should it travel? The internet offers exactly two service levels — TCP and UDP — and nearly everything you do online has quietly picked one. Understanding why each gets picked is one of those concepts that makes a dozen other things suddenly make sense.</p>
+
+    <h2>TCP: signed-for delivery</h2>
+    <p>TCP treats data transfer as a formal, tracked relationship. Before anything is sent, both sides perform a quick handshake to agree they're talking. Then every chunk of data is numbered, every received chunk is acknowledged, anything lost in transit is noticed and re-sent, and everything is reassembled in the correct order at the far end — even if packets took different routes and arrived shuffled. The cost of all that care is overhead: acknowledgements flowing backward, waiting for stragglers, re-transmissions.</p>
+    <p>That's the right trade for anything where <em>correctness beats speed</em>: web pages, email, file downloads, messaging. A file with one missing chunk is corrupt; you'd rather wait.</p>
+
+    <h2>UDP: paper planes</h2>
+    <p>UDP does none of it. No handshake, no numbering, no acknowledgements, no retries — fold the data into a plane, throw it, immediately throw the next. Some planes miss. UDP does not care, and that indifference is the feature: no waiting, minimal overhead, maximum speed.</p>
+    <p>That's the right trade when <em>freshness beats completeness</em> — live video calls, online games, streaming. Here's the counterintuitive bit worth sitting with: re-sending a lost packet from half a second ago is <strong>worse than useless</strong> in a video call, because that moment has already passed. A glitched frame that's current beats a perfect frame that's late. Real-time applications don't tolerate loss reluctantly — they <em>prefer</em> it to delay.</p>
+
+    <div class="callout">
+      <span class="eyebrow">Trail note</span>
+      <p style="margin:0;">This explains a support classic: on a struggling network, video calls get robotic and glitchy but web pages still load fine. UDP loss shows up instantly as glitches; TCP quietly repairs itself and just feels "a bit slow." Same broken network, two completely different symptoms — because two different delivery philosophies.</p>
+    </div>
+
+    <h2>One more piece: ports</h2>
+    <p>Both protocols use <strong>port numbers</strong> to identify which application a packet belongs to — the flat number of the building's address. Web traffic runs on TCP port 443 (HTTPS), DNS queries on UDP port 53, and so on. When a firewall rule says "allow TCP/443," it's specifying both the delivery method and the flat number. You'll write and read rules like that constantly — and now you know what both halves mean.</p>
+  </div>
+
+  <div class="next-waypoint wrap">
+    <a href="firewalls-bouncers-with-a-guest-list.html">
+      <span class="eyebrow">Next waypoint — Basecamp</span>
+      <h3 style="margin-top:0.6rem;">Firewalls: Bouncers With a Guest List →</h3>
+    </a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span class="fine">© 2026 Root &amp; Route. Written by someone who's still on the trail too.</span>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html">Trail Log</a>
+      <a href="../about.html">About</a>
+    </nav>
+  </div>
+</footer>
+
+<button class="to-top" aria-label="Back to top">↑</button>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

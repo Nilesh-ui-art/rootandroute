@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The CIA Triad: The Three Questions Behind All of Security | Root &amp; Route</title>
+<meta name="description" content="The CIA triad explained for beginners: confidentiality, integrity and availability, with real examples and why the three often conflict.">
+<meta name="keywords" content="CIA triad explained, confidentiality integrity availability examples, security fundamentals beginners, CIA triad real examples">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://rootandroute.online/posts/cia-triad-explained.html">
+<meta name="author" content="Root & Route">
+<meta property="og:site_name" content="Root &amp; Route">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://rootandroute.online/posts/cia-triad-explained.html">
+<meta property="og:title" content="The CIA Triad: The Three Questions Behind All of Security | Root &amp; Route">
+<meta property="og:description" content="The CIA triad explained for beginners: confidentiality, integrity and availability, with real examples and why the three often conflict.">
+<meta property="og:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The CIA Triad: The Three Questions Behind All of Security | Root &amp; Route">
+<meta name="twitter:description" content="The CIA triad explained for beginners: confidentiality, integrity and availability, with real examples and why the three often conflict.">
+<meta name="twitter:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta name="theme-color" content="#1D6F62">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "The CIA Triad: The Three Questions Behind All of Security", "description": "The CIA triad explained for beginners: confidentiality, integrity and availability, with real examples and why the three often conflict.", "url": "https://rootandroute.online/posts/cia-triad-explained.html", "mainEntityOfPage": "https://rootandroute.online/posts/cia-triad-explained.html", "image": "https://rootandroute.online/assets/img/og-card.png", "articleSection": "Security", "datePublished": "2026-08-07", "dateModified": "2026-08-07", "author": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}, "publisher": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://rootandroute.online/"}, {"@type": "ListItem", "position": 2, "name": "Trail Log", "item": "https://rootandroute.online/trail-log.html"}, {"@type": "ListItem", "position": 3, "name": "The CIA Triad: The Three Questions Behind All of Security", "item": "https://rootandroute.online/posts/cia-triad-explained.html"}]}</script>
+<script>(function(){try{var t=localStorage.getItem('rr-theme');if(t){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<div class="progress-track" aria-hidden="true"><div class="progress-fill"></div></div>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="../index.html" class="logo">Root <span class="amp">&amp;</span> Route</a>
+    <button class="nav-toggle" aria-label="Toggle menu">MENU</button>
+    <nav class="main-nav">
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html" class="active">Trail Log</a>
+      <a href="../about.html">About</a>
+    </nav>
+    <button class="theme-toggle" aria-label="Switch theme">☾</button>
+  </div>
+</header>
+
+<section id="main" class="post-hero">
+  <div class="wrap">
+    <div class="meta-row">
+      <span class="badge badge-basecamp">Basecamp</span>
+      <span class="tag">Security</span><span class="tag">Fundamentals</span>
+    </div>
+    <h1>The CIA Triad: The Three Questions Behind All of Security</h1>
+    <p class="lede dek">Confidentiality, integrity, availability — not a checklist to memorise, but the three ways anything can go wrong with information.</p>
+    <div class="byline">6 MIN TREK — ROOT &amp; ROUTE</div>
+  </div>
+</section>
+
+<section class="post-body">
+  <div class="wrap content">
+<p>Open any security textbook and the CIA triad appears on page one: Confidentiality, Integrity, Availability. It's usually presented as a definition to memorise, which undersells it badly. The triad is better understood as a complete answer to a deceptively simple question: <strong>how many fundamentally different ways can something go wrong with information?</strong> The answer turns out to be three.</p>
+
+    <h2>The three failures</h2>
+    <ul>
+      <li><strong>Confidentiality</strong> fails when the wrong people <em>see</em> it. A leaked salary spreadsheet, a stolen customer database, someone reading your screen on the train. The information is intact and accessible — it just reached eyes it shouldn't have.</li>
+      <li><strong>Integrity</strong> fails when the information is <em>changed</em> — or can't be trusted to be unchanged. An attacker altering an invoice's bank details, a corrupted database, a tampered log file. Nothing leaked; something worse happened: you can no longer believe what you're reading.</li>
+      <li><strong>Availability</strong> fails when the right people <em>can't get to it</em>. Ransomware locking every file, a DDoS attack flattening a website, or — no attacker required — a failed disk with no backup. Secrecy and accuracy are worthless if nobody can reach the thing.</li>
+    </ul>
+
+    <p>Every incident you'll ever read about is one of these, or a combination. Ransomware is an availability attack (with confidentiality bolted on, once attackers began stealing data before encrypting it). Phishing usually targets confidentiality. Invoice fraud is an integrity attack. The triad isn't a slogan — it's a sorting system that works on everything.</p>
+
+    <div class="callout">
+      <span class="eyebrow">Trail note</span>
+      <p style="margin:0;">Here's what the textbook page rarely says: <strong>the three pull against each other.</strong> Maximum confidentiality (encrypt everything, lock everything down) hurts availability. Maximum availability (everyone can access everything, always) shreds confidentiality. Real security work isn't maximising all three — it's choosing the right balance for each system, deliberately.</p>
+    </div>
+
+    <h2>Why this is genuinely useful on day one</h2>
+    <p>Two reasons. First, it gives you the professional's opening question. When someone says "make this system secure," the working translation is: secure <em>against which failure?</em> A public website's priority is availability and integrity — confidentiality barely applies to public pages. A payroll database inverts that completely. Same word, "secure"; different triad weights; different controls.</p>
+
+    <p>Second, it explains decisions that otherwise look like bureaucracy. Why backups are a <em>security</em> control (availability). Why file hashes and audit logs exist (integrity). Why the annoying access reviews happen (confidentiality). Once you can name which corner of the triangle a control defends, security stops looking like a pile of arbitrary rules and starts looking like a system.</p>
+  </div>
+
+  <div class="next-waypoint wrap">
+    <a href="phishing-why-smart-people-click.html">
+      <span class="eyebrow">Next waypoint — Basecamp</span>
+      <h3 style="margin-top:0.6rem;">Phishing: Why Smart People Click →</h3>
+    </a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span class="fine">© 2026 Root &amp; Route. Written by someone who's still on the trail too.</span>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html">Trail Log</a>
+      <a href="../about.html">About</a>
+    </nav>
+  </div>
+</footer>
+
+<button class="to-top" aria-label="Back to top">↑</button>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

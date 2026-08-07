@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Power Supplies: The Most Ignored Part That Causes the Weirdest Faults | Root &amp; Route</title>
+<meta name="description" content="Why power supplies matter, what wattage and efficiency ratings mean, and how a failing PSU causes random crashes and reboots.">
+<meta name="keywords" content="power supply explained, PSU wattage how much, random reboots cause, failing power supply symptoms">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://rootandroute.online/posts/power-supplies-the-ignored-component.html">
+<meta name="author" content="Root & Route">
+<meta property="og:site_name" content="Root &amp; Route">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://rootandroute.online/posts/power-supplies-the-ignored-component.html">
+<meta property="og:title" content="Power Supplies: The Most Ignored Part That Causes the Weirdest Faults | Root &amp; Route">
+<meta property="og:description" content="Why power supplies matter, what wattage and efficiency ratings mean, and how a failing PSU causes random crashes and reboots.">
+<meta property="og:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Power Supplies: The Most Ignored Part That Causes the Weirdest Faults | Root &amp; Route">
+<meta name="twitter:description" content="Why power supplies matter, what wattage and efficiency ratings mean, and how a failing PSU causes random crashes and reboots.">
+<meta name="twitter:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta name="theme-color" content="#1D6F62">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Power Supplies: The Most Ignored Part That Causes the Weirdest Faults", "description": "Why power supplies matter, what wattage and efficiency ratings mean, and how a failing PSU causes random crashes and reboots.", "url": "https://rootandroute.online/posts/power-supplies-the-ignored-component.html", "mainEntityOfPage": "https://rootandroute.online/posts/power-supplies-the-ignored-component.html", "image": "https://rootandroute.online/assets/img/og-card.png", "articleSection": "Hardware", "datePublished": "2026-08-07", "dateModified": "2026-08-07", "author": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}, "publisher": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://rootandroute.online/"}, {"@type": "ListItem", "position": 2, "name": "Trail Log", "item": "https://rootandroute.online/trail-log.html"}, {"@type": "ListItem", "position": 3, "name": "Power Supplies: The Most Ignored Part That Causes the Weirdest Faults", "item": "https://rootandroute.online/posts/power-supplies-the-ignored-component.html"}]}</script>
+<script>(function(){try{var t=localStorage.getItem('rr-theme');if(t){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<div class="progress-track" aria-hidden="true"><div class="progress-fill"></div></div>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="../index.html" class="logo">Root <span class="amp">&amp;</span> Route</a>
+    <button class="nav-toggle" aria-label="Toggle menu">MENU</button>
+    <nav class="main-nav">
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html" class="active">Trail Log</a>
+      <a href="../about.html">About</a>
+    </nav>
+    <button class="theme-toggle" aria-label="Switch theme">☾</button>
+  </div>
+</header>
+
+<section id="main" class="post-hero">
+  <div class="wrap">
+    <div class="meta-row">
+      <span class="badge badge-trailhead">Trailhead</span>
+      <span class="tag">Hardware</span><span class="tag">Troubleshooting</span>
+    </div>
+    <h1>Power Supplies: The Most Ignored Part That Causes the Weirdest Faults</h1>
+    <p class="lede dek">Nobody brags about their PSU. But when one goes marginal, it produces the most confusing symptoms in all of hardware.</p>
+    <div class="byline">6 MIN TREK — ROOT &amp; ROUTE</div>
+  </div>
+</section>
+
+<section class="post-body">
+  <div class="wrap content">
+<p>Ask an enthusiast about their PC and they'll tell you the CPU, the graphics card, maybe the RAM speed. Nobody leads with the power supply. Yet the PSU is the component every other component depends on, and — this is the part that matters for anyone doing support — a <em>marginal</em> one produces the strangest, most misleading faults in all of hardware.</p>
+
+    <h2>What it actually does</h2>
+    <p>Wall power is high-voltage alternating current. Computer components want low-voltage direct current, delivered with obsessive steadiness. The PSU converts one into the other and holds those output voltages stable no matter what the machine is doing — idle at the desktop one second, every component demanding maximum power the next. That word <em>stable</em> is doing all the work. Components don't just need enough power; they need it clean and constant.</p>
+
+    <h2>Why a dying PSU is a master of disguise</h2>
+    <p>A fully dead power supply is the easy case: nothing turns on, diagnosis done. A <em>failing</em> one is the nightmare, because it still works — mostly. Voltages sag for milliseconds under load. And the symptoms look like anything except a power problem:</p>
+    <ul>
+      <li>Random reboots with no error message — but only during games or heavy work</li>
+      <li>Crashes that look exactly like RAM faults or driver bugs</li>
+      <li>A machine that runs fine for weeks, then blue-screens twice in a day</li>
+      <li>Faults that vanish when an engineer tests the machine (idle load = voltages fine)</li>
+    </ul>
+    <p>This is why experienced technicians keep a known-good spare PSU on the shelf: for intermittent hardware gremlins, swapping it in is often faster than any amount of software diagnosis.</p>
+
+    <div class="callout">
+      <span class="eyebrow">Trail note</span>
+      <p style="margin:0;">Diagnostic heuristic worth memorising: <strong>crashes that correlate with load</strong> — starting a game, exporting video, all cores spinning up — point toward power or heat. Crashes that strike at random, including at idle, point more toward memory or software.</p>
+    </div>
+
+    <h2>Decoding the label</h2>
+    <p>Two things on a PSU spec sheet matter for most purposes. <strong>Wattage</strong> is total capacity — the building's electrical service. It should comfortably exceed the system's peak draw, with headroom, because running any supply flat-out at its limit shortens its life and its stability. <strong>The 80&nbsp;Plus rating</strong> (Bronze, Gold, Platinum…) measures efficiency — how little power is wasted as heat during conversion. Higher tiers loosely correlate with build quality, which is why "don't cheap out on the PSU" is one of the few hardware proverbs that has stayed true for twenty years.</p>
+  </div>
+
+  <div class="next-waypoint wrap">
+    <a href="beginners-method-diagnosing-hardware.html">
+      <span class="eyebrow">Next waypoint — Trailhead</span>
+      <h3 style="margin-top:0.6rem;">A Beginner's Method for Diagnosing Hardware Faults →</h3>
+    </a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span class="fine">© 2026 Root &amp; Route. Written by someone who's still on the trail too.</span>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html">Trail Log</a>
+      <a href="../about.html">About</a>
+    </nav>
+  </div>
+</footer>
+
+<button class="to-top" aria-label="Back to top">↑</button>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>
