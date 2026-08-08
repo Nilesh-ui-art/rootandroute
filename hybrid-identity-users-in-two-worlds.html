@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Hybrid Identity: When Your Users Live in Two Worlds | Root &amp; Route</title>
+<meta name="description" content="Hybrid identity explained: how on-premises Active Directory synchronises with cloud identity, password hash sync vs federation, and why source of authority matters.">
+<meta name="keywords" content="hybrid identity explained, Active Directory cloud sync, password hash synchronization, source of authority identity">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://rootandroute.online/posts/hybrid-identity-users-in-two-worlds.html">
+<meta name="author" content="Root & Route">
+<meta property="og:site_name" content="Root &amp; Route">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://rootandroute.online/posts/hybrid-identity-users-in-two-worlds.html">
+<meta property="og:title" content="Hybrid Identity: When Your Users Live in Two Worlds | Root &amp; Route">
+<meta property="og:description" content="Hybrid identity explained: how on-premises Active Directory synchronises with cloud identity, password hash sync vs federation, and why source of authority matters.">
+<meta property="og:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Hybrid Identity: When Your Users Live in Two Worlds | Root &amp; Route">
+<meta name="twitter:description" content="Hybrid identity explained: how on-premises Active Directory synchronises with cloud identity, password hash sync vs federation, and why source of authority matters.">
+<meta name="twitter:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta name="theme-color" content="#1D6F62">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Hybrid Identity: When Your Users Live in Two Worlds", "description": "Hybrid identity explained: how on-premises Active Directory synchronises with cloud identity, password hash sync vs federation, and why source of authority matters.", "url": "https://rootandroute.online/posts/hybrid-identity-users-in-two-worlds.html", "mainEntityOfPage": "https://rootandroute.online/posts/hybrid-identity-users-in-two-worlds.html", "image": "https://rootandroute.online/assets/img/og-card.png", "articleSection": "Cloud", "datePublished": "2026-08-07", "dateModified": "2026-08-07", "author": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}, "publisher": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://rootandroute.online/"}, {"@type": "ListItem", "position": 2, "name": "Trail Log", "item": "https://rootandroute.online/trail-log.html"}, {"@type": "ListItem", "position": 3, "name": "Hybrid Identity: When Your Users Live in Two Worlds", "item": "https://rootandroute.online/posts/hybrid-identity-users-in-two-worlds.html"}]}</script>
+<script>(function(){try{var t=localStorage.getItem('rr-theme');if(t){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+<link rel="stylesheet" href="../assets/css/style.css?v=3">
+</head>
+<body>
+<div class="progress-track" aria-hidden="true"><div class="progress-fill"></div></div>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="../index.html" class="logo">Root <span class="amp">&amp;</span> Route</a>
+    <button class="nav-toggle" aria-label="Toggle menu">MENU</button>
+    <nav class="main-nav">
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html" class="active">Trail Log</a>
+      <a href="../quiz.html">Quiz</a>
+      <a href="../terminal.html">Terminal</a>
+      <a href="../notebook.html">Notebook</a>
+      <a href="../about.html">About</a>
+    </nav>
+    <button class="theme-toggle" aria-label="Switch theme">☾</button>
+  </div>
+</header>
+
+<section id="main" class="post-hero">
+  <div class="wrap">
+    <div class="meta-row">
+      <span class="badge badge-summit">Summit</span>
+      <span class="tag">Cloud</span><span class="tag">Identity</span>
+    </div>
+    <h1>Hybrid Identity: When Your Users Live in Two Worlds</h1>
+    <p class="lede dek">One identity on-premises, one in the cloud, and the synchronisation machinery that lets 'one username, everywhere' actually work.</p>
+    <div class="byline">9 MIN TREK — ROOT &amp; ROUTE</div>
+  </div>
+</section>
+
+<section class="post-body">
+  <div class="wrap content">
+<p>Most enterprises have an identity problem they rarely name: their users exist <em>twice</em>. Once in on-premises Active Directory — the decades-old directory that controls office logins, file shares, and that Kerberos festival from earlier on this trail — and once in a cloud identity platform that controls email, collaboration tools, and SaaS apps. Hybrid identity is the machinery that makes those two records behave as one person, and it's the daily reality of identity work in almost every large organisation.</p>
+
+    <h2>Why two worlds at all?</h2>
+    <p>History, simply. AD arrived circa 2000 and everything in the building grew roots into it. Cloud services arrived later with their own directories. Ripping out AD is a multi-year project most organisations haven't finished (or started), so the pragmatic architecture is a bridge: <strong>keep AD as the master, synchronise identities upward to the cloud</strong>, and let users hold one username and password for both worlds.</p>
+
+    <h2>The bridge: a synchronisation engine</h2>
+    <p>A connector service (in the Microsoft world, historically Entra Connect) runs on-premises and copies identity objects — users, groups, attributes — from AD to the cloud directory on a cycle, typically every half hour. Three details carry most of the operational weight:</p>
+    <ul>
+      <li><strong>Source of authority.</strong> Synced objects are <em>owned</em> by AD: edit the user on-premises and the change flows up; try editing the synced copy in the cloud and you're mostly blocked. This single concept explains the most common hybrid confusion — "why can't I change this attribute in the portal?" Because the portal isn't the master; the answer lives downstairs in AD.</li>
+      <li><strong>How passwords work across the bridge.</strong> The mainstream option, <em>password hash synchronisation</em>, syncs a derived hash of the password hash (never the password) so the cloud can verify logins independently — meaning cloud access survives even if the on-premises world is down. The alternative, <em>federation</em>, keeps all verification on-premises: the cloud redirects logins back to your own servers. More control, more infrastructure, and a hard dependency — if your federation servers die, cloud sign-in dies with them. The industry has drifted decisively toward the simpler option.</li>
+      <li><strong>Sync scope.</strong> You choose which organisational units flow upward — and forgetting to include (or exclude) one is the classic cause of "user exists but has no mailbox" and its many cousins.</li>
+    </ul>
+
+    <div class="callout">
+      <span class="eyebrow">Trail note</span>
+      <p style="margin:0;">The security angle that earns the Summit badge: a bridge carries traffic both ways in an attacker's imagination. Compromise on-prem AD and you can often mint your way into the cloud (synced accounts, stolen sync-service credentials); several major real-world intrusions pivoted exactly this way. Mature designs therefore treat the sync server as tier-zero infrastructure — domain-controller-grade protection — and keep a handful of <strong>cloud-only</strong> break-glass admin accounts that no on-premises compromise can touch.</p>
+    </div>
+
+    <p>Where this is all heading: most organisations are slowly inverting the arrow — new apps bind to cloud identity, devices join the cloud directly, and AD's kingdom shrinks toward legacy systems. "Hybrid" is officially a transition state. It has also been one for fifteen years, which is why understanding the bridge — source of authority, sync cycles, and the tier-zero risk — remains one of the most employable pieces of knowledge in infrastructure.</p>
+  </div>
+
+  <div class="next-waypoint wrap">
+    <a href="conditional-access-if-this-then-that-security.html">
+      <span class="eyebrow">Next waypoint — Ridge</span>
+      <h3 style="margin-top:0.6rem;">Conditional Access: The If-This-Then-That of Enterprise Security →</h3>
+    </a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span class="fine">© 2026 Root &amp; Route. Written by someone who's still on the trail too.</span>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html">Trail Log</a>
+      <a href="../about.html">About</a>
+    </nav>
+  </div>
+</footer>
+
+<button class="to-top" aria-label="Back to top">↑</button>
+<script src="../assets/js/main.js?v=3"></script>
+<script src="../assets/js/notebook.js?v=3"></script>
+</body>
+</html>

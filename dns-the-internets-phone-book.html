@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>DNS: The Internet&#x27;s Phone Book (and Why It Breaks Everything) | Root &amp; Route</title>
+<meta name="description" content="DNS explained simply for beginners: how domain names become IP addresses, what DNS servers do, and why DNS failures look like internet outages.">
+<meta name="keywords" content="what is DNS explained, how DNS works beginners, DNS server not responding, it&#x27;s always DNS">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://rootandroute.online/posts/dns-the-internets-phone-book.html">
+<meta name="author" content="Root & Route">
+<meta property="og:site_name" content="Root &amp; Route">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://rootandroute.online/posts/dns-the-internets-phone-book.html">
+<meta property="og:title" content="DNS: The Internet&#x27;s Phone Book (and Why It Breaks Everything) | Root &amp; Route">
+<meta property="og:description" content="DNS explained simply for beginners: how domain names become IP addresses, what DNS servers do, and why DNS failures look like internet outages.">
+<meta property="og:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DNS: The Internet&#x27;s Phone Book (and Why It Breaks Everything) | Root &amp; Route">
+<meta name="twitter:description" content="DNS explained simply for beginners: how domain names become IP addresses, what DNS servers do, and why DNS failures look like internet outages.">
+<meta name="twitter:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta name="theme-color" content="#1D6F62">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "DNS: The Internet's Phone Book (and Why It Breaks Everything)", "description": "DNS explained simply for beginners: how domain names become IP addresses, what DNS servers do, and why DNS failures look like internet outages.", "url": "https://rootandroute.online/posts/dns-the-internets-phone-book.html", "mainEntityOfPage": "https://rootandroute.online/posts/dns-the-internets-phone-book.html", "image": "https://rootandroute.online/assets/img/og-card.png", "articleSection": "Networking", "datePublished": "2026-08-07", "dateModified": "2026-08-07", "author": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}, "publisher": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://rootandroute.online/"}, {"@type": "ListItem", "position": 2, "name": "Trail Log", "item": "https://rootandroute.online/trail-log.html"}, {"@type": "ListItem", "position": 3, "name": "DNS: The Internet's Phone Book (and Why It Breaks Everything)", "item": "https://rootandroute.online/posts/dns-the-internets-phone-book.html"}]}</script>
+<script>(function(){try{var t=localStorage.getItem('rr-theme');if(t){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+<link rel="stylesheet" href="../assets/css/style.css?v=3">
+</head>
+<body>
+<div class="progress-track" aria-hidden="true"><div class="progress-fill"></div></div>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="../index.html" class="logo">Root <span class="amp">&amp;</span> Route</a>
+    <button class="nav-toggle" aria-label="Toggle menu">MENU</button>
+    <nav class="main-nav">
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html" class="active">Trail Log</a>
+      <a href="../quiz.html">Quiz</a>
+      <a href="../terminal.html">Terminal</a>
+      <a href="../notebook.html">Notebook</a>
+      <a href="../about.html">About</a>
+    </nav>
+    <button class="theme-toggle" aria-label="Switch theme">☾</button>
+  </div>
+</header>
+
+<section id="main" class="post-hero">
+  <div class="wrap">
+    <div class="meta-row">
+      <span class="badge badge-basecamp">Basecamp</span>
+      <span class="tag">Networking</span><span class="tag">Fundamentals</span>
+    </div>
+    <h1>DNS: The Internet's Phone Book (and Why It Breaks Everything)</h1>
+    <p class="lede dek">Humans remember names; networks route numbers. DNS is the translation layer between them — which is why when it fails, it looks like everything failed.</p>
+    <div class="byline">7 MIN TREK — ROOT &amp; ROUTE</div>
+  </div>
+</section>
+
+<section class="post-body">
+  <div class="wrap content">
+<p>Networks route traffic using IP addresses — numbers. Humans remember names. You type <code>rootandroute.online</code>; the network needs something like <code>185.199.108.153</code>. The Domain Name System (DNS) is the translation service between those two worlds, and it runs invisibly before nearly everything you do online.</p>
+
+    <h2>The lookup, step by step</h2>
+    <p>When you visit a site your device hasn't seen recently:</p>
+    <ul>
+      <li>Your device asks its configured <strong>DNS resolver</strong> (usually run by your router, ISP, or a public service): "what's the address for this name?"</li>
+      <li>If the resolver doesn't know, it walks the name backwards — asking the internet's root servers who handles <code>.online</code>, asking those who handles <code>rootandroute.online</code>, and asking <em>that</em> server for the actual number.</li>
+      <li>The answer comes back and — crucially — gets <strong>cached</strong> (remembered) at every step, with an expiry time, so the next lookup is instant.</li>
+    </ul>
+    <p>All of that typically takes a few dozen milliseconds, once, and then caching makes it free.</p>
+
+    <h2>Why DNS failure looks like the end of the internet</h2>
+    <p>Here's the diagnostic insight that earns this post its place on the trail: when DNS breaks, <em>the network is usually fine</em> — but nothing can find anything by name, so to the user, "the internet is down." The classic tell: websites fail by name, but a direct IP address still works. The phone book burned down; the phones are fine.</p>
+
+    <div class="callout">
+      <span class="eyebrow">Trail note</span>
+      <p style="margin:0;">There's a running joke in operations: <em>"It's always DNS."</em> It's a joke because it's disproportionately true — DNS misconfiguration sits behind a remarkable share of major outages, partly because caching means mistakes propagate on a delay and fix on a delay too, which makes cause and effect maddeningly hard to line up.</p>
+    </div>
+
+    <h2>Two more ideas you'll meet immediately</h2>
+    <p><strong>Records:</strong> DNS holds more than one kind of answer per name — an <code>A</code> record maps a name to an IPv4 address, <code>CNAME</code> aliases one name to another, <code>MX</code> says where email for the domain should go, <code>TXT</code> holds arbitrary text (used constantly for proving domain ownership). If you've ever set up a website or verified a domain with Google, you've edited these.</p>
+
+    <p><strong>Propagation:</strong> because of caching, changing a DNS record doesn't update the world instantly — old answers live in caches until their expiry (TTL) runs out. That's why "DNS changes can take up to 48 hours" appears on every hosting guide ever written, and why patience is a legitimate troubleshooting step.</p>
+  </div>
+
+  <div class="next-waypoint wrap">
+    <a href="dhcp-explained-simply.html">
+      <span class="eyebrow">Next waypoint — Basecamp</span>
+      <h3 style="margin-top:0.6rem;">DHCP: How Devices Get Addresses Without Asking You →</h3>
+    </a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span class="fine">© 2026 Root &amp; Route. Written by someone who's still on the trail too.</span>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html">Trail Log</a>
+      <a href="../about.html">About</a>
+    </nav>
+  </div>
+</footer>
+
+<button class="to-top" aria-label="Back to top">↑</button>
+<script src="../assets/js/main.js?v=3"></script>
+<script src="../assets/js/notebook.js?v=3"></script>
+</body>
+</html>

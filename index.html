@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Root & Route — A Field Guide to IT & Cybersecurity for Beginners</title>
 <meta name="description" content="Plain-language explanations of IT fundamentals, cybersecurity, networking, and cloud — written for people just starting their journey in tech.">
 <meta name="robots" content="index, follow">
@@ -28,7 +30,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/style.css?v=3">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -41,6 +43,7 @@
       <a href="index.html" class="active">Home</a>
       <a href="trail-log.html">Trail Log</a>
       <a href="quiz.html">Quiz</a>
+      <a href="terminal.html">Terminal</a>
       <a href="notebook.html">Notebook</a>
       <a href="about.html">About</a>
     </nav>
@@ -59,7 +62,7 @@
   <div class="wrap">
     <div class="hero-inner">
       <span class="eyebrow">A field guide, not a firehose</span>
-      <h1>IT and security, explained the way someone should have explained them to you first.</h1>
+      <h1><span class="type-wrap"><span id="type-target">IT</span><span class="type-cursor" aria-hidden="true">&#9612;</span></span> explained the way someone should have explained it to you first.</h1>
       <p class="lede">Root & Route is written for people at the actual start of the trail — career switchers, students, and first-line engineers — who are tired of tutorials that assume you already know the thing they're teaching.</p>
       <div class="hero-ctas">
         <a href="posts/osi-model-explained.html" class="btn btn-primary btn-arrow">Start at Basecamp</a>
@@ -72,6 +75,15 @@
       <div class="legend-item"><span class="legend-dot tier-ridge"></span> Ridge — connecting the concepts</div>
       <div class="legend-item"><span class="legend-dot tier-summit"></span> Summit — practitioner depth</div>
     </div>
+  </div>
+</section>
+
+<section class="stats-strip" aria-label="Site statistics">
+  <div class="wrap stats-row">
+    <div class="stat"><span class="stat-num" data-count="64">0</span><span class="stat-label">waypoints on the trail</span></div>
+    <div class="stat"><span class="stat-num" data-count="7">0</span><span class="stat-label">topic trails</span></div>
+    <div class="stat"><span class="stat-num" data-count="4">0</span><span class="stat-label">difficulty tiers</span></div>
+    <div class="stat"><span class="stat-num" data-count="0">0</span><span class="stat-label">sign-ups required</span></div>
   </div>
 </section>
 
@@ -194,6 +206,7 @@
       <a href="index.html">Home</a>
       <a href="trail-log.html">Trail Log</a>
       <a href="quiz.html">Quiz</a>
+      <a href="terminal.html">Terminal</a>
       <a href="notebook.html">Notebook</a>
       <a href="about.html">About</a>
     </nav>
@@ -201,6 +214,6 @@
 </footer>
 
 <button class="to-top" aria-label="Back to top">↑</button>
-<script src="assets/js/main.js"></script>
+<script src="assets/js/main.js?v=3"></script>
 </body>
 </html>

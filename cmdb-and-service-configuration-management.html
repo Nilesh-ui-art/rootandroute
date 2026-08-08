@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>The CMDB: IT&#x27;s Map of What Exists and What Depends on What | Root &amp; Route</title>
+<meta name="description" content="Service configuration management and the CMDB explained: configuration items, dependency mapping, why CMDBs fail and how discovery tools help.">
+<meta name="keywords" content="CMDB explained simply, configuration management database, configuration item CI, why CMDB projects fail">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://rootandroute.online/posts/cmdb-and-service-configuration-management.html">
+<meta name="author" content="Root & Route">
+<meta property="og:site_name" content="Root &amp; Route">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://rootandroute.online/posts/cmdb-and-service-configuration-management.html">
+<meta property="og:title" content="The CMDB: IT&#x27;s Map of What Exists and What Depends on What | Root &amp; Route">
+<meta property="og:description" content="Service configuration management and the CMDB explained: configuration items, dependency mapping, why CMDBs fail and how discovery tools help.">
+<meta property="og:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The CMDB: IT&#x27;s Map of What Exists and What Depends on What | Root &amp; Route">
+<meta name="twitter:description" content="Service configuration management and the CMDB explained: configuration items, dependency mapping, why CMDBs fail and how discovery tools help.">
+<meta name="twitter:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta name="theme-color" content="#1D6F62">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "The CMDB: IT's Map of What Exists and What Depends on What", "description": "Service configuration management and the CMDB explained: configuration items, dependency mapping, why CMDBs fail and how discovery tools help.", "url": "https://rootandroute.online/posts/cmdb-and-service-configuration-management.html", "mainEntityOfPage": "https://rootandroute.online/posts/cmdb-and-service-configuration-management.html", "image": "https://rootandroute.online/assets/img/og-card.png", "articleSection": "Service Management", "datePublished": "2026-08-07", "dateModified": "2026-08-07", "author": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}, "publisher": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://rootandroute.online/"}, {"@type": "ListItem", "position": 2, "name": "Trail Log", "item": "https://rootandroute.online/trail-log.html"}, {"@type": "ListItem", "position": 3, "name": "The CMDB: IT's Map of What Exists and What Depends on What", "item": "https://rootandroute.online/posts/cmdb-and-service-configuration-management.html"}]}</script>
+<script>(function(){try{var t=localStorage.getItem('rr-theme');if(t){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+<link rel="stylesheet" href="../assets/css/style.css?v=3">
+</head>
+<body>
+<div class="progress-track" aria-hidden="true"><div class="progress-fill"></div></div>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="../index.html" class="logo">Root <span class="amp">&amp;</span> Route</a>
+    <button class="nav-toggle" aria-label="Toggle menu">MENU</button>
+    <nav class="main-nav">
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html" class="active">Trail Log</a>
+      <a href="../quiz.html">Quiz</a>
+      <a href="../terminal.html">Terminal</a>
+      <a href="../notebook.html">Notebook</a>
+      <a href="../about.html">About</a>
+    </nav>
+    <button class="theme-toggle" aria-label="Switch theme">☾</button>
+  </div>
+</header>
+
+<section id="main" class="post-hero">
+  <div class="wrap">
+    <div class="meta-row">
+      <span class="badge badge-summit">Summit</span>
+      <span class="tag">ITIL</span>
+    </div>
+    <h1>The CMDB: IT's Map of What Exists and What Depends on What</h1>
+    <p class="lede dek">Half of IT's hardest questions — 'what does this outage affect?', 'is it safe to change this?' — are map questions. Here's the map, and why it's so hard to keep true.</p>
+    <div class="byline">8 MIN TREK — ROOT &amp; ROUTE</div>
+  </div>
+</section>
+
+<section class="post-body">
+  <div class="wrap content">
+<p>Consider the questions that actually hurt during a crisis. The storage array is degraded — <em>which services care?</em> We need to patch this database — <em>what breaks if it reboots?</em> That server in rack 14 — <em>does anything still use it, and who owns it?</em> Notice these aren't technology questions; they're <strong>map questions</strong>. Service configuration management is the practice of owning that map, and the CMDB — configuration management database — is the map itself.</p>
+
+    <h2>What's actually in it</h2>
+    <p>The CMDB holds <strong>configuration items</strong> (CIs) — anything that needs managing to deliver services: servers, network devices, applications, licences, sometimes documents and people-roles. Each CI carries attributes (owner, location, version, status). But here's the part that makes a CMDB more than an asset register, and it's the whole point: <strong>relationships</strong>. Asset registers know you own 500 laptops. The CMDB knows that <em>this</em> application runs on <em>those</em> two VMs, which live on <em>that</em> host, connected through <em>this</em> switch pair, supporting <em>the payroll service</em>, owned by <em>her</em>. The value isn't the inventory — it's the dependency graph.</p>
+
+    <h2>What the map powers</h2>
+    <ul>
+      <li><strong>Change enablement:</strong> impact assessment becomes a query, not a guess. "What depends on this?" answered before the change, not discovered during the outage it causes.</li>
+      <li><strong>Incident management:</strong> "storage array degraded" translates instantly into "these services, these users, this priority" — impact assessment from the incident waypoint, automated.</li>
+      <li><strong>Problem management:</strong> "all these incidents share a CI" is how patterns become diagnoses.</li>
+      <li><strong>Security:</strong> remember the patching post's hard truth — you cannot patch what you don't know you have? The CMDB is the answer to "what do we have," which makes it quietly a security control.</li>
+    </ul>
+
+    <div class="callout">
+      <span class="eyebrow">Trail note</span>
+      <p style="margin:0;">Now the honesty that earns this post its Summit badge: <strong>CMDB projects fail constantly</strong>, and always for the same reason — the map rots. Every change alters reality; if the map isn't updated in the same motion, it diverges, and a map that's 80% accurate is arguably worse than none, because people <em>trust</em> it into bad decisions. The failures share a pattern: trying to map everything (boiling the ocean), populating by hand (humans forget), and treating it as a project with an end date rather than a living practice.</p>
+    </div>
+
+    <p>What actually works, per the organisations that manage it: <strong>start narrow and useful</strong> — map the CIs supporting your most critical services first, guided by the questions you actually need answered (start where you are; keep it simple — the guiding principles again). <strong>Automate discovery</strong> — tools that scan the environment and detect relationships beat human memory permanently. And <strong>wire updates into change</strong>: if modifying a CI doesn't update its record in the same workflow, rot has already begun. A modest, automated, trusted map beats a magnificent stale one every single time — and when it's trusted, it becomes the thing everything else on this ITIL trail quietly stands on.</p>
+  </div>
+
+  <div class="next-waypoint wrap">
+    <a href="continual-improvement-the-register-and-the-model.html">
+      <span class="eyebrow">Next waypoint — Ridge</span>
+      <h3 style="margin-top:0.6rem;">Continual Improvement: The Loop That Keeps Everything Else Honest →</h3>
+    </a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span class="fine">© 2026 Root &amp; Route. Written by someone who's still on the trail too.</span>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html">Trail Log</a>
+      <a href="../about.html">About</a>
+    </nav>
+  </div>
+</footer>
+
+<button class="to-top" aria-label="Back to top">↑</button>
+<script src="../assets/js/main.js?v=3"></script>
+<script src="../assets/js/notebook.js?v=3"></script>
+</body>
+</html>

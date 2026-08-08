@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>What Actually Happens in a TLS Handshake | Root &amp; Route</title>
+<meta name="description" content="The TLS handshake explained step by step in plain language: certificates, key exchange, and how HTTPS establishes a shared secret over a hostile network.">
+<meta name="keywords" content="TLS handshake explained simply, how HTTPS works step by step, what is a certificate, key exchange explained">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://rootandroute.online/posts/what-happens-in-a-tls-handshake.html">
+<meta name="author" content="Root & Route">
+<meta property="og:site_name" content="Root &amp; Route">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://rootandroute.online/posts/what-happens-in-a-tls-handshake.html">
+<meta property="og:title" content="What Actually Happens in a TLS Handshake | Root &amp; Route">
+<meta property="og:description" content="The TLS handshake explained step by step in plain language: certificates, key exchange, and how HTTPS establishes a shared secret over a hostile network.">
+<meta property="og:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="What Actually Happens in a TLS Handshake | Root &amp; Route">
+<meta name="twitter:description" content="The TLS handshake explained step by step in plain language: certificates, key exchange, and how HTTPS establishes a shared secret over a hostile network.">
+<meta name="twitter:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta name="theme-color" content="#1D6F62">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "What Actually Happens in a TLS Handshake", "description": "The TLS handshake explained step by step in plain language: certificates, key exchange, and how HTTPS establishes a shared secret over a hostile network.", "url": "https://rootandroute.online/posts/what-happens-in-a-tls-handshake.html", "mainEntityOfPage": "https://rootandroute.online/posts/what-happens-in-a-tls-handshake.html", "image": "https://rootandroute.online/assets/img/og-card.png", "articleSection": "Security", "datePublished": "2026-08-07", "dateModified": "2026-08-07", "author": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}, "publisher": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://rootandroute.online/"}, {"@type": "ListItem", "position": 2, "name": "Trail Log", "item": "https://rootandroute.online/trail-log.html"}, {"@type": "ListItem", "position": 3, "name": "What Actually Happens in a TLS Handshake", "item": "https://rootandroute.online/posts/what-happens-in-a-tls-handshake.html"}]}</script>
+<script>(function(){try{var t=localStorage.getItem('rr-theme');if(t){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+<link rel="stylesheet" href="../assets/css/style.css?v=3">
+</head>
+<body>
+<div class="progress-track" aria-hidden="true"><div class="progress-fill"></div></div>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="../index.html" class="logo">Root <span class="amp">&amp;</span> Route</a>
+    <button class="nav-toggle" aria-label="Toggle menu">MENU</button>
+    <nav class="main-nav">
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html" class="active">Trail Log</a>
+      <a href="../quiz.html">Quiz</a>
+      <a href="../terminal.html">Terminal</a>
+      <a href="../notebook.html">Notebook</a>
+      <a href="../about.html">About</a>
+    </nav>
+    <button class="theme-toggle" aria-label="Switch theme">☾</button>
+  </div>
+</header>
+
+<section id="main" class="post-hero">
+  <div class="wrap">
+    <div class="meta-row">
+      <span class="badge badge-summit">Summit</span>
+      <span class="tag">Security</span><span class="tag">Networking</span>
+    </div>
+    <h1>What Actually Happens in a TLS Handshake</h1>
+    <p class="lede dek">Every padlock icon hides a rapid negotiation: prove who you are, agree on maths, build a shared secret in plain sight of eavesdroppers.</p>
+    <div class="byline">9 MIN TREK — ROOT &amp; ROUTE</div>
+  </div>
+</section>
+
+<section class="post-body">
+  <div class="wrap content">
+<p>You learned on the encryption stop of this trail that HTTPS uses hybrid encryption — slow public-key maths to agree a key, fast symmetric encryption for the conversation. This post opens the hood on the "agree a key" part: the TLS handshake, a negotiation that happens in milliseconds every time you open a website, solving two genuinely hard problems in plain sight of any eavesdropper.</p>
+
+    <h2>The two problems</h2>
+    <p>Before your browser sends anything sensitive it must solve: <strong>(1) Is this server really who it claims to be?</strong> — encryption to an impostor is worse than useless — and <strong>(2) How do we both end up holding the same secret key when everything we say to each other can be overheard?</strong></p>
+
+    <h2>Problem one: identity, solved by certificates</h2>
+    <p>The server presents a <strong>certificate</strong>: a file stating "this public key belongs to rootandroute.online," digitally signed by a <strong>certificate authority (CA)</strong> — one of a small set of organisations whose public keys ship pre-installed in your browser and OS. Because the CA's signature can be verified with those built-in keys, and the CA only signed after verifying domain ownership, your browser gets a chain of trust: I trust the CA → the CA vouches for this key → this key speaks for this domain. That chain — often two or three links deep — is what breaks when you see certificate warnings: expired, wrong name, or signed by nobody your machine trusts. The warning is the chain snapping.</p>
+
+    <h2>Problem two: the shared secret, built in public</h2>
+    <p>Here's the genuinely magical part. The two sides use a <strong>key-exchange algorithm</strong> (Diffie–Hellman, in modern elliptic-curve form) with a property that sounds impossible: each side generates a private value, they exchange <em>derived public values openly</em>, and each combines its own private value with the other's public one — arriving at the <em>same shared secret</em>, which an eavesdropper who saw every message exchanged still cannot compute. The classic intuition is paint-mixing: we each keep a secret colour, publicly swap mixtures, and privately stir our secret into the other's mixture — identical final colours, yet un-unmixable by observers. From that shared secret both sides derive the symmetric keys, and the fast encrypted conversation begins.</p>
+
+    <div class="callout">
+      <span class="eyebrow">Trail note</span>
+      <p style="margin:0;">Notice what this design buys: the session keys were <em>never transmitted</em> — they were independently computed at each end. Modern TLS uses fresh (ephemeral) exchange values per session, giving <strong>forward secrecy</strong>: even if the server's long-term private key is stolen next year, recordings of today's traffic stay undecryptable, because today's session secret was never derivable from that key alone.</p>
+    </div>
+
+    <h2>The whole dance in five lines</h2>
+    <ul>
+      <li>Browser: "Hello — here are the cipher suites I speak, and my key-exchange value."</li>
+      <li>Server: "Hello — we'll use this suite; here's my certificate and my key-exchange value."</li>
+      <li>Browser: verifies the certificate chain against built-in CA trust.</li>
+      <li>Both: independently compute the shared secret, derive session keys.</li>
+      <li>Both: switch to fast symmetric encryption. Padlock appears. Total time: often one round trip.</li>
+    </ul>
+
+    <p>Why this earns a Summit badge on a beginner's site: TLS termination, certificate expiry, and cipher configuration are among the most common real-world operational issues in infrastructure work — and every one of them becomes debuggable once you know which step of this dance failed.</p>
+  </div>
+
+  <div class="next-waypoint wrap">
+    <a href="kerberos-without-the-migraine.html">
+      <span class="eyebrow">Next waypoint — Summit</span>
+      <h3 style="margin-top:0.6rem;">Kerberos: Ticket-Based Authentication Without the Migraine →</h3>
+    </a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span class="fine">© 2026 Root &amp; Route. Written by someone who's still on the trail too.</span>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html">Trail Log</a>
+      <a href="../about.html">About</a>
+    </nav>
+  </div>
+</footer>
+
+<button class="to-top" aria-label="Back to top">↑</button>
+<script src="../assets/js/main.js?v=3"></script>
+<script src="../assets/js/notebook.js?v=3"></script>
+</body>
+</html>

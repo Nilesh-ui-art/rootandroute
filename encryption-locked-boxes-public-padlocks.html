@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Encryption: Locked Boxes and Public Padlocks | Root &amp; Route</title>
+<meta name="description" content="Encryption explained simply: symmetric vs asymmetric encryption, public and private keys, and how HTTPS uses both together.">
+<meta name="keywords" content="encryption explained simply, symmetric vs asymmetric encryption, public key private key explained, how HTTPS encryption works">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://rootandroute.online/posts/encryption-locked-boxes-public-padlocks.html">
+<meta name="author" content="Root & Route">
+<meta property="og:site_name" content="Root &amp; Route">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://rootandroute.online/posts/encryption-locked-boxes-public-padlocks.html">
+<meta property="og:title" content="Encryption: Locked Boxes and Public Padlocks | Root &amp; Route">
+<meta property="og:description" content="Encryption explained simply: symmetric vs asymmetric encryption, public and private keys, and how HTTPS uses both together.">
+<meta property="og:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Encryption: Locked Boxes and Public Padlocks | Root &amp; Route">
+<meta name="twitter:description" content="Encryption explained simply: symmetric vs asymmetric encryption, public and private keys, and how HTTPS uses both together.">
+<meta name="twitter:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta name="theme-color" content="#1D6F62">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Encryption: Locked Boxes and Public Padlocks", "description": "Encryption explained simply: symmetric vs asymmetric encryption, public and private keys, and how HTTPS uses both together.", "url": "https://rootandroute.online/posts/encryption-locked-boxes-public-padlocks.html", "mainEntityOfPage": "https://rootandroute.online/posts/encryption-locked-boxes-public-padlocks.html", "image": "https://rootandroute.online/assets/img/og-card.png", "articleSection": "Security", "datePublished": "2026-08-07", "dateModified": "2026-08-07", "author": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}, "publisher": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://rootandroute.online/"}, {"@type": "ListItem", "position": 2, "name": "Trail Log", "item": "https://rootandroute.online/trail-log.html"}, {"@type": "ListItem", "position": 3, "name": "Encryption: Locked Boxes and Public Padlocks", "item": "https://rootandroute.online/posts/encryption-locked-boxes-public-padlocks.html"}]}</script>
+<script>(function(){try{var t=localStorage.getItem('rr-theme');if(t){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+<link rel="stylesheet" href="../assets/css/style.css?v=3">
+</head>
+<body>
+<div class="progress-track" aria-hidden="true"><div class="progress-fill"></div></div>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="../index.html" class="logo">Root <span class="amp">&amp;</span> Route</a>
+    <button class="nav-toggle" aria-label="Toggle menu">MENU</button>
+    <nav class="main-nav">
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html" class="active">Trail Log</a>
+      <a href="../quiz.html">Quiz</a>
+      <a href="../terminal.html">Terminal</a>
+      <a href="../notebook.html">Notebook</a>
+      <a href="../about.html">About</a>
+    </nav>
+    <button class="theme-toggle" aria-label="Switch theme">☾</button>
+  </div>
+</header>
+
+<section id="main" class="post-hero">
+  <div class="wrap">
+    <div class="meta-row">
+      <span class="badge badge-trailhead">Trailhead</span>
+      <span class="tag">Security</span>
+    </div>
+    <h1>Encryption: Locked Boxes and Public Padlocks</h1>
+    <p class="lede dek">Symmetric and asymmetric encryption in one analogy each — and the elegant trick where anyone can lock a box that only you can open.</p>
+    <div class="byline">7 MIN TREK — ROOT &amp; ROUTE</div>
+  </div>
+</section>
+
+<section class="post-body">
+  <div class="wrap content">
+<p>Encryption is the art of turning readable information into gibberish that only the intended recipient can turn back. Modern life runs on it — every padlock icon, every payment, every message. And the whole field, for a beginner's purposes, rests on two ideas and one clever trick.</p>
+
+    <h2>Idea one: the shared key (symmetric encryption)</h2>
+    <p>The intuitive kind: one key both locks and unlocks. You encrypt a file with a secret; anyone holding the same secret can decrypt it. It's fast, it's strong (AES, the standard algorithm, protects state secrets), and it has one ancient, structural flaw: <strong>how do you get the key to the other person?</strong> Send it over the same channel an eavesdropper is watching and you've locked the box while taping the key to the lid. For thousands of years — from Caesar's ciphers to WWII code machines — this key-distribution problem was <em>the</em> problem of secret communication.</p>
+
+    <h2>Idea two: the key pair (asymmetric encryption)</h2>
+    <p>The 1970s breakthrough that makes the internet possible: keys can come in mathematically linked <em>pairs</em>, where what one encrypts, only the other decrypts. You keep one (the <strong>private key</strong>) and publish the other (the <strong>public key</strong>) to literally everyone. Now the analogy: your public key is an <strong>open padlock</strong> you hand out freely. Anyone can snap it shut on a box — but snapping a padlock shut doesn't let you open it. Only your private key does. Strangers who have never met you can now send you secrets over hostile networks, with nothing sensitive ever travelling in the open.</p>
+
+    <p>The pair works in reverse, too, and that reversal is a second superpower: encrypt something with your <em>private</em> key, and anyone can decrypt it with your public one — proving it could only have come from you. That's a <strong>digital signature</strong>: not secrecy, but proof of authorship and integrity. It's how software updates prove they're genuine and how Secure Boot (from the hardware trail) knows an OS hasn't been tampered with.</p>
+
+    <div class="callout">
+      <span class="eyebrow">Trail note</span>
+      <p style="margin:0;">So why keep symmetric encryption at all? Speed — asymmetric maths is thousands of times slower. Real systems use the trick called <strong>hybrid encryption</strong>: use the padlock scheme once, briefly, to agree a shared symmetric key, then encrypt the actual conversation with fast AES. That is, in one sentence, what HTTPS does every time you open a website. The padlock icon is nearly literal.</p>
+    </div>
+
+    <p>One final distinction that instantly upgrades your vocabulary: encryption <strong>at rest</strong> (data sitting on disks — a stolen laptop with full-disk encryption is a brick, not a breach) versus <strong>in transit</strong> (data moving across networks — the HTTPS case). Policies, audits, and job interviews treat these separately, and now you can too.</p>
+  </div>
+
+  <div class="next-waypoint wrap">
+    <a href="least-privilege-nobody-gets-all-the-keys.html">
+      <span class="eyebrow">Next waypoint — Trailhead</span>
+      <h3 style="margin-top:0.6rem;">Least Privilege: Why Nobody Should Have All the Keys →</h3>
+    </a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span class="fine">© 2026 Root &amp; Route. Written by someone who's still on the trail too.</span>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html">Trail Log</a>
+      <a href="../about.html">About</a>
+    </nav>
+  </div>
+</footer>
+
+<button class="to-top" aria-label="Back to top">↑</button>
+<script src="../assets/js/main.js?v=3"></script>
+<script src="../assets/js/notebook.js?v=3"></script>
+</body>
+</html>

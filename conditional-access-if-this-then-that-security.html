@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Conditional Access: The If-This-Then-That of Enterprise Security | Root &amp; Route</title>
+<meta name="description" content="Conditional access explained: how policy engines evaluate user, device, location and risk signals on every sign-in to enforce zero trust.">
+<meta name="keywords" content="conditional access explained, conditional access policies how they work, zero trust enforcement, sign-in risk policies">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://rootandroute.online/posts/conditional-access-if-this-then-that-security.html">
+<meta name="author" content="Root & Route">
+<meta property="og:site_name" content="Root &amp; Route">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://rootandroute.online/posts/conditional-access-if-this-then-that-security.html">
+<meta property="og:title" content="Conditional Access: The If-This-Then-That of Enterprise Security | Root &amp; Route">
+<meta property="og:description" content="Conditional access explained: how policy engines evaluate user, device, location and risk signals on every sign-in to enforce zero trust.">
+<meta property="og:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Conditional Access: The If-This-Then-That of Enterprise Security | Root &amp; Route">
+<meta name="twitter:description" content="Conditional access explained: how policy engines evaluate user, device, location and risk signals on every sign-in to enforce zero trust.">
+<meta name="twitter:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta name="theme-color" content="#1D6F62">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Conditional Access: The If-This-Then-That of Enterprise Security", "description": "Conditional access explained: how policy engines evaluate user, device, location and risk signals on every sign-in to enforce zero trust.", "url": "https://rootandroute.online/posts/conditional-access-if-this-then-that-security.html", "mainEntityOfPage": "https://rootandroute.online/posts/conditional-access-if-this-then-that-security.html", "image": "https://rootandroute.online/assets/img/og-card.png", "articleSection": "Cloud", "datePublished": "2026-08-07", "dateModified": "2026-08-07", "author": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}, "publisher": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://rootandroute.online/"}, {"@type": "ListItem", "position": 2, "name": "Trail Log", "item": "https://rootandroute.online/trail-log.html"}, {"@type": "ListItem", "position": 3, "name": "Conditional Access: The If-This-Then-That of Enterprise Security", "item": "https://rootandroute.online/posts/conditional-access-if-this-then-that-security.html"}]}</script>
+<script>(function(){try{var t=localStorage.getItem('rr-theme');if(t){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+<link rel="stylesheet" href="../assets/css/style.css?v=3">
+</head>
+<body>
+<div class="progress-track" aria-hidden="true"><div class="progress-fill"></div></div>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="../index.html" class="logo">Root <span class="amp">&amp;</span> Route</a>
+    <button class="nav-toggle" aria-label="Toggle menu">MENU</button>
+    <nav class="main-nav">
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html" class="active">Trail Log</a>
+      <a href="../quiz.html">Quiz</a>
+      <a href="../terminal.html">Terminal</a>
+      <a href="../notebook.html">Notebook</a>
+      <a href="../about.html">About</a>
+    </nav>
+    <button class="theme-toggle" aria-label="Switch theme">☾</button>
+  </div>
+</header>
+
+<section id="main" class="post-hero">
+  <div class="wrap">
+    <div class="meta-row">
+      <span class="badge badge-ridge">Ridge</span>
+      <span class="tag">Cloud</span><span class="tag">Identity</span><span class="tag">Security</span>
+    </div>
+    <h1>Conditional Access: The If-This-Then-That of Enterprise Security</h1>
+    <p class="lede dek">Zero trust sounds abstract until you see the policy engine that enforces it: signals in, decision out, on every single sign-in.</p>
+    <div class="byline">8 MIN TREK — ROOT &amp; ROUTE</div>
+  </div>
+</section>
+
+<section class="post-body">
+  <div class="wrap content">
+<p>The zero trust post earlier on this trail made a promise: every access request gets evaluated on evidence — identity, device, context — every time. Fine words. This post is about the machinery that keeps them: the <strong>conditional access engine</strong>, the policy layer sitting between every sign-in and every application in a modern cloud identity platform. If zero trust is the philosophy, conditional access is the enforcement.</p>
+
+    <h2>The shape of a policy</h2>
+    <p>Every conditional access policy, stripped of vendor dressing, is an if-this-then-that statement with three parts:</p>
+    <ul>
+      <li><strong>Assignments (the IF):</strong> who and what does this apply to — which users or groups, which applications, and under which <em>conditions</em>: device platform, network location, client app type, assessed risk level.</li>
+      <li><strong>Controls (the THEN):</strong> what happens when the IF matches — <em>block</em>, or <em>grant with requirements</em>: require MFA, require a compliant managed device, require a password change, or limit the session (allow web access but disable downloads).</li>
+      <li><strong>Evaluation:</strong> the crucial mechanic — <em>all matching policies are evaluated on every sign-in, and their requirements combine.</em> There's no first-match-wins here; if three policies apply, you satisfy all three. Block always beats grant.</li>
+    </ul>
+
+    <p>Concrete examples, in plain English: "Everyone accessing anything from outside the office network → require MFA." "Payroll app → require MFA <em>and</em> a compliant device, always." "Sign-in assessed as high-risk → block outright." Stack twenty such policies and you've turned an abstract architecture into rules that fire billions of times a day.</p>
+
+    <h2>The signal that makes it interesting: risk</h2>
+    <p>The condition worth dwelling on is <strong>risk</strong> — a machine-learning assessment attached to each sign-in and each user. Impossible travel (London then Singapore in an hour), anonymised networks, password-spray patterns, credentials spotted in criminal marketplaces: these raise risk scores, and policies can key off them — step up to MFA at medium risk, block and force remediation at high. This is the genuinely modern part: the system adapts per-request, which no static firewall rule ever could. It's also where the zero trust slogan becomes literal — trust computed from evidence, per sign-in.</p>
+
+    <div class="callout">
+      <span class="eyebrow">Trail note</span>
+      <p style="margin:0;">Operational wisdom that separates practitioners from brochure-readers: conditional access is powerful enough to lock <em>everyone</em> out — including all administrators, permanently, with one bad policy. Hence the two iron habits of the trade: every new policy launches in <strong>report-only mode</strong> first (evaluating and logging what it <em>would</em> do, affecting nothing), and every tenant keeps <strong>break-glass accounts</strong> — emergency admin accounts excluded from all policies, stored like the fire axe behind glass. If you ever administer one of these systems, these two habits are non-negotiable.</p>
+    </div>
+
+    <p>Why this matters even if you never write a policy: as a user, every MFA prompt, device-enrolment demand, and "you can't access this from here" message you've ever seen was a conditional access decision. As a professional, "sign-in logs plus policy evaluation" is where a huge share of modern access troubleshooting lives — and now you know the shape of the machine you'd be debugging.</p>
+  </div>
+
+  <div class="next-waypoint wrap">
+    <a href="beyond-vlans-microsegmentation-east-west.html">
+      <span class="eyebrow">Next waypoint — Summit</span>
+      <h3 style="margin-top:0.6rem;">Beyond VLANs: Microsegmentation and the East-West Problem →</h3>
+    </a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span class="fine">© 2026 Root &amp; Route. Written by someone who's still on the trail too.</span>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html">Trail Log</a>
+      <a href="../about.html">About</a>
+    </nav>
+  </div>
+</footer>
+
+<button class="to-top" aria-label="Back to top">↑</button>
+<script src="../assets/js/main.js?v=3"></script>
+<script src="../assets/js/notebook.js?v=3"></script>
+</body>
+</html>

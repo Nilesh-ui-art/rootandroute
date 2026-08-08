@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Least Privilege: Why Nobody Should Have All the Keys | Root &amp; Route</title>
+<meta name="description" content="The principle of least privilege explained: what it means, why admin rights are restricted, and how it limits blast radius from any compromise.">
+<meta name="keywords" content="principle of least privilege explained, why remove admin rights, blast radius security, least privilege examples">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://rootandroute.online/posts/least-privilege-nobody-gets-all-the-keys.html">
+<meta name="author" content="Root & Route">
+<meta property="og:site_name" content="Root &amp; Route">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://rootandroute.online/posts/least-privilege-nobody-gets-all-the-keys.html">
+<meta property="og:title" content="Least Privilege: Why Nobody Should Have All the Keys | Root &amp; Route">
+<meta property="og:description" content="The principle of least privilege explained: what it means, why admin rights are restricted, and how it limits blast radius from any compromise.">
+<meta property="og:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Least Privilege: Why Nobody Should Have All the Keys | Root &amp; Route">
+<meta name="twitter:description" content="The principle of least privilege explained: what it means, why admin rights are restricted, and how it limits blast radius from any compromise.">
+<meta name="twitter:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta name="theme-color" content="#1D6F62">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Least Privilege: Why Nobody Should Have All the Keys", "description": "The principle of least privilege explained: what it means, why admin rights are restricted, and how it limits blast radius from any compromise.", "url": "https://rootandroute.online/posts/least-privilege-nobody-gets-all-the-keys.html", "mainEntityOfPage": "https://rootandroute.online/posts/least-privilege-nobody-gets-all-the-keys.html", "image": "https://rootandroute.online/assets/img/og-card.png", "articleSection": "Security", "datePublished": "2026-08-07", "dateModified": "2026-08-07", "author": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}, "publisher": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://rootandroute.online/"}, {"@type": "ListItem", "position": 2, "name": "Trail Log", "item": "https://rootandroute.online/trail-log.html"}, {"@type": "ListItem", "position": 3, "name": "Least Privilege: Why Nobody Should Have All the Keys", "item": "https://rootandroute.online/posts/least-privilege-nobody-gets-all-the-keys.html"}]}</script>
+<script>(function(){try{var t=localStorage.getItem('rr-theme');if(t){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+<link rel="stylesheet" href="../assets/css/style.css?v=3">
+</head>
+<body>
+<div class="progress-track" aria-hidden="true"><div class="progress-fill"></div></div>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="../index.html" class="logo">Root <span class="amp">&amp;</span> Route</a>
+    <button class="nav-toggle" aria-label="Toggle menu">MENU</button>
+    <nav class="main-nav">
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html" class="active">Trail Log</a>
+      <a href="../quiz.html">Quiz</a>
+      <a href="../terminal.html">Terminal</a>
+      <a href="../notebook.html">Notebook</a>
+      <a href="../about.html">About</a>
+    </nav>
+    <button class="theme-toggle" aria-label="Switch theme">☾</button>
+  </div>
+</header>
+
+<section id="main" class="post-hero">
+  <div class="wrap">
+    <div class="meta-row">
+      <span class="badge badge-trailhead">Trailhead</span>
+      <span class="tag">Security</span>
+    </div>
+    <h1>Least Privilege: Why Nobody Should Have All the Keys</h1>
+    <p class="lede dek">Not about distrust — about limiting how much any single mistake, phish, or breach can cost. The principle behind half of IT's 'annoying' rules.</p>
+    <div class="byline">6 MIN TREK — ROOT &amp; ROUTE</div>
+  </div>
+</section>
+
+<section class="post-body">
+  <div class="wrap content">
+<p>Why can't I install software on my own work laptop? Why did my access to that shared drive vanish when I changed teams? Why does the admin have a separate second account just for admin work? One principle answers all of these, and it's arguably the most consequential idea in practical security: <strong>least privilege</strong> — every account, person, and program gets the minimum access needed to do its job, and nothing more.</p>
+
+    <h2>The reasoning: assume compromise, limit the damage</h2>
+    <p>The naive framing is that privilege restrictions exist because employees aren't trusted. The professional framing is different and more interesting: <em>eventually, some account will be compromised.</em> Someone will be phished, some laptop stolen, some password leaked — at sufficient scale this is a certainty, not a risk. The design question therefore isn't "how do we prevent all compromise" but "<strong>when</strong> an account falls, how much falls with it?" Security people call this the <strong>blast radius</strong>. Least privilege is blast-radius engineering: an attacker who phishes a standard user gets a standard user's reach. An attacker who phishes a domain admin gets everything. The entire point is making the first scenario overwhelmingly more likely than the second.</p>
+
+    <h2>Where you'll see it in the wild</h2>
+    <ul>
+      <li><strong>No local admin rights</strong> — the classic. Most malware runs with the privileges of whoever executed it; a user who can't install software is a user whose malware often can't either.</li>
+      <li><strong>Separate admin accounts</strong> — engineers browse email as a normal user and switch to a privileged account only for admin tasks. The account that reads phishing emails is not the account that can delete the company.</li>
+      <li><strong>Role-based access</strong> — permissions attached to job roles rather than hand-granted to individuals, so moving teams swaps your access cleanly instead of accumulating it.</li>
+      <li><strong>Just-in-time access</strong> — the modern refinement: admin rights granted for a task, for hours, then automatically revoked. Standing privilege becomes temporary privilege.</li>
+    </ul>
+
+    <div class="callout">
+      <span class="eyebrow">Trail note</span>
+      <p style="margin:0;">The quiet enemy of least privilege is <strong>privilege creep</strong>: access accumulating over years of role changes, "temporary" grants nobody revoked, permissions copied from a colleague "to save time." It's why access reviews exist — that tedious quarterly exercise is the system fighting entropy. When you're the one running them someday, this is what you're actually doing: shrinking blast radii.</p>
+    </div>
+
+    <p>Least privilege applies to software, too — service accounts, applications, and cloud workloads should each hold only their minimum permissions, because programs get compromised exactly like people do. Read enough incident reports and one refrain repeats: the breach was bad <em>because some account had far more access than its job required</em>. The principle is boring. Its absence is spectacular.</p>
+  </div>
+
+  <div class="next-waypoint wrap">
+    <a href="patching-boring-thing-preventing-breaches.html">
+      <span class="eyebrow">Next waypoint — Basecamp</span>
+      <h3 style="margin-top:0.6rem;">Patching: The Most Boring Thing That Prevents the Most Breaches →</h3>
+    </a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span class="fine">© 2026 Root &amp; Route. Written by someone who's still on the trail too.</span>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html">Trail Log</a>
+      <a href="../about.html">About</a>
+    </nav>
+  </div>
+</footer>
+
+<button class="to-top" aria-label="Back to top">↑</button>
+<script src="../assets/js/main.js?v=3"></script>
+<script src="../assets/js/notebook.js?v=3"></script>
+</body>
+</html>

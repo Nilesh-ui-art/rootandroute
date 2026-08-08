@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>What a CPU Actually Does All Day | Root &amp; Route</title>
+<meta name="description" content="What a CPU actually does, explained for beginners: cores, clock speed, and why &#x27;the brain of the computer&#x27; is a misleading analogy.">
+<meta name="keywords" content="what does a CPU do, CPU explained for beginners, cores vs clock speed, why is my computer slow">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://rootandroute.online/posts/what-a-cpu-actually-does.html">
+<meta name="author" content="Root & Route">
+<meta property="og:site_name" content="Root &amp; Route">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://rootandroute.online/posts/what-a-cpu-actually-does.html">
+<meta property="og:title" content="What a CPU Actually Does All Day | Root &amp; Route">
+<meta property="og:description" content="What a CPU actually does, explained for beginners: cores, clock speed, and why &#x27;the brain of the computer&#x27; is a misleading analogy.">
+<meta property="og:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="What a CPU Actually Does All Day | Root &amp; Route">
+<meta name="twitter:description" content="What a CPU actually does, explained for beginners: cores, clock speed, and why &#x27;the brain of the computer&#x27; is a misleading analogy.">
+<meta name="twitter:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta name="theme-color" content="#1D6F62">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "What a CPU Actually Does All Day", "description": "What a CPU actually does, explained for beginners: cores, clock speed, and why 'the brain of the computer' is a misleading analogy.", "url": "https://rootandroute.online/posts/what-a-cpu-actually-does.html", "mainEntityOfPage": "https://rootandroute.online/posts/what-a-cpu-actually-does.html", "image": "https://rootandroute.online/assets/img/og-card.png", "articleSection": "Hardware", "datePublished": "2026-08-07", "dateModified": "2026-08-07", "author": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}, "publisher": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://rootandroute.online/"}, {"@type": "ListItem", "position": 2, "name": "Trail Log", "item": "https://rootandroute.online/trail-log.html"}, {"@type": "ListItem", "position": 3, "name": "What a CPU Actually Does All Day", "item": "https://rootandroute.online/posts/what-a-cpu-actually-does.html"}]}</script>
+<script>(function(){try{var t=localStorage.getItem('rr-theme');if(t){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+<link rel="stylesheet" href="../assets/css/style.css?v=3">
+</head>
+<body>
+<div class="progress-track" aria-hidden="true"><div class="progress-fill"></div></div>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="../index.html" class="logo">Root <span class="amp">&amp;</span> Route</a>
+    <button class="nav-toggle" aria-label="Toggle menu">MENU</button>
+    <nav class="main-nav">
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html" class="active">Trail Log</a>
+      <a href="../quiz.html">Quiz</a>
+      <a href="../terminal.html">Terminal</a>
+      <a href="../notebook.html">Notebook</a>
+      <a href="../about.html">About</a>
+    </nav>
+    <button class="theme-toggle" aria-label="Switch theme">☾</button>
+  </div>
+</header>
+
+<section id="main" class="post-hero">
+  <div class="wrap">
+    <div class="meta-row">
+      <span class="badge badge-basecamp">Basecamp</span>
+      <span class="tag">Hardware</span><span class="tag">Fundamentals</span>
+    </div>
+    <h1>What a CPU Actually Does All Day</h1>
+    <p class="lede dek">It's not a brain. It's a very fast, very obedient clerk — and that distinction changes how you think about slow computers.</p>
+    <div class="byline">6 MIN TREK — ROOT &amp; ROUTE</div>
+  </div>
+</section>
+
+<section class="post-body">
+  <div class="wrap content">
+<p>Every explanation of computers starts the same way: "the CPU is the brain." It's a comforting analogy and it's mostly wrong. Brains think, imagine, and get distracted. A CPU does exactly one thing: it fetches an instruction, executes it, and fetches the next one — billions of times per second, without ever understanding any of it.</p>
+
+    <p>A better picture: the CPU is a clerk at a desk, working through an enormous inbox of tiny slips of paper. Each slip says something laughably simple: <em>add these two numbers. Copy this value over there. If this number is zero, jump to slip 4,082.</em> The magic isn't in any single slip — it's that the clerk processes a few billion slips a second, and out of that avalanche of trivial steps, a spreadsheet opens or a video plays.</p>
+
+    <h2>Cores: more clerks, not smarter clerks</h2>
+    <p>When you see "8-core CPU," that means eight clerks sharing the desk. More cores help when work can be split into independent piles — rendering video, running several apps at once. They help less when a task is one long chain of steps where each depends on the last; a second clerk can't help you read a book faster.</p>
+
+    <h2>Clock speed: how fast each clerk works</h2>
+    <p>Gigahertz measures how many work cycles a core completes per second. 3.5&nbsp;GHz means roughly 3.5 billion cycles. But comparing chips on clock speed alone is like comparing two employees only by typing speed — a modern core does far more useful work per cycle than one from a decade ago. That's why a new 3&nbsp;GHz chip can flatten an old 4&nbsp;GHz one.</p>
+
+    <div class="callout">
+      <span class="eyebrow">Trail note</span>
+      <p style="margin:0;">When a computer feels slow, the CPU is the culprit far less often than people assume. Open the task manager and look: nine times out of ten the bottleneck is memory pressure, a struggling disk, or one misbehaving process — not a "weak" processor.</p>
+    </div>
+
+    <h2>Why this matters in real support work</h2>
+    <p>Understanding the clerk model changes how you diagnose problems. 100% CPU usage doesn't mean the machine is broken — it means the inbox is full. The useful question is <em>what's filling it</em>: a legitimate heavy task, a runaway process stuck in a loop, or malware quietly mining in the background. Task Manager on Windows (or <code>top</code> on Linux/Mac) tells you exactly which process is generating the paperwork.</p>
+
+    <p>And when someone asks whether they need a "faster computer," you now know the real questions: is the work parallel (more cores help) or sequential (faster cores help)? Or is the CPU sitting half-idle while an old hard drive drip-feeds it data — in which case a new processor fixes nothing at all?</p>
+  </div>
+
+  <div class="next-waypoint wrap">
+    <a href="ram-vs-storage-two-kinds-of-memory.html">
+      <span class="eyebrow">Next waypoint — Basecamp</span>
+      <h3 style="margin-top:0.6rem;">RAM vs Storage: Why Your Computer Has Two Kinds of Memory →</h3>
+    </a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span class="fine">© 2026 Root &amp; Route. Written by someone who's still on the trail too.</span>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html">Trail Log</a>
+      <a href="../about.html">About</a>
+    </nav>
+  </div>
+</footer>
+
+<button class="to-top" aria-label="Back to top">↑</button>
+<script src="../assets/js/main.js?v=3"></script>
+<script src="../assets/js/notebook.js?v=3"></script>
+</body>
+</html>

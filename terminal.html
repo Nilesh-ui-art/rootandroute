@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>The Terminal Playground — Practice Real Commands | Root &amp; Route</title>
+<meta name="description" content="A safe, simulated Linux terminal in your browser. Practice ping, nslookup, traceroute, ls and more with guided missions tied to lessons — nothing to install.">
+<meta name="keywords" content="practice linux commands online, learn command line beginners, ping nslookup practice, terminal simulator browser">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://rootandroute.online/terminal.html">
+<meta property="og:site_name" content="Root &amp; Route">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://rootandroute.online/terminal.html">
+<meta property="og:title" content="The Terminal Playground | Root &amp; Route">
+<meta property="og:description" content="Practice real Linux and networking commands in a safe simulated terminal — with guided missions. Nothing to install, nothing to break.">
+<meta property="og:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Terminal Playground | Root &amp; Route">
+<meta name="twitter:description" content="Practice ping, nslookup, ls and more in a safe browser terminal with guided missions.">
+<meta name="twitter:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta name="theme-color" content="#1D6F62">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"The Terminal Playground","url":"https://rootandroute.online/terminal.html","description":"A simulated Linux terminal for practising commands like ping, nslookup and ls, with guided missions for beginners.","isPartOf":{"@type":"WebSite","name":"Root & Route","url":"https://rootandroute.online"}}</script>
+<script>(function(){try{var t=localStorage.getItem('rr-theme');if(t){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+<link rel="stylesheet" href="assets/css/style.css?v=3">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="index.html" class="logo">Root <span class="amp">&amp;</span> Route</a>
+    <button class="nav-toggle" aria-label="Toggle menu">MENU</button>
+    <nav class="main-nav">
+      <a href="index.html">Home</a>
+      <a href="trail-log.html">Trail Log</a>
+      <a href="quiz.html">Quiz</a>
+      <a href="terminal.html" class="active">Terminal</a>
+      <a href="notebook.html">Notebook</a>
+      <a href="about.html">About</a>
+    </nav>
+    <button class="theme-toggle" aria-label="Switch theme">☾</button>
+  </div>
+</header>
+
+<section id="main" class="post-hero">
+  <div class="wrap">
+    <div class="meta-row">
+      <span class="badge badge-basecamp">All levels</span>
+      <span class="tag">Nothing to install</span>
+      <span class="tag">Nothing to break</span>
+    </div>
+    <h1>The Terminal Playground</h1>
+    <p class="lede dek">A safe, simulated Linux shell running entirely in your browser. Practise the commands every IT job expects — <code>ping</code>, <code>nslookup</code>, <code>ls</code>, <code>traceroute</code> — with guided missions tied to trail posts. Type <code>help</code> to see what it speaks, or pick a mission and follow the objective.</p>
+  </div>
+</section>
+
+<section class="post-body">
+  <div class="wrap term-layout">
+
+    <div class="term-missions" id="term-missions">
+      <span class="eyebrow">Missions</span>
+      <div id="mission-list"></div>
+      <div class="term-objective" id="term-objective" hidden>
+        <span class="eyebrow">Current objective</span>
+        <p id="objective-text"></p>
+        <button class="quiz-btn" id="objective-hint-btn" type="button">Need a hint?</button>
+        <p id="objective-hint" class="fine" hidden></p>
+      </div>
+    </div>
+
+    <div class="term-window" id="term-window" role="region" aria-label="Simulated terminal">
+      <div class="term-titlebar">
+        <span class="term-dot"></span><span class="term-dot"></span><span class="term-dot"></span>
+        <span class="term-title">trainee@basecamp: ~</span>
+      </div>
+      <div class="term-screen" id="term-screen" aria-live="polite"></div>
+      <div class="term-inputrow">
+        <span class="term-prompt" id="term-prompt">trainee@basecamp:~$</span>
+        <input id="term-input" class="term-input" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="Terminal command input">
+      </div>
+    </div>
+
+  </div>
+  <div class="wrap content" style="margin-top:2rem;">
+    <div class="callout">
+      <span class="eyebrow">Trail note</span>
+      <p style="margin:0;">Everything here is simulated — no real network traffic is sent and no real files exist, so experiment freely. When a command clicks and you want the full story behind it, the missions link to the trail posts that explain what's really happening under the hood.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span class="fine">© 2026 Root &amp; Route. Written by someone who's still on the trail too.</span>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="trail-log.html">Trail Log</a>
+      <a href="terminal.html">Terminal</a>
+      <a href="about.html">About</a>
+    </nav>
+  </div>
+</footer>
+
+<button class="to-top" aria-label="Back to top">↑</button>
+<script src="assets/js/main.js?v=3"></script>
+<script src="assets/js/terminal.js?v=3"></script>
+</body>
+</html>

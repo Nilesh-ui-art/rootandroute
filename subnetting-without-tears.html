@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Subnetting Without Tears | Root &amp; Route</title>
+<meta name="description" content="Subnetting explained gently: what CIDR notation like /24 means, network vs host bits, and how to reason about subnet sizes without formulas.">
+<meta name="keywords" content="subnetting explained simply, what does /24 mean, CIDR notation beginners, subnet mask explained">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://rootandroute.online/posts/subnetting-without-tears.html">
+<meta name="author" content="Root & Route">
+<meta property="og:site_name" content="Root &amp; Route">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://rootandroute.online/posts/subnetting-without-tears.html">
+<meta property="og:title" content="Subnetting Without Tears | Root &amp; Route">
+<meta property="og:description" content="Subnetting explained gently: what CIDR notation like /24 means, network vs host bits, and how to reason about subnet sizes without formulas.">
+<meta property="og:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Subnetting Without Tears | Root &amp; Route">
+<meta name="twitter:description" content="Subnetting explained gently: what CIDR notation like /24 means, network vs host bits, and how to reason about subnet sizes without formulas.">
+<meta name="twitter:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta name="theme-color" content="#1D6F62">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Subnetting Without Tears", "description": "Subnetting explained gently: what CIDR notation like /24 means, network vs host bits, and how to reason about subnet sizes without formulas.", "url": "https://rootandroute.online/posts/subnetting-without-tears.html", "mainEntityOfPage": "https://rootandroute.online/posts/subnetting-without-tears.html", "image": "https://rootandroute.online/assets/img/og-card.png", "articleSection": "Networking", "datePublished": "2026-08-07", "dateModified": "2026-08-07", "author": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}, "publisher": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://rootandroute.online/"}, {"@type": "ListItem", "position": 2, "name": "Trail Log", "item": "https://rootandroute.online/trail-log.html"}, {"@type": "ListItem", "position": 3, "name": "Subnetting Without Tears", "item": "https://rootandroute.online/posts/subnetting-without-tears.html"}]}</script>
+<script>(function(){try{var t=localStorage.getItem('rr-theme');if(t){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+<link rel="stylesheet" href="../assets/css/style.css?v=3">
+</head>
+<body>
+<div class="progress-track" aria-hidden="true"><div class="progress-fill"></div></div>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="../index.html" class="logo">Root <span class="amp">&amp;</span> Route</a>
+    <button class="nav-toggle" aria-label="Toggle menu">MENU</button>
+    <nav class="main-nav">
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html" class="active">Trail Log</a>
+      <a href="../quiz.html">Quiz</a>
+      <a href="../terminal.html">Terminal</a>
+      <a href="../notebook.html">Notebook</a>
+      <a href="../about.html">About</a>
+    </nav>
+    <button class="theme-toggle" aria-label="Switch theme">☾</button>
+  </div>
+</header>
+
+<section id="main" class="post-hero">
+  <div class="wrap">
+    <div class="meta-row">
+      <span class="badge badge-ridge">Ridge</span>
+      <span class="tag">Networking</span>
+    </div>
+    <h1>Subnetting Without Tears</h1>
+    <p class="lede dek">The /24 notation, the network-vs-host split, and why subnetting is really just deciding how to slice a street into postcodes.</p>
+    <div class="byline">8 MIN TREK — ROOT &amp; ROUTE</div>
+  </div>
+</section>
+
+<section class="post-body">
+  <div class="wrap content">
+<p>Subnetting has a reputation as the topic where networking students go to suffer — binary maths, magic tables, tears before certification. Strip the exam theatrics away, though, and the underlying idea is genuinely simple: <strong>a subnet is a decision about where to draw the line between "neighbourhood" and "house number" inside an IP address.</strong></p>
+
+    <h2>The line in the address</h2>
+    <p>An IPv4 address is 32 bits. Some number of those bits, reading from the left, identify the <em>network</em>; the rest identify the <em>host</em> (the device) within it. The notation <code>/24</code> — as in <code>192.168.1.0/24</code> — says exactly one thing: the first 24 bits are the network part. That leaves 8 bits for hosts, and 8 bits can count to 256, so a /24 contains 256 addresses (two of which are reserved — the network's own name and its broadcast address — leaving 254 usable). If you've ever noticed home networks always seem to be <code>192.168.1.something</code> with the last number changing per device, congratulations: you've already internalised a /24. The first three numbers are the street; the last is the door.</p>
+
+    <h2>Moving the line</h2>
+    <p>Everything else in subnetting is just sliding that boundary:</p>
+    <ul>
+      <li>Move it <strong>left</strong> (a /16): fewer bits for network, more for hosts — one enormous street with ~65,000 doors.</li>
+      <li>Move it <strong>right</strong> (a /26): more network bits, fewer host bits — smaller streets of 64 addresses each, and you get four of them out of what was one /24.</li>
+    </ul>
+    <p>Each step right <em>halves</em> the subnet size and <em>doubles</em> the count. That single doubling relationship replaces most of the tables people memorise: /25 is half of a /24 (128 addresses), /26 half again (64), /27 half again (32). You can walk the whole scale from one anchor point.</p>
+
+    <div class="callout">
+      <span class="eyebrow">Trail note</span>
+      <p style="margin:0;">The subnet <strong>mask</strong> (that <code>255.255.255.0</code> string) is just the same information in an older costume — 255 means "this byte is all network," 0 means "all host." <code>255.255.255.0</code> <em>is</em> /24. One fact, two notations, and modern practice overwhelmingly favours the slash.</p>
+    </div>
+
+    <h2>Why anyone slices networks at all</h2>
+    <p>Because a device can only talk <em>directly</em> to devices in its own subnet — everything else must go via a router. That constraint is a feature: it lets you put servers, staff, guests, and CCTV in separate subnets, then control and inspect the traffic <em>between</em> them at the router or firewall. Sound familiar? It's the same segmentation instinct as VLANs, earlier on this trail — VLANs draw the boundary at layer 2, subnets draw it at layer 3, and in real networks the two are usually paired one-to-one: each VLAN gets its own subnet. Subnetting isn't maths homework. It's the addressing half of network design.</p>
+  </div>
+
+  <div class="next-waypoint wrap">
+    <a href="vpns-private-tunnel-public-road.html">
+      <span class="eyebrow">Next waypoint — Trailhead</span>
+      <h3 style="margin-top:0.6rem;">VPNs: A Private Tunnel Through a Public Road →</h3>
+    </a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span class="fine">© 2026 Root &amp; Route. Written by someone who's still on the trail too.</span>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html">Trail Log</a>
+      <a href="../about.html">About</a>
+    </nav>
+  </div>
+</footer>
+
+<button class="to-top" aria-label="Back to top">↑</button>
+<script src="../assets/js/main.js?v=3"></script>
+<script src="../assets/js/notebook.js?v=3"></script>
+</body>
+</html>

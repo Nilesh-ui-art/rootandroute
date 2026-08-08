@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>A Beginner&#x27;s Method for Diagnosing Hardware Faults | Root &amp; Route</title>
+<meta name="description" content="A structured beginner method for diagnosing computer hardware problems: isolate, swap, and test one variable at a time.">
+<meta name="keywords" content="how to diagnose hardware problems, PC troubleshooting method, computer won&#x27;t turn on checklist, hardware fault isolation">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://rootandroute.online/posts/beginners-method-diagnosing-hardware.html">
+<meta name="author" content="Root & Route">
+<meta property="og:site_name" content="Root &amp; Route">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://rootandroute.online/posts/beginners-method-diagnosing-hardware.html">
+<meta property="og:title" content="A Beginner&#x27;s Method for Diagnosing Hardware Faults | Root &amp; Route">
+<meta property="og:description" content="A structured beginner method for diagnosing computer hardware problems: isolate, swap, and test one variable at a time.">
+<meta property="og:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="A Beginner&#x27;s Method for Diagnosing Hardware Faults | Root &amp; Route">
+<meta name="twitter:description" content="A structured beginner method for diagnosing computer hardware problems: isolate, swap, and test one variable at a time.">
+<meta name="twitter:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta name="theme-color" content="#1D6F62">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "A Beginner's Method for Diagnosing Hardware Faults", "description": "A structured beginner method for diagnosing computer hardware problems: isolate, swap, and test one variable at a time.", "url": "https://rootandroute.online/posts/beginners-method-diagnosing-hardware.html", "mainEntityOfPage": "https://rootandroute.online/posts/beginners-method-diagnosing-hardware.html", "image": "https://rootandroute.online/assets/img/og-card.png", "articleSection": "Hardware", "datePublished": "2026-08-07", "dateModified": "2026-08-07", "author": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}, "publisher": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://rootandroute.online/"}, {"@type": "ListItem", "position": 2, "name": "Trail Log", "item": "https://rootandroute.online/trail-log.html"}, {"@type": "ListItem", "position": 3, "name": "A Beginner's Method for Diagnosing Hardware Faults", "item": "https://rootandroute.online/posts/beginners-method-diagnosing-hardware.html"}]}</script>
+<script>(function(){try{var t=localStorage.getItem('rr-theme');if(t){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+<link rel="stylesheet" href="../assets/css/style.css?v=3">
+</head>
+<body>
+<div class="progress-track" aria-hidden="true"><div class="progress-fill"></div></div>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="../index.html" class="logo">Root <span class="amp">&amp;</span> Route</a>
+    <button class="nav-toggle" aria-label="Toggle menu">MENU</button>
+    <nav class="main-nav">
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html" class="active">Trail Log</a>
+      <a href="../quiz.html">Quiz</a>
+      <a href="../terminal.html">Terminal</a>
+      <a href="../notebook.html">Notebook</a>
+      <a href="../about.html">About</a>
+    </nav>
+    <button class="theme-toggle" aria-label="Switch theme">☾</button>
+  </div>
+</header>
+
+<section id="main" class="post-hero">
+  <div class="wrap">
+    <div class="meta-row">
+      <span class="badge badge-trailhead">Trailhead</span>
+      <span class="tag">Hardware</span><span class="tag">Troubleshooting</span>
+    </div>
+    <h1>A Beginner's Method for Diagnosing Hardware Faults</h1>
+    <p class="lede dek">You don't need encyclopaedic knowledge to troubleshoot hardware. You need a repeatable method and the discipline to change one thing at a time.</p>
+    <div class="byline">7 MIN TREK — ROOT &amp; ROUTE</div>
+  </div>
+</section>
+
+<section class="post-body">
+  <div class="wrap content">
+<p>Watch an experienced technician work on a dead machine and it looks like intuition. It mostly isn't. It's a method — one so consistent you can learn its skeleton in an afternoon, then spend a career filling in the details. The method has three rules.</p>
+
+    <h2>Rule 1: Establish what actually happens</h2>
+    <p>"It's dead" describes at least four different faults. Before touching anything, observe precisely: Do fans spin? Any lights? Any beeps? Does anything appear on screen, even briefly? Each answer eliminates whole categories. Fans spinning but no display is a completely different investigation from total silence — the first suggests graphics, RAM, or display; the second points at power delivery. Vague symptom, vague diagnosis. Precise symptom, short list.</p>
+
+    <h2>Rule 2: Simplify to the minimum, then rebuild</h2>
+    <p>A computer that won't start with six components attached might start with three. Strip to the minimum bootable configuration — motherboard, CPU, one stick of RAM, power — and test. If it lives, add components back <strong>one at a time</strong>, testing after each, until the fault returns. Whatever you just added is your suspect. If even the minimum won't start, your suspect list is already down to three or four items.</p>
+
+    <div class="callout">
+      <span class="eyebrow">Trail note</span>
+      <p style="margin:0;">The discipline that separates good troubleshooters from frustrated ones: <strong>change one variable at a time</strong>. Swap the RAM <em>and</em> reseat the graphics card <em>and</em> update the BIOS, and when the machine boots you've learned nothing — you can't tell which change fixed it, so you can't prevent it recurring or explain it in the ticket.</p>
+    </div>
+
+    <h2>Rule 3: Swap with known-good, not with guesses</h2>
+    <p>The fastest way to convict a component is to replace it with one you <em>know</em> works — and the fastest way to clear it is to try it in a machine you know works. This is why workshops keep a shelf of boring, verified spares: a PSU, a RAM stick, a display cable, a spare drive. Two swap-tests often close an investigation that hours of speculation couldn't.</p>
+
+    <h2>The cheat sheet of prior probabilities</h2>
+    <p>Method beats memorisation, but knowing what usually fails helps you order your tests. Roughly, from most to least likely: <strong>cables and connections</strong> (reseat everything first — it's free), <strong>storage drives</strong> (the moving-parts and wear-out champions), <strong>power supplies</strong>, <strong>RAM</strong>, fans and cooling, and only then, rarely, CPUs and motherboards. Statistically, "it's probably the cable" is the most useful sentence in hardware support — check the free things first.</p>
+
+    <p>None of this requires deep electronics knowledge. It requires observation, one-variable discipline, and a small shelf of known-good parts. The encyclopaedia comes later, on its own, one solved ticket at a time.</p>
+  </div>
+
+  <div class="next-waypoint wrap">
+    <a href="bios-uefi-firmware-explained.html">
+      <span class="eyebrow">Next waypoint — Trailhead</span>
+      <h3 style="margin-top:0.6rem;">BIOS, UEFI, and Firmware: The Software That Runs Before Software →</h3>
+    </a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span class="fine">© 2026 Root &amp; Route. Written by someone who's still on the trail too.</span>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html">Trail Log</a>
+      <a href="../about.html">About</a>
+    </nav>
+  </div>
+</footer>
+
+<button class="to-top" aria-label="Back to top">↑</button>
+<script src="../assets/js/main.js?v=3"></script>
+<script src="../assets/js/notebook.js?v=3"></script>
+</body>
+</html>

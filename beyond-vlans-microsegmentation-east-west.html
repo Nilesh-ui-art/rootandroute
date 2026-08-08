@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Beyond VLANs: Microsegmentation and the East-West Problem | Root &amp; Route</title>
+<meta name="description" content="Microsegmentation explained: north-south vs east-west traffic, lateral movement, and how per-workload policies go beyond VLAN segmentation.">
+<meta name="keywords" content="microsegmentation explained, east west traffic security, lateral movement prevention, network segmentation strategies">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://rootandroute.online/posts/beyond-vlans-microsegmentation-east-west.html">
+<meta name="author" content="Root & Route">
+<meta property="og:site_name" content="Root &amp; Route">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://rootandroute.online/posts/beyond-vlans-microsegmentation-east-west.html">
+<meta property="og:title" content="Beyond VLANs: Microsegmentation and the East-West Problem | Root &amp; Route">
+<meta property="og:description" content="Microsegmentation explained: north-south vs east-west traffic, lateral movement, and how per-workload policies go beyond VLAN segmentation.">
+<meta property="og:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Beyond VLANs: Microsegmentation and the East-West Problem | Root &amp; Route">
+<meta name="twitter:description" content="Microsegmentation explained: north-south vs east-west traffic, lateral movement, and how per-workload policies go beyond VLAN segmentation.">
+<meta name="twitter:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta name="theme-color" content="#1D6F62">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Beyond VLANs: Microsegmentation and the East-West Problem", "description": "Microsegmentation explained: north-south vs east-west traffic, lateral movement, and how per-workload policies go beyond VLAN segmentation.", "url": "https://rootandroute.online/posts/beyond-vlans-microsegmentation-east-west.html", "mainEntityOfPage": "https://rootandroute.online/posts/beyond-vlans-microsegmentation-east-west.html", "image": "https://rootandroute.online/assets/img/og-card.png", "articleSection": "Networking", "datePublished": "2026-08-07", "dateModified": "2026-08-07", "author": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}, "publisher": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://rootandroute.online/"}, {"@type": "ListItem", "position": 2, "name": "Trail Log", "item": "https://rootandroute.online/trail-log.html"}, {"@type": "ListItem", "position": 3, "name": "Beyond VLANs: Microsegmentation and the East-West Problem", "item": "https://rootandroute.online/posts/beyond-vlans-microsegmentation-east-west.html"}]}</script>
+<script>(function(){try{var t=localStorage.getItem('rr-theme');if(t){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+<link rel="stylesheet" href="../assets/css/style.css?v=3">
+</head>
+<body>
+<div class="progress-track" aria-hidden="true"><div class="progress-fill"></div></div>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="../index.html" class="logo">Root <span class="amp">&amp;</span> Route</a>
+    <button class="nav-toggle" aria-label="Toggle menu">MENU</button>
+    <nav class="main-nav">
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html" class="active">Trail Log</a>
+      <a href="../quiz.html">Quiz</a>
+      <a href="../terminal.html">Terminal</a>
+      <a href="../notebook.html">Notebook</a>
+      <a href="../about.html">About</a>
+    </nav>
+    <button class="theme-toggle" aria-label="Switch theme">☾</button>
+  </div>
+</header>
+
+<section id="main" class="post-hero">
+  <div class="wrap">
+    <div class="meta-row">
+      <span class="badge badge-summit">Summit</span>
+      <span class="tag">Networking</span><span class="tag">Security</span><span class="tag">Architecture</span>
+    </div>
+    <h1>Beyond VLANs: Microsegmentation and the East-West Problem</h1>
+    <p class="lede dek">VLANs guard the borders between network zones. But most attack traffic moves sideways, inside zones — and that needed a new answer.</p>
+    <div class="byline">8 MIN TREK — ROOT &amp; ROUTE</div>
+  </div>
+</section>
+
+<section class="post-body">
+  <div class="wrap content">
+<p>The VLAN post near the start of this trail ended with segmentation as a security win: split the network into zones, force traffic between zones through a firewall checkpoint. True — and for twenty years, that was the state of the art. This post is about the limitation that model hit, and the idea that grew past it. It starts with two compass directions.</p>
+
+    <h2>North-south vs east-west</h2>
+    <p>Network people describe traffic by direction: <strong>north-south</strong> traffic enters or leaves the environment (user to server, server to internet); <strong>east-west</strong> traffic moves <em>laterally</em>, between systems inside it (app server to database, server to server). Traditional segmentation — VLANs plus perimeter firewalls — inspects north-south traffic thoroughly. East-west traffic, between machines in the <em>same</em> zone? It flows freely. Nobody's checking. And in modern data centres, east-west traffic is the overwhelming majority of all traffic.</p>
+
+    <h2>Why attackers love the east-west lanes</h2>
+    <p>Read any serious incident report and the pattern repeats: initial compromise of one modest machine, then <strong>lateral movement</strong> — hopping system to system, harvesting credentials (remember pass-the-ticket from the Kerberos post?), climbing toward the crown jewels. The zone model actively helps them: once inside the "server VLAN," an attacker can typically reach <em>every</em> server in it, because same-zone traffic was never a checkpoint's business. Big flat zones are big flat hunting grounds. The breach didn't happen where the attacker entered; it happened everywhere they could <em>walk to</em> afterwards.</p>
+
+    <h2>The idea: shrink the zone to one</h2>
+    <p><strong>Microsegmentation</strong> takes segmentation to its logical limit: policy enforced around <em>each workload individually</em> — every server, VM, or container carries its own rules, typically enforced by the hypervisor or host itself rather than a distant network appliance. And the rules are written in intent, not addresses: "web tier may talk to app tier on port 443; app tier may talk to <em>its</em> database on 1433; <strong>nothing else, in any direction</strong>." Default deny — the firewall post's four sacred words — applied between every pair of machines, including neighbours in the same subnet. The hotel analogy: VLANs gave each floor a keycard door; microsegmentation puts a lock on every room. A burglar on floor three no longer gets thirty rooms for free.</p>
+
+    <div class="callout">
+      <span class="eyebrow">Trail note</span>
+      <p style="margin:0;">The honest practitioner's caveat: the hard part isn't enforcement technology — it's <strong>knowing what legitimately talks to what</strong>. Decades-old environments contain traffic flows nobody documented and nobody dares break. Real microsegmentation projects therefore begin with weeks of pure observation — mapping actual flows — before a single deny rule ships, and mature tools build the proposed policy <em>from</em> that map. Segment blind and you don't stop attackers; you cause outages and get the project cancelled.</p>
+    </div>
+
+    <p>Zoom out and notice the shape of the idea: trust based on <em>being inside a zone</em>, replaced by explicit per-workload verification. That's the third time this trail has met the same move — zero trust did it to users, conditional access to sign-ins, microsegmentation to servers. Different layers; one direction of travel.</p>
+  </div>
+
+  <div class="next-waypoint wrap">
+    <a href="anatomy-of-a-ransomware-attack.html">
+      <span class="eyebrow">Next waypoint — Ridge</span>
+      <h3 style="margin-top:0.6rem;">Anatomy of a Ransomware Attack: The Full Kill Chain →</h3>
+    </a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span class="fine">© 2026 Root &amp; Route. Written by someone who's still on the trail too.</span>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html">Trail Log</a>
+      <a href="../about.html">About</a>
+    </nav>
+  </div>
+</footer>
+
+<button class="to-top" aria-label="Back to top">↑</button>
+<script src="../assets/js/main.js?v=3"></script>
+<script src="../assets/js/notebook.js?v=3"></script>
+</body>
+</html>

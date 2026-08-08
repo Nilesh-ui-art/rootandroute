@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Why AI Confidently Makes Things Up | Root &amp; Route</title>
+<meta name="description" content="AI hallucinations explained: why language models generate false information confidently, and practical rules for using AI safely in IT work.">
+<meta name="keywords" content="AI hallucination explained, why does ChatGPT make things up, can you trust AI answers, using AI safely at work">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://rootandroute.online/posts/ai-hallucinations-why-it-makes-things-up.html">
+<meta name="author" content="Root & Route">
+<meta property="og:site_name" content="Root &amp; Route">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://rootandroute.online/posts/ai-hallucinations-why-it-makes-things-up.html">
+<meta property="og:title" content="Why AI Confidently Makes Things Up | Root &amp; Route">
+<meta property="og:description" content="AI hallucinations explained: why language models generate false information confidently, and practical rules for using AI safely in IT work.">
+<meta property="og:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Why AI Confidently Makes Things Up | Root &amp; Route">
+<meta name="twitter:description" content="AI hallucinations explained: why language models generate false information confidently, and practical rules for using AI safely in IT work.">
+<meta name="twitter:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta name="theme-color" content="#1D6F62">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Why AI Confidently Makes Things Up", "description": "AI hallucinations explained: why language models generate false information confidently, and practical rules for using AI safely in IT work.", "url": "https://rootandroute.online/posts/ai-hallucinations-why-it-makes-things-up.html", "mainEntityOfPage": "https://rootandroute.online/posts/ai-hallucinations-why-it-makes-things-up.html", "image": "https://rootandroute.online/assets/img/og-card.png", "articleSection": "AI", "datePublished": "2026-08-07", "dateModified": "2026-08-07", "author": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}, "publisher": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://rootandroute.online/"}, {"@type": "ListItem", "position": 2, "name": "Trail Log", "item": "https://rootandroute.online/trail-log.html"}, {"@type": "ListItem", "position": 3, "name": "Why AI Confidently Makes Things Up", "item": "https://rootandroute.online/posts/ai-hallucinations-why-it-makes-things-up.html"}]}</script>
+<script>(function(){try{var t=localStorage.getItem('rr-theme');if(t){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+<link rel="stylesheet" href="../assets/css/style.css?v=3">
+</head>
+<body>
+<div class="progress-track" aria-hidden="true"><div class="progress-fill"></div></div>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="../index.html" class="logo">Root <span class="amp">&amp;</span> Route</a>
+    <button class="nav-toggle" aria-label="Toggle menu">MENU</button>
+    <nav class="main-nav">
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html" class="active">Trail Log</a>
+      <a href="../quiz.html">Quiz</a>
+      <a href="../terminal.html">Terminal</a>
+      <a href="../notebook.html">Notebook</a>
+      <a href="../about.html">About</a>
+    </nav>
+    <button class="theme-toggle" aria-label="Switch theme">☾</button>
+  </div>
+</header>
+
+<section id="main" class="post-hero">
+  <div class="wrap">
+    <div class="meta-row">
+      <span class="badge badge-trailhead">Trailhead</span>
+      <span class="tag">AI</span>
+    </div>
+    <h1>Why AI Confidently Makes Things Up</h1>
+    <p class="lede dek">Hallucination isn't a bug that better engineering will simply delete — it's the price of how these systems work. Here's the mental model, and the working rules.</p>
+    <div class="byline">6 MIN TREK — ROOT &amp; ROUTE</div>
+  </div>
+</section>
+
+<section class="post-body">
+  <div class="wrap content">
+<p>Ask an LLM for a source on some claim, and it may hand you a beautifully formatted citation — authors, journal, year, plausible title. Sometimes the paper doesn't exist. Not misremembered: <em>invented</em>, with total fluency. The industry calls this <strong>hallucination</strong>, and understanding why it happens is the single most important piece of AI literacy for anyone using these tools professionally.</p>
+
+    <h2>It's not lying — it's doing exactly its job</h2>
+    <p>Recall the previous waypoint: a language model predicts plausible next words. That's the whole mechanism. When you ask for a citation, it produces text <em>shaped like</em> citations it saw in training — the pattern of a reference, filled with statistically likely content. Whether a real paper sits behind it is not a question the mechanism can ask. There is no fact-checking layer, no internal database being consulted, no difference — <em>from the model's side</em> — between retrieving a truth and composing a plausibility. Fluent truth and fluent fiction are produced by the identical process, which is precisely why the fiction arrives with the same confident tone.</p>
+
+    <h2>Where it bites in IT work specifically</h2>
+    <ul>
+      <li><strong>Invented commands and settings:</strong> PowerShell cmdlets that don't exist, registry keys that were never there, config options from a plausible parallel universe. It looks exactly like real syntax — that's the problem.</li>
+      <li><strong>Confident version errors:</strong> features attributed to the wrong software version, steps from an outdated interface presented as current.</li>
+      <li><strong>Plausible-but-wrong explanations:</strong> the most dangerous kind for learners, because you lack the knowledge to spot the seam.</li>
+    </ul>
+
+    <div class="callout">
+      <span class="eyebrow">Trail note</span>
+      <p style="margin:0;">The working rule for professionals: <strong>treat AI output as a confident colleague's first draft — never as documentation.</strong> Brilliant for direction, structure, and speed; verified before anything touches production. If an AI-suggested command will modify systems, you test it somewhere safe first. (Sound familiar? It's the same prove-it-small discipline as change management — the trail keeps teaching one lesson.)</p>
+    </div>
+
+    <h2>The honest state of play</h2>
+    <p>Mitigations exist and genuinely help: models that search the web and cite real pages, systems grounded in your organisation's actual documents (a technique called RAG you'll increasingly meet at work), and newer models hallucinate less than older ones. But less is not never — the tendency is structural, because plausibility-generation <em>is</em> the engine. The professionals who get real value from AI aren't the ones who trust it most; they're the ones who've calibrated exactly how much to trust it, task by task. That calibration is the skill — and the next waypoint on this trail is about building it deliberately.</p>
+  </div>
+
+  <div class="next-waypoint wrap">
+    <a href="prompting-is-a-real-skill.html">
+      <span class="eyebrow">Next waypoint — Basecamp</span>
+      <h3 style="margin-top:0.6rem;">Talking to AI Is a Real Skill: Prompting for IT Work →</h3>
+    </a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span class="fine">© 2026 Root &amp; Route. Written by someone who's still on the trail too.</span>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html">Trail Log</a>
+      <a href="../about.html">About</a>
+    </nav>
+  </div>
+</footer>
+
+<button class="to-top" aria-label="Back to top">↑</button>
+<script src="../assets/js/main.js?v=3"></script>
+<script src="../assets/js/notebook.js?v=3"></script>
+</body>
+</html>

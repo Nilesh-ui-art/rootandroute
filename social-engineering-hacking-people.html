@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Social Engineering: Hacking People Instead of Computers | Root &amp; Route</title>
+<meta name="description" content="Social engineering explained: pretexting, tailgating, baiting and quid pro quo attacks, and why human helpfulness is the exploited flaw.">
+<meta name="keywords" content="social engineering explained, pretexting examples, tailgating security, human factor cyber security">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://rootandroute.online/posts/social-engineering-hacking-people.html">
+<meta name="author" content="Root & Route">
+<meta property="og:site_name" content="Root &amp; Route">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://rootandroute.online/posts/social-engineering-hacking-people.html">
+<meta property="og:title" content="Social Engineering: Hacking People Instead of Computers | Root &amp; Route">
+<meta property="og:description" content="Social engineering explained: pretexting, tailgating, baiting and quid pro quo attacks, and why human helpfulness is the exploited flaw.">
+<meta property="og:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Social Engineering: Hacking People Instead of Computers | Root &amp; Route">
+<meta name="twitter:description" content="Social engineering explained: pretexting, tailgating, baiting and quid pro quo attacks, and why human helpfulness is the exploited flaw.">
+<meta name="twitter:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta name="theme-color" content="#1D6F62">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Social Engineering: Hacking People Instead of Computers", "description": "Social engineering explained: pretexting, tailgating, baiting and quid pro quo attacks, and why human helpfulness is the exploited flaw.", "url": "https://rootandroute.online/posts/social-engineering-hacking-people.html", "mainEntityOfPage": "https://rootandroute.online/posts/social-engineering-hacking-people.html", "image": "https://rootandroute.online/assets/img/og-card.png", "articleSection": "Security", "datePublished": "2026-08-07", "dateModified": "2026-08-07", "author": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}, "publisher": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://rootandroute.online/"}, {"@type": "ListItem", "position": 2, "name": "Trail Log", "item": "https://rootandroute.online/trail-log.html"}, {"@type": "ListItem", "position": 3, "name": "Social Engineering: Hacking People Instead of Computers", "item": "https://rootandroute.online/posts/social-engineering-hacking-people.html"}]}</script>
+<script>(function(){try{var t=localStorage.getItem('rr-theme');if(t){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+<link rel="stylesheet" href="../assets/css/style.css?v=3">
+</head>
+<body>
+<div class="progress-track" aria-hidden="true"><div class="progress-fill"></div></div>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="../index.html" class="logo">Root <span class="amp">&amp;</span> Route</a>
+    <button class="nav-toggle" aria-label="Toggle menu">MENU</button>
+    <nav class="main-nav">
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html" class="active">Trail Log</a>
+      <a href="../quiz.html">Quiz</a>
+      <a href="../terminal.html">Terminal</a>
+      <a href="../notebook.html">Notebook</a>
+      <a href="../about.html">About</a>
+    </nav>
+    <button class="theme-toggle" aria-label="Switch theme">☾</button>
+  </div>
+</header>
+
+<section id="main" class="post-hero">
+  <div class="wrap">
+    <div class="meta-row">
+      <span class="badge badge-trailhead">Trailhead</span>
+      <span class="tag">Security</span>
+    </div>
+    <h1>Social Engineering: Hacking People Instead of Computers</h1>
+    <p class="lede dek">Why break encryption when you can just ask? Pretexts, tailgating, and the uncomfortable truth that politeness is a vulnerability.</p>
+    <div class="byline">7 MIN TREK — ROOT &amp; ROUTE</div>
+  </div>
+</section>
+
+<section class="post-body">
+  <div class="wrap content">
+<p>There's an old line in security, usually attributed to famous ex-hackers: why spend weeks breaking encryption when a five-minute phone call gets the password? Social engineering is that idea taken seriously — attacking the humans who operate a system instead of the system itself. Phishing (earlier on this trail) is its most industrialised form, but the family is wider, older, and works face-to-face just as well as by email.</p>
+
+    <h2>The core exploit: helpfulness</h2>
+    <p>Here's the uncomfortable insight the whole field rests on: <strong>the qualities organisations hire for — helpfulness, politeness, deference to authority, desire to avoid friction — are precisely the attack surface.</strong> Nobody wants to be the person who made the visiting "engineer" wait in the rain, challenged someone senior-sounding, or refused the stressed caller begging for a password reset before a deadline. Social engineers don't defeat your defences; they recruit your virtues.</p>
+
+    <h2>The recurring plays</h2>
+    <ul>
+      <li><strong>Pretexting</strong> — the foundation of everything: a researched, plausible false identity and scenario. "Hi, it's Dave from the Manchester office IT team — Sarah said you could help me…" The named colleagues are real (LinkedIn is free), the situation is mundane, and the request comes wrapped in enough true detail that the false part slides through.</li>
+      <li><strong>Tailgating</strong> — following an employee through a secured door, usually by carrying a box (people hold doors for full hands), wearing a hi-vis vest, or just walking with confidence. Physical access is catastrophic access: an unattended meeting room with a network port is an attacker's dream.</li>
+      <li><strong>Baiting</strong> — leaving something curiosity-poisoned where victims will find it. The classic USB stick labelled "Redundancies&nbsp;2026" in the car park still works, which is why corporate machines increasingly block unknown USB devices outright.</li>
+      <li><strong>Quid pro quo</strong> — offering something to create obligation: "helpful IT support" calling to fix a problem you didn't know you had, needing only your credentials to complete the fix.</li>
+    </ul>
+
+    <div class="callout">
+      <span class="eyebrow">Trail note</span>
+      <p style="margin:0;">The defence pattern is the same one from the phishing post, generalised: <strong>verify through a channel the requester doesn't control.</strong> Call back on the known number. Check with the named colleague directly. Ask the visitor's escort to confirm. Attackers script the channel they chose — a second channel breaks the script. Good organisations make this normal by <em>policy</em>, so no individual has to feel rude enforcing it.</p>
+    </div>
+
+    <p>That last point is the real lesson for your career: social engineering is beaten by <em>process</em>, not vigilance. Payment changes that require callbacks. Visitor policies that require escorts. Helpdesks that verify identity the same way for the CEO as for anyone (executives are targeted <em>more</em>, not less). When you see those rules and they feel like friction — they are. They're friction aimed at exactly the attacks that politeness lets through.</p>
+  </div>
+
+  <div class="next-waypoint wrap">
+    <a href="vulnerability-exploit-threat-getting-words-right.html">
+      <span class="eyebrow">Next waypoint — Trailhead</span>
+      <h3 style="margin-top:0.6rem;">Vulnerability, Exploit, Threat, Risk: Getting the Words Right →</h3>
+    </a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span class="fine">© 2026 Root &amp; Route. Written by someone who's still on the trail too.</span>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html">Trail Log</a>
+      <a href="../about.html">About</a>
+    </nav>
+  </div>
+</footer>
+
+<button class="to-top" aria-label="Back to top">↑</button>
+<script src="../assets/js/main.js?v=3"></script>
+<script src="../assets/js/notebook.js?v=3"></script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Incident vs Problem vs Change: The Three Words You Must Not Mix Up | Root &amp; Route</title>
+<meta name="description" content="Incident vs problem vs change in ITIL explained with one clear analogy, including workarounds, known errors, and why the distinction matters.">
+<meta name="keywords" content="incident vs problem vs change explained, ITIL incident problem difference, known error workaround, ITIL terms explained simply">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://rootandroute.online/posts/incident-vs-problem-vs-change-getting-them-straight.html">
+<meta name="author" content="Root & Route">
+<meta property="og:site_name" content="Root &amp; Route">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://rootandroute.online/posts/incident-vs-problem-vs-change-getting-them-straight.html">
+<meta property="og:title" content="Incident vs Problem vs Change: The Three Words You Must Not Mix Up | Root &amp; Route">
+<meta property="og:description" content="Incident vs problem vs change in ITIL explained with one clear analogy, including workarounds, known errors, and why the distinction matters.">
+<meta property="og:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Incident vs Problem vs Change: The Three Words You Must Not Mix Up | Root &amp; Route">
+<meta name="twitter:description" content="Incident vs problem vs change in ITIL explained with one clear analogy, including workarounds, known errors, and why the distinction matters.">
+<meta name="twitter:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta name="theme-color" content="#1D6F62">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Incident vs Problem vs Change: The Three Words You Must Not Mix Up", "description": "Incident vs problem vs change in ITIL explained with one clear analogy, including workarounds, known errors, and why the distinction matters.", "url": "https://rootandroute.online/posts/incident-vs-problem-vs-change-getting-them-straight.html", "mainEntityOfPage": "https://rootandroute.online/posts/incident-vs-problem-vs-change-getting-them-straight.html", "image": "https://rootandroute.online/assets/img/og-card.png", "articleSection": "Service Management", "datePublished": "2026-08-07", "dateModified": "2026-08-07", "author": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}, "publisher": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://rootandroute.online/"}, {"@type": "ListItem", "position": 2, "name": "Trail Log", "item": "https://rootandroute.online/trail-log.html"}, {"@type": "ListItem", "position": 3, "name": "Incident vs Problem vs Change: The Three Words You Must Not Mix Up", "item": "https://rootandroute.online/posts/incident-vs-problem-vs-change-getting-them-straight.html"}]}</script>
+<script>(function(){try{var t=localStorage.getItem('rr-theme');if(t){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+<link rel="stylesheet" href="../assets/css/style.css?v=3">
+</head>
+<body>
+<div class="progress-track" aria-hidden="true"><div class="progress-fill"></div></div>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="../index.html" class="logo">Root <span class="amp">&amp;</span> Route</a>
+    <button class="nav-toggle" aria-label="Toggle menu">MENU</button>
+    <nav class="main-nav">
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html" class="active">Trail Log</a>
+      <a href="../quiz.html">Quiz</a>
+      <a href="../terminal.html">Terminal</a>
+      <a href="../notebook.html">Notebook</a>
+      <a href="../about.html">About</a>
+    </nav>
+    <button class="theme-toggle" aria-label="Switch theme">☾</button>
+  </div>
+</header>
+
+<section id="main" class="post-hero">
+  <div class="wrap">
+    <div class="meta-row">
+      <span class="badge badge-basecamp">Basecamp</span>
+      <span class="tag">ITIL</span><span class="tag">Fundamentals</span>
+    </div>
+    <h1>Incident vs Problem vs Change: The Three Words You Must Not Mix Up</h1>
+    <p class="lede dek">The fire, the faulty wiring, and the rewiring work — one analogy that permanently separates ITIL's three most confused terms.</p>
+    <div class="byline">7 MIN TREK — ROOT &amp; ROUTE</div>
+  </div>
+</section>
+
+<section class="post-body">
+  <div class="wrap content">
+<p>If this trail's ITIL section teaches you nothing else, let it be this post. Incident, problem, and change are the three load-bearing words of IT operations; they are related, constantly confused, and absolutely not interchangeable. Mixing them up marks you as green faster than any technical gap — and one analogy fixes them forever.</p>
+
+    <h2>The fire, the wiring, the rewiring</h2>
+    <p>A building keeps having small electrical fires.</p>
+    <ul>
+      <li>Each <strong>fire</strong> is an <strong>incident</strong> — an unplanned interruption or degradation of service. Users are affected <em>now</em>. The goal of incident management is simple and ruthless: <strong>restore service fast</strong>. Extinguish the fire. Root causes are not the priority while the building burns; getting people working again is.</li>
+      <li>The <strong>faulty wiring</strong> causing the fires is the <strong>problem</strong> — the underlying cause (or potential cause) of one or more incidents. Problem management's goal is diagnosis and elimination: find the wiring, understand it, plan its removal. Slower, investigative, and deliberately separate from firefighting.</li>
+      <li>The <strong>rewiring work</strong> is the <strong>change</strong> — the controlled addition, modification or removal of anything that could affect services. Fixing the wiring means altering the live environment, and alterations are precisely how new fires start; so changes get assessed, authorised and scheduled rather than freelanced. That's change enablement, and it gets its own waypoint.</li>
+    </ul>
+    <p>One story, three disciplines: <strong>incidents restore, problems diagnose, changes alter — carefully.</strong></p>
+
+    <h2>Two more words that complete the set</h2>
+    <p>A <strong>workaround</strong> is a temporary way of reducing an incident's impact without fixing the cause — "reboot it and it's fine for a week." Workarounds are legitimate and often smart triage, with one professional obligation attached: a workaround should always <em>raise or feed a problem record</em>, because a workaround without an investigation is how organisations end up rebooting a server weekly for four years. A problem that's been diagnosed — cause understood, workaround documented, permanent fix perhaps awaiting budget — is a <strong>known error</strong>. Known-error databases are the institutional memory that lets a service desk resolve in minutes what once took days.</p>
+
+    <div class="callout">
+      <span class="eyebrow">Trail note</span>
+      <p style="margin:0;">Why organisations are strict about the vocabulary: the three words route work to <em>different machinery with different clocks</em>. Incidents get urgency, escalation and SLA timers. Problems get analytical time and patience. Changes get risk assessment and scheduling. Log a recurring fault only as incidents and the cause is never hunted; treat every incident as a research project and users wait days for fires to be studied instead of extinguished. The labels aren't pedantry — they're dispatch.</p>
+    </div>
+
+    <p>Test yourself: the email server crashes Monday (incident — restore it), crashes again Thursday (incident — restore it, and someone should now open a problem), investigation finds a memory leak in a driver (problem diagnosed → known error; workaround: scheduled weekly restart), and the driver update is deployed next Tuesday at 7am with a rollback plan (change). If that paragraph reads as obvious, congratulations — you now speak operations.</p>
+  </div>
+
+  <div class="next-waypoint wrap">
+    <a href="incident-management-from-ticket-to-resolution.html">
+      <span class="eyebrow">Next waypoint — Trailhead</span>
+      <h3 style="margin-top:0.6rem;">Incident Management: From 'It's Broken' to 'Back Working' →</h3>
+    </a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span class="fine">© 2026 Root &amp; Route. Written by someone who's still on the trail too.</span>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html">Trail Log</a>
+      <a href="../about.html">About</a>
+    </nav>
+  </div>
+</footer>
+
+<button class="to-top" aria-label="Back to top">↑</button>
+<script src="../assets/js/main.js?v=3"></script>
+<script src="../assets/js/notebook.js?v=3"></script>
+</body>
+</html>

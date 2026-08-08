@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>DNS Under Attack: Poisoning, Tunnelling, and Hijacking | Root &amp; Route</title>
+<meta name="description" content="DNS attacks explained: cache poisoning, DNS tunnelling for data exfiltration, domain hijacking, and defences like DNSSEC and DNS filtering.">
+<meta name="keywords" content="DNS cache poisoning explained, DNS tunnelling exfiltration, domain hijacking, DNSSEC explained simply">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://rootandroute.online/posts/dns-attacks-poisoning-tunnelling-hijacking.html">
+<meta name="author" content="Root & Route">
+<meta property="og:site_name" content="Root &amp; Route">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://rootandroute.online/posts/dns-attacks-poisoning-tunnelling-hijacking.html">
+<meta property="og:title" content="DNS Under Attack: Poisoning, Tunnelling, and Hijacking | Root &amp; Route">
+<meta property="og:description" content="DNS attacks explained: cache poisoning, DNS tunnelling for data exfiltration, domain hijacking, and defences like DNSSEC and DNS filtering.">
+<meta property="og:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DNS Under Attack: Poisoning, Tunnelling, and Hijacking | Root &amp; Route">
+<meta name="twitter:description" content="DNS attacks explained: cache poisoning, DNS tunnelling for data exfiltration, domain hijacking, and defences like DNSSEC and DNS filtering.">
+<meta name="twitter:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta name="theme-color" content="#1D6F62">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "DNS Under Attack: Poisoning, Tunnelling, and Hijacking", "description": "DNS attacks explained: cache poisoning, DNS tunnelling for data exfiltration, domain hijacking, and defences like DNSSEC and DNS filtering.", "url": "https://rootandroute.online/posts/dns-attacks-poisoning-tunnelling-hijacking.html", "mainEntityOfPage": "https://rootandroute.online/posts/dns-attacks-poisoning-tunnelling-hijacking.html", "image": "https://rootandroute.online/assets/img/og-card.png", "articleSection": "Security", "datePublished": "2026-08-07", "dateModified": "2026-08-07", "author": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}, "publisher": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://rootandroute.online/"}, {"@type": "ListItem", "position": 2, "name": "Trail Log", "item": "https://rootandroute.online/trail-log.html"}, {"@type": "ListItem", "position": 3, "name": "DNS Under Attack: Poisoning, Tunnelling, and Hijacking", "item": "https://rootandroute.online/posts/dns-attacks-poisoning-tunnelling-hijacking.html"}]}</script>
+<script>(function(){try{var t=localStorage.getItem('rr-theme');if(t){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+<link rel="stylesheet" href="../assets/css/style.css?v=3">
+</head>
+<body>
+<div class="progress-track" aria-hidden="true"><div class="progress-fill"></div></div>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="../index.html" class="logo">Root <span class="amp">&amp;</span> Route</a>
+    <button class="nav-toggle" aria-label="Toggle menu">MENU</button>
+    <nav class="main-nav">
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html" class="active">Trail Log</a>
+      <a href="../quiz.html">Quiz</a>
+      <a href="../terminal.html">Terminal</a>
+      <a href="../notebook.html">Notebook</a>
+      <a href="../about.html">About</a>
+    </nav>
+    <button class="theme-toggle" aria-label="Switch theme">☾</button>
+  </div>
+</header>
+
+<section id="main" class="post-hero">
+  <div class="wrap">
+    <div class="meta-row">
+      <span class="badge badge-ridge">Ridge</span>
+      <span class="tag">Security</span><span class="tag">Networking</span>
+    </div>
+    <h1>DNS Under Attack: Poisoning, Tunnelling, and Hijacking</h1>
+    <p class="lede dek">The internet's phone book was designed with no security at all. Here's how attackers abuse that — and how defenders fought back.</p>
+    <div class="byline">8 MIN TREK — ROOT &amp; ROUTE</div>
+  </div>
+</section>
+
+<section class="post-body">
+  <div class="wrap content">
+<p>Earlier on this trail, DNS was the internet's phone book — the service that turns names into addresses before anything else happens. Here's the detail that post politely deferred: DNS was designed in the 1980s with essentially <strong>no security whatsoever</strong>. Answers weren't authenticated, queries weren't encrypted, and everyone trusted everyone. Attackers noticed. What follows is the three main ways the phone book gets abused, and what each one teaches.</p>
+
+    <h2>1. Cache poisoning: writing lies into the phone book</h2>
+    <p>Recall that resolvers <em>cache</em> answers for speed. Cache poisoning is tricking a resolver into caching a <em>false</em> answer — so that everyone who asks it "where is mybank.com?" gets the attacker's server instead, and every one of those users' padlock-less traffic flows somewhere hostile. Classic DNS made this alarmingly feasible: answers were accepted if a simple transaction ID matched, and IDs could be guessed at speed. The landmark 2008 Kaminsky research showed poisoning could be industrialised, and it forced emergency changes across the entire internet. The deeper defence is <strong>DNSSEC</strong> — digital signatures on DNS records, so resolvers can verify an answer came from the domain's true owner rather than merely arriving first. (Same signature logic as the encryption post; adoption, honestly, remains patchy.)</p>
+
+    <h2>2. Tunnelling: smuggling contraband inside queries</h2>
+    <p>The cleverest abuse inverts the threat: DNS not as target but as <em>getaway vehicle</em>. Firewalls almost never block DNS — everything breaks without it — so it's often the one protocol guaranteed to pass. Attackers exploit this by encoding stolen data into the <em>names being looked up</em>: a compromised machine "resolves" <code>x7f3a9c...chunk-of-your-database.evil-domain.com</code>, the attacker's name server for <code>evil-domain.com</code> receives the query, decodes the payload, and can even reply with encoded commands. Data walks out of the building disguised as phone-book lookups. The defence is behavioural: absurd query volumes, very long random-looking subdomains, and DNS analytics — one reason mature security teams log and inspect DNS specifically.</p>
+
+    <h2>3. Hijacking: stealing the domain itself</h2>
+    <p>Why forge answers when you can change the phone book's <em>master entry</em>? Compromise the account at the domain registrar — often via simple phishing — and you can repoint a company's real DNS records at servers you control. Every visitor, every email, delivered to the attacker, with valid-looking everything. Real campaigns have done this to governments and enterprises at scale. The defence is unglamorous and effective: registrar accounts with strong MFA, registry locks, and monitoring for record changes — the domain account is crown-jewels infrastructure that many organisations forget they own.</p>
+
+    <div class="callout">
+      <span class="eyebrow">Trail note</span>
+      <p style="margin:0;">Pattern worth carrying up the trail: all three attacks exploit <strong>trust that was never verified</strong> — trust in answers (poisoning), trust in a protocol's innocence (tunnelling), trust in an account (hijacking). Modern fixes — DNSSEC, encrypted DNS, DNS filtering, registrar hardening — are all the same move: replacing assumed trust with checked trust. You've seen that move before on this trail, and you'll see it again. It's most of what security progress <em>is</em>.</p>
+    </div>
+  </div>
+
+  <div class="next-waypoint wrap">
+    <a href="hybrid-identity-users-in-two-worlds.html">
+      <span class="eyebrow">Next waypoint — Summit</span>
+      <h3 style="margin-top:0.6rem;">Hybrid Identity: When Your Users Live in Two Worlds →</h3>
+    </a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span class="fine">© 2026 Root &amp; Route. Written by someone who's still on the trail too.</span>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html">Trail Log</a>
+      <a href="../about.html">About</a>
+    </nav>
+  </div>
+</footer>
+
+<button class="to-top" aria-label="Back to top">↑</button>
+<script src="../assets/js/main.js?v=3"></script>
+<script src="../assets/js/notebook.js?v=3"></script>
+</body>
+</html>

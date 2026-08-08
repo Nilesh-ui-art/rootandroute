@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>NAT: How Your Whole House Shares One Internet Address | Root &amp; Route</title>
+<meta name="description" content="NAT (Network Address Translation) explained simply: how many devices share one public IP, and why inbound connections need port forwarding.">
+<meta name="keywords" content="what is NAT explained, network address translation beginners, port forwarding explained, private IP public IP sharing">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://rootandroute.online/posts/nat-how-your-house-shares-one-address.html">
+<meta name="author" content="Root & Route">
+<meta property="og:site_name" content="Root &amp; Route">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://rootandroute.online/posts/nat-how-your-house-shares-one-address.html">
+<meta property="og:title" content="NAT: How Your Whole House Shares One Internet Address | Root &amp; Route">
+<meta property="og:description" content="NAT (Network Address Translation) explained simply: how many devices share one public IP, and why inbound connections need port forwarding.">
+<meta property="og:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="NAT: How Your Whole House Shares One Internet Address | Root &amp; Route">
+<meta name="twitter:description" content="NAT (Network Address Translation) explained simply: how many devices share one public IP, and why inbound connections need port forwarding.">
+<meta name="twitter:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta name="theme-color" content="#1D6F62">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "NAT: How Your Whole House Shares One Internet Address", "description": "NAT (Network Address Translation) explained simply: how many devices share one public IP, and why inbound connections need port forwarding.", "url": "https://rootandroute.online/posts/nat-how-your-house-shares-one-address.html", "mainEntityOfPage": "https://rootandroute.online/posts/nat-how-your-house-shares-one-address.html", "image": "https://rootandroute.online/assets/img/og-card.png", "articleSection": "Networking", "datePublished": "2026-08-07", "dateModified": "2026-08-07", "author": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}, "publisher": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://rootandroute.online/"}, {"@type": "ListItem", "position": 2, "name": "Trail Log", "item": "https://rootandroute.online/trail-log.html"}, {"@type": "ListItem", "position": 3, "name": "NAT: How Your Whole House Shares One Internet Address", "item": "https://rootandroute.online/posts/nat-how-your-house-shares-one-address.html"}]}</script>
+<script>(function(){try{var t=localStorage.getItem('rr-theme');if(t){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+<link rel="stylesheet" href="../assets/css/style.css?v=3">
+</head>
+<body>
+<div class="progress-track" aria-hidden="true"><div class="progress-fill"></div></div>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="../index.html" class="logo">Root <span class="amp">&amp;</span> Route</a>
+    <button class="nav-toggle" aria-label="Toggle menu">MENU</button>
+    <nav class="main-nav">
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html" class="active">Trail Log</a>
+      <a href="../quiz.html">Quiz</a>
+      <a href="../terminal.html">Terminal</a>
+      <a href="../notebook.html">Notebook</a>
+      <a href="../about.html">About</a>
+    </nav>
+    <button class="theme-toggle" aria-label="Switch theme">☾</button>
+  </div>
+</header>
+
+<section id="main" class="post-hero">
+  <div class="wrap">
+    <div class="meta-row">
+      <span class="badge badge-trailhead">Trailhead</span>
+      <span class="tag">Networking</span>
+    </div>
+    <h1>NAT: How Your Whole House Shares One Internet Address</h1>
+    <p class="lede dek">Dozens of devices, one public IP. The receptionist trick that quietly saved the internet from running out of addresses.</p>
+    <div class="byline">6 MIN TREK — ROOT &amp; ROUTE</div>
+  </div>
+</section>
+
+<section class="post-body">
+  <div class="wrap content">
+<p>Here's a fact that should bother you more than it does: your home has one public IP address, but twenty devices happily use the internet at once. If addresses are how replies find their way back, how does a reply meant for your laptop not end up on your TV? The answer is NAT — Network Address Translation — running on your router, translating constantly, and you've probably never noticed it exists.</p>
+
+    <h2>The receptionist model</h2>
+    <p>Think of your router as a company receptionist. Internally, every employee has a desk extension (private addresses — the <code>192.168.x.x</code> family). Externally, the company has one phone number (your single public IP). When your laptop contacts a website, the router rewrites the packet — swapping the private return address for the public one — and, critically, <strong>keeps a note</strong> in a translation table: "the conversation with that website on this port belongs to the laptop." When the reply arrives at the shared public address, the receptionist checks the notes and forwards it to the right desk. Multiply by thousands of simultaneous conversations, all tracked in that table, all invisible.</p>
+
+    <h2>The catch: nobody can call in</h2>
+    <p>NAT's side effect is the important part. The receptionist can forward replies to conversations <em>employees started</em> — but if a stranger rings the main number asking for "the laptop," there's no note, so the call is dropped. Unsolicited inbound connections simply die at the router. This accidentally made NAT a security layer: your devices are unreachable from the internet by default, not because anyone configured a firewall, but because there's no route in.</p>
+
+    <div class="callout">
+      <span class="eyebrow">Trail note</span>
+      <p style="margin:0;">This is also why hosting anything at home — a game server, a camera feed — needs <strong>port forwarding</strong>: a permanent note pinned to the receptionist's desk saying "anything arriving on port 25565 always goes to this machine." You're manually creating the table entry that NAT couldn't create itself.</p>
+    </div>
+
+    <h2>Why NAT exists at all</h2>
+    <p>NAT wasn't designed as security — it was a rescue. IPv4 has ~4.3 billion addresses; humanity has tens of billions of devices. NAT let entire households and companies hide behind single addresses, stretching a supply that should have collapsed decades ago. IPv6 removes the shortage entirely (every device can be publicly addressable), which sparks a genuinely interesting engineering debate you'll eventually meet: without NAT, the "nobody can call in" protection has to come from actual firewalls instead of a happy accident. The lesson generalises: in networking, some of the most load-bearing "security" is a side effect — and it's worth knowing which kind you're relying on.</p>
+  </div>
+
+  <div class="next-waypoint wrap">
+    <a href="tcp-vs-udp-tracked-delivery-vs-paper-planes.html">
+      <span class="eyebrow">Next waypoint — Trailhead</span>
+      <h3 style="margin-top:0.6rem;">TCP vs UDP: Tracked Delivery vs Throwing Paper Planes →</h3>
+    </a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span class="fine">© 2026 Root &amp; Route. Written by someone who's still on the trail too.</span>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html">Trail Log</a>
+      <a href="../about.html">About</a>
+    </nav>
+  </div>
+</footer>
+
+<button class="to-top" aria-label="Back to top">↑</button>
+<script src="../assets/js/main.js?v=3"></script>
+<script src="../assets/js/notebook.js?v=3"></script>
+</body>
+</html>

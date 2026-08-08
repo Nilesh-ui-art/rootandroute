@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Incident Management: From &#x27;It&#x27;s Broken&#x27; to &#x27;Back Working&#x27; | Root &amp; Route</title>
+<meta name="description" content="ITIL incident management explained step by step: logging, categorisation, prioritisation with impact and urgency, escalation, major incidents and resolution.">
+<meta name="keywords" content="incident management process explained, impact urgency priority matrix, incident escalation types, major incident explained">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://rootandroute.online/posts/incident-management-from-ticket-to-resolution.html">
+<meta name="author" content="Root & Route">
+<meta property="og:site_name" content="Root &amp; Route">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://rootandroute.online/posts/incident-management-from-ticket-to-resolution.html">
+<meta property="og:title" content="Incident Management: From &#x27;It&#x27;s Broken&#x27; to &#x27;Back Working&#x27; | Root &amp; Route">
+<meta property="og:description" content="ITIL incident management explained step by step: logging, categorisation, prioritisation with impact and urgency, escalation, major incidents and resolution.">
+<meta property="og:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Incident Management: From &#x27;It&#x27;s Broken&#x27; to &#x27;Back Working&#x27; | Root &amp; Route">
+<meta name="twitter:description" content="ITIL incident management explained step by step: logging, categorisation, prioritisation with impact and urgency, escalation, major incidents and resolution.">
+<meta name="twitter:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta name="theme-color" content="#1D6F62">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Incident Management: From 'It's Broken' to 'Back Working'", "description": "ITIL incident management explained step by step: logging, categorisation, prioritisation with impact and urgency, escalation, major incidents and resolution.", "url": "https://rootandroute.online/posts/incident-management-from-ticket-to-resolution.html", "mainEntityOfPage": "https://rootandroute.online/posts/incident-management-from-ticket-to-resolution.html", "image": "https://rootandroute.online/assets/img/og-card.png", "articleSection": "Service Management", "datePublished": "2026-08-07", "dateModified": "2026-08-07", "author": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}, "publisher": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://rootandroute.online/"}, {"@type": "ListItem", "position": 2, "name": "Trail Log", "item": "https://rootandroute.online/trail-log.html"}, {"@type": "ListItem", "position": 3, "name": "Incident Management: From 'It's Broken' to 'Back Working'", "item": "https://rootandroute.online/posts/incident-management-from-ticket-to-resolution.html"}]}</script>
+<script>(function(){try{var t=localStorage.getItem('rr-theme');if(t){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+<link rel="stylesheet" href="../assets/css/style.css?v=3">
+</head>
+<body>
+<div class="progress-track" aria-hidden="true"><div class="progress-fill"></div></div>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="../index.html" class="logo">Root <span class="amp">&amp;</span> Route</a>
+    <button class="nav-toggle" aria-label="Toggle menu">MENU</button>
+    <nav class="main-nav">
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html" class="active">Trail Log</a>
+      <a href="../quiz.html">Quiz</a>
+      <a href="../terminal.html">Terminal</a>
+      <a href="../notebook.html">Notebook</a>
+      <a href="../about.html">About</a>
+    </nav>
+    <button class="theme-toggle" aria-label="Switch theme">☾</button>
+  </div>
+</header>
+
+<section id="main" class="post-hero">
+  <div class="wrap">
+    <div class="meta-row">
+      <span class="badge badge-trailhead">Trailhead</span>
+      <span class="tag">ITIL</span>
+    </div>
+    <h1>Incident Management: From 'It's Broken' to 'Back Working'</h1>
+    <p class="lede dek">Logging, categorising, prioritising by impact and urgency, escalating, resolving — the anatomy of the process every IT career starts inside.</p>
+    <div class="byline">8 MIN TREK — ROOT &amp; ROUTE</div>
+  </div>
+</section>
+
+<section class="post-body">
+  <div class="wrap content">
+<p>Incident management is where most IT careers begin, which makes it the most practically urgent practice on this trail. The previous waypoint defined an incident — an unplanned interruption, mission: restore service fast. This one walks the actual lifecycle, because "fast" is achieved through structure, not adrenaline.</p>
+
+    <h2>The lifecycle, stage by stage</h2>
+    <ul>
+      <li><strong>Log everything.</strong> Every incident becomes a ticket — even the thirty-second fix. Not bureaucracy: unlogged incidents are invisible to trend-spotting (fifteen "quick fixes" of the same fault is a <em>problem</em> nobody can see), invisible to workload evidence, and invisible to the colleague who hits the same fault tomorrow.</li>
+      <li><strong>Categorise.</strong> What kind of thing is this — network, hardware, application, access? Categories route tickets to the right team and, later, feed the trend analysis that problem management lives on.</li>
+      <li><strong>Prioritise = impact × urgency.</strong> The heart of the process. <strong>Impact</strong>: how widespread is the damage (one user? a department? every customer?). <strong>Urgency</strong>: how fast does damage compound (payroll cutoff is today vs the report is due next month). The two combine — usually via a simple matrix — into priority. This is why "the CEO's mouse" doesn't automatically outrank "the warehouse scanners are down": one is low impact with loud urgency, the other stops thirty people working. A written matrix converts that argument into arithmetic.</li>
+      <li><strong>Investigate, escalate honestly.</strong> Two escalation species: <strong>functional</strong> (this needs deeper expertise — pass to the specialist team) and <strong>hierarchic</strong> (this needs management awareness or authority — big customer, breached deadline, resources required). Knowing when to escalate is a skill; escalating <em>too late</em> is the classic beginner error. Passing a ticket you can't crack isn't failure — sitting on it for four hours of pride is.</li>
+      <li><strong>Resolve, confirm, close.</strong> Service restored, <em>user agrees it's restored</em> (a step skipped at your peril), resolution documented in words the next person can actually use. "Fixed" is not documentation.</li>
+    </ul>
+
+    <div class="callout">
+      <span class="eyebrow">Trail note</span>
+      <p style="margin:0;"><strong>Major incidents</strong> are the special case with its own machinery: separate procedure, a designated coordinator running the response, dedicated communication to stakeholders (the hardest part is honest, regular updates while engineers work), and afterwards — a review that feeds problem management. If the ransomware kill-chain post on this trail is ever your Tuesday, a major incident process is the vehicle you'll live inside.</p>
+    </div>
+
+    <p>Two habits separate excellent incident handlers from adequate ones, and both are free. First: <strong>communicate proactively</strong> — a user updated every hour tolerates a six-hour fix better than one left silent for two. The ticket's status field is not communication. Second: <strong>write for the future reader</strong> — your resolution notes are tomorrow's knowledge base. The technician who documents well is quietly building the known-error database the whole organisation runs on — and building a reputation with it.</p>
+  </div>
+
+  <div class="next-waypoint wrap">
+    <a href="problem-management-hunting-root-causes.html">
+      <span class="eyebrow">Next waypoint — Ridge</span>
+      <h3 style="margin-top:0.6rem;">Problem Management: The Detective Work Behind Quiet Systems →</h3>
+    </a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span class="fine">© 2026 Root &amp; Route. Written by someone who's still on the trail too.</span>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html">Trail Log</a>
+      <a href="../about.html">About</a>
+    </nav>
+  </div>
+</footer>
+
+<button class="to-top" aria-label="Back to top">↑</button>
+<script src="../assets/js/main.js?v=3"></script>
+<script src="../assets/js/notebook.js?v=3"></script>
+</body>
+</html>
