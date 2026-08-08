@@ -123,3 +123,59 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 });
+
+// ---- Typewriter (homepage hero) — reduced-motion safe
+(function () {
+  var target = document.getElementById('type-target');
+  if (!target) return;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var words = ['IT', 'Networking', 'Security', 'Hardware', 'The cloud', 'ITIL', 'AI'];
+  if (reduce) { target.textContent = 'IT and security,'; var c = document.querySelector('.type-cursor'); if (c) c.style.display = 'none'; return; }
+  var wi = 0, ci = 2, deleting = false;
+  function tick() {
+    var word = words[wi];
+    if (!deleting) {
+      ci++;
+      target.textContent = word.slice(0, ci);
+      if (ci === word.length) { deleting = true; return setTimeout(tick, 2100); }
+      return setTimeout(tick, 85 + Math.random() * 60);
+    }
+    ci--;
+    target.textContent = word.slice(0, ci);
+    if (ci === 0) { deleting = false; wi = (wi + 1) % words.length; return setTimeout(tick, 350); }
+    setTimeout(tick, 45);
+  }
+  setTimeout(tick, 1400);
+})();
+
+// ---- Count-up stats — reduced-motion safe
+(function () {
+  var nums = document.querySelectorAll('.stat-num[data-count]');
+  if (!nums.length) return;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function run(el) {
+    var end = parseInt(el.getAttribute('data-count'), 10);
+    if (reduce || end === 0) { el.textContent = end; return; }
+    var start = null, dur = 1200;
+    function step(ts) {
+      if (!start) start = ts;
+      var p = Math.min((ts - start) / dur, 1);
+      el.textContent = Math.round(end * (1 - Math.pow(1 - p, 3)));
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { run(e.target); io.unobserve(e.target); } });
+    }, { threshold: 0.5 });
+    nums.forEach(function (el) { io.observe(el); });
+  } else nums.forEach(run);
+})();
+
+// ---- Service worker: offline support + asset caching
+if ('serviceWorker' in navigator && location.protocol === 'https:') {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('/sw.js').catch(function () {});
+  });
+}
