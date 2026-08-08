@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Problem Management: The Detective Work Behind Quiet Systems | Root &amp; Route</title>
+<meta name="description" content="ITIL problem management explained: reactive vs proactive problem management, root cause analysis techniques, known errors and workarounds.">
+<meta name="keywords" content="problem management explained, root cause analysis 5 whys, known error database, reactive vs proactive problem management">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://rootandroute.online/posts/problem-management-hunting-root-causes.html">
+<meta name="author" content="Root & Route">
+<meta property="og:site_name" content="Root &amp; Route">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://rootandroute.online/posts/problem-management-hunting-root-causes.html">
+<meta property="og:title" content="Problem Management: The Detective Work Behind Quiet Systems | Root &amp; Route">
+<meta property="og:description" content="ITIL problem management explained: reactive vs proactive problem management, root cause analysis techniques, known errors and workarounds.">
+<meta property="og:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Problem Management: The Detective Work Behind Quiet Systems | Root &amp; Route">
+<meta name="twitter:description" content="ITIL problem management explained: reactive vs proactive problem management, root cause analysis techniques, known errors and workarounds.">
+<meta name="twitter:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta name="theme-color" content="#1D6F62">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Problem Management: The Detective Work Behind Quiet Systems", "description": "ITIL problem management explained: reactive vs proactive problem management, root cause analysis techniques, known errors and workarounds.", "url": "https://rootandroute.online/posts/problem-management-hunting-root-causes.html", "mainEntityOfPage": "https://rootandroute.online/posts/problem-management-hunting-root-causes.html", "image": "https://rootandroute.online/assets/img/og-card.png", "articleSection": "Service Management", "datePublished": "2026-08-07", "dateModified": "2026-08-07", "author": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}, "publisher": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://rootandroute.online/"}, {"@type": "ListItem", "position": 2, "name": "Trail Log", "item": "https://rootandroute.online/trail-log.html"}, {"@type": "ListItem", "position": 3, "name": "Problem Management: The Detective Work Behind Quiet Systems", "item": "https://rootandroute.online/posts/problem-management-hunting-root-causes.html"}]}</script>
+<script>(function(){try{var t=localStorage.getItem('rr-theme');if(t){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<div class="progress-track" aria-hidden="true"><div class="progress-fill"></div></div>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="../index.html" class="logo">Root <span class="amp">&amp;</span> Route</a>
+    <button class="nav-toggle" aria-label="Toggle menu">MENU</button>
+    <nav class="main-nav">
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html" class="active">Trail Log</a>
+      <a href="../quiz.html">Quiz</a>
+      <a href="../notebook.html">Notebook</a>
+      <a href="../about.html">About</a>
+    </nav>
+    <button class="theme-toggle" aria-label="Switch theme">☾</button>
+  </div>
+</header>
+
+<section id="main" class="post-hero">
+  <div class="wrap">
+    <div class="meta-row">
+      <span class="badge badge-ridge">Ridge</span>
+      <span class="tag">ITIL</span>
+    </div>
+    <h1>Problem Management: The Detective Work Behind Quiet Systems</h1>
+    <p class="lede dek">Firefighters restore service; detectives stop the fires recurring. Root cause analysis, known errors, and why this practice is chronically underfunded.</p>
+    <div class="byline">8 MIN TREK — ROOT &amp; ROUTE</div>
+  </div>
+</section>
+
+<section class="post-body">
+  <div class="wrap content">
+<p>Incident management gets the glory — visible fires, grateful users, adrenaline. Problem management is the unglamorous sibling that determines whether your organisation has the same fires forever. It's the detective practice: while firefighters restore service, detectives ask why the building keeps igniting — and quietly, this is where mature IT departments are separated from busy ones.</p>
+
+    <h2>Two modes: reactive and proactive</h2>
+    <p><strong>Reactive</strong> problem management responds to what already happened: a serious incident, or a pattern of small ones ("that's the fourth VPN drop this month — open a problem"). <strong>Proactive</strong> problem management hunts trouble before it becomes incidents at all: mining incident trends, reviewing logs and vendor advisories, asking "where will next quarter's fires start?" Reactive is standard; proactive is rarer and worth more — it's the difference between a coroner and a doctor.</p>
+
+    <h2>The craft: root cause analysis</h2>
+    <p>The core skill is refusing to stop at the first plausible explanation. The simplest formal tool is <strong>the five whys</strong> — keep asking why until you hit something structural. The server crashed. <em>Why?</em> Disk full. <em>Why?</em> Log files grew unbounded. <em>Why?</em> Log rotation was disabled. <em>Why?</em> A change last year turned it off for debugging and never turned it back on. <em>Why?</em> The change had no post-implementation review. Notice where that chain lands: not on a disk, but on a <em>process gap</em> — and fixing the process prevents a whole family of future incidents, not just this one. Root causes are usually deeper and more boring than the technical symptom, which is exactly why undisciplined analysis misses them.</p>
+
+    <p>The outputs of good detective work, formalised: a <strong>workaround</strong> (documented way to reduce impact while the cause remains), a <strong>known error</strong> record (cause diagnosed, workaround attached, awaiting permanent fix), and eventually a <strong>change</strong> to eliminate the cause. That known-error database is compound interest for a service desk — the incident that took a specialist three days to diagnose becomes a five-minute lookup for every future occurrence.</p>
+
+    <div class="callout">
+      <span class="eyebrow">Trail note</span>
+      <p style="margin:0;">The honest economics: problem management is <strong>chronically underinvested</strong> because its success is invisible — prevented incidents don't page anyone, and staff who could investigate causes are perpetually pulled onto today's fires. It's the IT version of preventive healthcare losing budget battles to emergency surgery. When you meet an organisation that protects dedicated problem-investigation time, you've found a mature one; when interviews ask how you'd reduce ticket volume, this practice is the shape of the answer they're hoping for.</p>
+    </div>
+
+    <p>One more distinction worth carrying: not every problem gets fixed. Sometimes the permanent fix costs more than the incidents it prevents, and the rational decision — made consciously and recorded — is to live with the known error and its workaround. Problem management's real product isn't fixes; it's <em>understood risk</em>. Unexplained recurring failures are unacceptable; explained, costed, accepted ones are engineering.</p>
+  </div>
+
+  <div class="next-waypoint wrap">
+    <a href="change-enablement-without-the-bureaucracy.html">
+      <span class="eyebrow">Next waypoint — Ridge</span>
+      <h3 style="margin-top:0.6rem;">Change Enablement: Protecting Friday Night From Tuesday's Good Idea →</h3>
+    </a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span class="fine">© 2026 Root &amp; Route. Written by someone who's still on the trail too.</span>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html">Trail Log</a>
+      <a href="../about.html">About</a>
+    </nav>
+  </div>
+</footer>
+
+<button class="to-top" aria-label="Back to top">↑</button>
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/notebook.js"></script>
+</body>
+</html>

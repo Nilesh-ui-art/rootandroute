@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SLAs, OLAs, and the Art of Promising Well | Root &amp; Route</title>
+<meta name="description" content="Service level management explained: SLAs, OLAs and underpinning contracts, response vs resolution time, and the watermelon SLA problem.">
+<meta name="keywords" content="SLA explained simply, SLA vs OLA difference, response time vs resolution time, watermelon SLA metrics">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://rootandroute.online/posts/slas-olas-and-the-art-of-promising-well.html">
+<meta name="author" content="Root & Route">
+<meta property="og:site_name" content="Root &amp; Route">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://rootandroute.online/posts/slas-olas-and-the-art-of-promising-well.html">
+<meta property="og:title" content="SLAs, OLAs, and the Art of Promising Well | Root &amp; Route">
+<meta property="og:description" content="Service level management explained: SLAs, OLAs and underpinning contracts, response vs resolution time, and the watermelon SLA problem.">
+<meta property="og:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SLAs, OLAs, and the Art of Promising Well | Root &amp; Route">
+<meta name="twitter:description" content="Service level management explained: SLAs, OLAs and underpinning contracts, response vs resolution time, and the watermelon SLA problem.">
+<meta name="twitter:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta name="theme-color" content="#1D6F62">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "SLAs, OLAs, and the Art of Promising Well", "description": "Service level management explained: SLAs, OLAs and underpinning contracts, response vs resolution time, and the watermelon SLA problem.", "url": "https://rootandroute.online/posts/slas-olas-and-the-art-of-promising-well.html", "mainEntityOfPage": "https://rootandroute.online/posts/slas-olas-and-the-art-of-promising-well.html", "image": "https://rootandroute.online/assets/img/og-card.png", "articleSection": "Service Management", "datePublished": "2026-08-07", "dateModified": "2026-08-07", "author": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}, "publisher": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://rootandroute.online/"}, {"@type": "ListItem", "position": 2, "name": "Trail Log", "item": "https://rootandroute.online/trail-log.html"}, {"@type": "ListItem", "position": 3, "name": "SLAs, OLAs, and the Art of Promising Well", "item": "https://rootandroute.online/posts/slas-olas-and-the-art-of-promising-well.html"}]}</script>
+<script>(function(){try{var t=localStorage.getItem('rr-theme');if(t){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<div class="progress-track" aria-hidden="true"><div class="progress-fill"></div></div>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="../index.html" class="logo">Root <span class="amp">&amp;</span> Route</a>
+    <button class="nav-toggle" aria-label="Toggle menu">MENU</button>
+    <nav class="main-nav">
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html" class="active">Trail Log</a>
+      <a href="../quiz.html">Quiz</a>
+      <a href="../notebook.html">Notebook</a>
+      <a href="../about.html">About</a>
+    </nav>
+    <button class="theme-toggle" aria-label="Switch theme">☾</button>
+  </div>
+</header>
+
+<section id="main" class="post-hero">
+  <div class="wrap">
+    <div class="meta-row">
+      <span class="badge badge-ridge">Ridge</span>
+      <span class="tag">ITIL</span>
+    </div>
+    <h1>SLAs, OLAs, and the Art of Promising Well</h1>
+    <p class="lede dek">A service level agreement is a promise with a measurement attached. Here's how promising works — and the watermelon trap that catches everyone.</p>
+    <div class="byline">8 MIN TREK — ROOT &amp; ROUTE</div>
+  </div>
+</section>
+
+<section class="post-body">
+  <div class="wrap content">
+<p>Every mature service relationship eventually needs a written answer to an awkward question: <em>exactly how good will this service be?</em> "We'll do our best" satisfies nobody — the business can't plan around it and IT can't be fairly judged by it. Service level management is the practice of making promises properly: explicit, measurable, and — the hard part — actually keepable.</p>
+
+    <h2>The three-letter family</h2>
+    <ul>
+      <li><strong>SLA — Service Level Agreement.</strong> The promise between IT and its customers: "priority-1 incidents responded to within 15 minutes, resolved within 4 hours; service available 99.9% of business hours." Targets, measurements, and what happens when they're missed.</li>
+      <li><strong>OLA — Operational Level Agreement.</strong> The <em>internal</em> promises that make the SLA possible: the network team commits to the service desk, the server team to the application team. Invisible to customers, load-bearing all the same.</li>
+      <li><strong>Underpinning contracts.</strong> The same promises from <em>external</em> suppliers — the ISP, the cloud provider, the hardware vendor with the 4-hour parts contract.</li>
+    </ul>
+    <p>Here's the discipline the family enforces, and where beginners' eyes should narrow: <strong>an SLA is only as strong as what underpins it.</strong> Promise customers 4-hour resolution while your hardware vendor's contract says next-business-day parts, and you've signed a promise arithmetic already broke. Mapping every SLA to its supporting OLAs and contracts is the unglamorous audit that separates promises from wishes — and it's the four-dimensions model (dimension three: partners and suppliers) earning its keep.</p>
+
+    <h2>Vocabulary that prevents real arguments</h2>
+    <p><strong>Response time</strong> is when a human meaningfully engages with the ticket; <strong>resolution time</strong> is when service is restored. Users routinely hear the first number and expect the second — a 15-minute response promise is not a 15-minute fix promise, and every service desk veteran has had that conversation. Availability percentages deserve equal suspicion: 99.9% sounds like perfection and permits roughly 8.7 hours of downtime a year (or ~43 minutes monthly). Whether that's measured across all hours or business hours changes the promise enormously. Precision here isn't pedantry; it's the difference between an agreement and a future dispute.</p>
+
+    <div class="callout">
+      <span class="eyebrow">Trail note</span>
+      <p style="margin:0;">The trap with the memorable name: the <strong>watermelon SLA</strong> — green on the outside, red on the inside. Every metric on the dashboard is met, yet customers are furious: tickets closed within target but reopened three times; responses on time but useless; availability technically achieved while the service crawled. It happens because metrics measure what's countable, not what's valuable — and people optimise what's measured. ITIL 4's correction is <em>watermelon-proofing</em>: pair the operational numbers with experience measures (satisfaction, outcome achieved) so the dashboard can't be green while the humans are red. When you hear "XLAs" — experience level agreements — this is the idea being sold.</p>
+    </div>
+
+    <p>The craft, distilled: promise slightly less than you can deliver, measure what customers actually feel, and check the promises underneath your promises. Organisations that do this look boring and reliable. That's the compliment.</p>
+  </div>
+
+  <div class="next-waypoint wrap">
+    <a href="cmdb-and-service-configuration-management.html">
+      <span class="eyebrow">Next waypoint — Summit</span>
+      <h3 style="margin-top:0.6rem;">The CMDB: IT's Map of What Exists and What Depends on What →</h3>
+    </a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span class="fine">© 2026 Root &amp; Route. Written by someone who's still on the trail too.</span>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html">Trail Log</a>
+      <a href="../about.html">About</a>
+    </nav>
+  </div>
+</footer>
+
+<button class="to-top" aria-label="Back to top">↑</button>
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/notebook.js"></script>
+</body>
+</html>
