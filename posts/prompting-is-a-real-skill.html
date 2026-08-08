@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Talking to AI Is a Real Skill: Prompting for IT Work | Root &amp; Route</title>
+<meta name="description" content="Practical prompt engineering for IT professionals: how to give context, constraints and examples to get reliable, useful answers from AI tools.">
+<meta name="keywords" content="prompt engineering basics, how to write better AI prompts, using ChatGPT for IT support, AI prompting tips work">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://rootandroute.online/posts/prompting-is-a-real-skill.html">
+<meta name="author" content="Root & Route">
+<meta property="og:site_name" content="Root &amp; Route">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://rootandroute.online/posts/prompting-is-a-real-skill.html">
+<meta property="og:title" content="Talking to AI Is a Real Skill: Prompting for IT Work | Root &amp; Route">
+<meta property="og:description" content="Practical prompt engineering for IT professionals: how to give context, constraints and examples to get reliable, useful answers from AI tools.">
+<meta property="og:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Talking to AI Is a Real Skill: Prompting for IT Work | Root &amp; Route">
+<meta name="twitter:description" content="Practical prompt engineering for IT professionals: how to give context, constraints and examples to get reliable, useful answers from AI tools.">
+<meta name="twitter:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta name="theme-color" content="#1D6F62">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Talking to AI Is a Real Skill: Prompting for IT Work", "description": "Practical prompt engineering for IT professionals: how to give context, constraints and examples to get reliable, useful answers from AI tools.", "url": "https://rootandroute.online/posts/prompting-is-a-real-skill.html", "mainEntityOfPage": "https://rootandroute.online/posts/prompting-is-a-real-skill.html", "image": "https://rootandroute.online/assets/img/og-card.png", "articleSection": "AI", "datePublished": "2026-08-07", "dateModified": "2026-08-07", "author": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}, "publisher": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://rootandroute.online/"}, {"@type": "ListItem", "position": 2, "name": "Trail Log", "item": "https://rootandroute.online/trail-log.html"}, {"@type": "ListItem", "position": 3, "name": "Talking to AI Is a Real Skill: Prompting for IT Work", "item": "https://rootandroute.online/posts/prompting-is-a-real-skill.html"}]}</script>
+<script>(function(){try{var t=localStorage.getItem('rr-theme');if(t){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<div class="progress-track" aria-hidden="true"><div class="progress-fill"></div></div>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="../index.html" class="logo">Root <span class="amp">&amp;</span> Route</a>
+    <button class="nav-toggle" aria-label="Toggle menu">MENU</button>
+    <nav class="main-nav">
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html" class="active">Trail Log</a>
+      <a href="../quiz.html">Quiz</a>
+      <a href="../notebook.html">Notebook</a>
+      <a href="../about.html">About</a>
+    </nav>
+    <button class="theme-toggle" aria-label="Switch theme">☾</button>
+  </div>
+</header>
+
+<section id="main" class="post-hero">
+  <div class="wrap">
+    <div class="meta-row">
+      <span class="badge badge-basecamp">Basecamp</span>
+      <span class="tag">AI</span><span class="tag">Career</span>
+    </div>
+    <h1>Talking to AI Is a Real Skill: Prompting for IT Work</h1>
+    <p class="lede dek">The difference between a useless answer and a brilliant one is usually the question. Context, constraints, and examples — the mechanic's guide to prompting.</p>
+    <div class="byline">7 MIN TREK — ROOT &amp; ROUTE</div>
+  </div>
+</section>
+
+<section class="post-body">
+  <div class="wrap content">
+<p>Two technicians ask an AI the same question. One gets a generic essay; the other gets a working script with sensible error handling and a note about the edge case that would have bitten them. Same tool, same day. The difference was entirely in how they asked — and "how to ask" turns out to be a learnable, improvable skill, not a knack.</p>
+
+    <h2>Why phrasing matters mechanically</h2>
+    <p>Remember the engine from earlier on this trail: the model continues text based on patterns. Your prompt <em>is</em> the pattern being continued. A vague prompt matches millions of vague documents, so you get the average of them — generic mush. A precise prompt with context narrows the pattern-space to exactly the kind of document you actually want. You're not talking to a person who fills gaps with common sense; you're steering a continuation. Steer it.</p>
+
+    <h2>The four moves that do most of the work</h2>
+    <ul>
+      <li><strong>Give context like you'd brief a contractor.</strong> "Write a PowerShell script to clear temp files" versus "Write a PowerShell script for Windows 11 machines managed by Intune, to clear user temp folders older than 7 days, log actions to C:\Logs, and never touch anything in use." The second prompt contains the answer's shape.</li>
+      <li><strong>State constraints and the audience.</strong> "Explain in plain English for a new starter." "No third-party modules." "Under 200 words." Constraints are steering.</li>
+      <li><strong>Show an example of what good looks like.</strong> Paste a sample of your ticket-note format and ask it to match. One example beats three paragraphs of description — the model is a pattern engine, so hand it a pattern.</li>
+      <li><strong>Iterate instead of restarting.</strong> The first answer is a draft. "Good — now add error handling." "Shorter." "Explain line 12." Refinement is where the value compounds; treat it like code review, not a slot machine.</li>
+    </ul>
+
+    <div class="callout">
+      <span class="eyebrow">Trail note</span>
+      <p style="margin:0;">The professional guard-rails, non-negotiable: <strong>never paste passwords, keys, customer data, or anything confidential into a public AI tool</strong> — treat the chat box like a public forum unless your organisation has an approved private deployment. And everything from the hallucination waypoint applies: verify before production, always.</p>
+    </div>
+
+    <h2>Where this fits in your career</h2>
+    <p>Prompting well won't replace knowing your field — the technician who understood Intune wrote the better prompt <em>because</em> they knew what to specify. That's the honest relationship: AI multiplies existing knowledge rather than substituting for it. But between two equally knowledgeable people, the one who can brief an AI precisely now works measurably faster — drafting scripts, summarising tickets, explaining errors, producing documentation. It's become a baseline tool skill, like search-engine fluency was twenty years ago. Learn it the same way: deliberately, on low-stakes tasks first.</p>
+  </div>
+
+  <div class="next-waypoint wrap">
+    <a href="ai-in-cybersecurity-both-sides-of-the-wall.html">
+      <span class="eyebrow">Next waypoint — Trailhead</span>
+      <h3 style="margin-top:0.6rem;">AI in Cybersecurity: The Same Tool on Both Sides of the Wall →</h3>
+    </a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span class="fine">© 2026 Root &amp; Route. Written by someone who's still on the trail too.</span>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html">Trail Log</a>
+      <a href="../about.html">About</a>
+    </nav>
+  </div>
+</footer>
+
+<button class="to-top" aria-label="Back to top">↑</button>
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/notebook.js"></script>
+</body>
+</html>

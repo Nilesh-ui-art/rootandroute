@@ -645,3 +645,33 @@ a:focus-visible, button:focus-visible, input:focus-visible {
   content: ""; position: absolute; left: -0.85rem; top: 15%; height: 70%;
   width: 1px; background: var(--contour);
 }
+
+/* =====================
+   Field Notebook
+   ===================== */
+.notebook-pop {
+  position: absolute; z-index: 60; font: inherit; font-size: 0.85rem; font-weight: 600;
+  padding: 0.45rem 0.9rem; border-radius: 999px; cursor: pointer;
+  background: var(--trail, #1D6F62); color: #fff; border: none;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+}
+.notebook-pop:hover { filter: brightness(1.1); }
+.notebook-toast {
+  position: fixed; bottom: 1.4rem; left: 50%; transform: translateX(-50%); z-index: 70;
+  background: var(--ink, #16202A); color: var(--paper, #EEF2ED);
+  padding: 0.6rem 1.1rem; border-radius: 999px; font-size: 0.9rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+}
+.nb-quote {
+  margin: 1rem 0 0; padding: 0.9rem 1.1rem;
+  border-left: 3px solid var(--trail, #1D6F62);
+  background: color-mix(in srgb, var(--trail, #1D6F62) 6%, transparent);
+  border-radius: 0 8px 8px 0;
+}
+.nb-quote p { margin: 0 0 0.5rem; font-style: italic; }
+.nb-quote-row { display: flex; justify-content: space-between; align-items: center; }
+.nb-del {
+  font: inherit; font-size: 0.8rem; cursor: pointer; color: var(--marker, #B8672B);
+  background: none; border: none; padding: 0.2rem 0.4rem;
+}
+.nb-del:hover { text-decoration: underline; }

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How ChatGPT Actually Works: Autocomplete That Read the Internet | Root &amp; Route</title>
+<meta name="description" content="How large language models like ChatGPT actually work, explained simply: next-word prediction, training, and why scale produced surprising abilities.">
+<meta name="keywords" content="how does ChatGPT work explained, large language model explained simply, LLM next word prediction, generative AI beginners">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://rootandroute.online/posts/how-chatgpt-actually-works.html">
+<meta name="author" content="Root & Route">
+<meta property="og:site_name" content="Root &amp; Route">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://rootandroute.online/posts/how-chatgpt-actually-works.html">
+<meta property="og:title" content="How ChatGPT Actually Works: Autocomplete That Read the Internet | Root &amp; Route">
+<meta property="og:description" content="How large language models like ChatGPT actually work, explained simply: next-word prediction, training, and why scale produced surprising abilities.">
+<meta property="og:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="How ChatGPT Actually Works: Autocomplete That Read the Internet | Root &amp; Route">
+<meta name="twitter:description" content="How large language models like ChatGPT actually work, explained simply: next-word prediction, training, and why scale produced surprising abilities.">
+<meta name="twitter:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta name="theme-color" content="#1D6F62">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "How ChatGPT Actually Works: Autocomplete That Read the Internet", "description": "How large language models like ChatGPT actually work, explained simply: next-word prediction, training, and why scale produced surprising abilities.", "url": "https://rootandroute.online/posts/how-chatgpt-actually-works.html", "mainEntityOfPage": "https://rootandroute.online/posts/how-chatgpt-actually-works.html", "image": "https://rootandroute.online/assets/img/og-card.png", "articleSection": "AI", "datePublished": "2026-08-07", "dateModified": "2026-08-07", "author": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}, "publisher": {"@type": "Organization", "name": "Root & Route", "url": "https://rootandroute.online"}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://rootandroute.online/"}, {"@type": "ListItem", "position": 2, "name": "Trail Log", "item": "https://rootandroute.online/trail-log.html"}, {"@type": "ListItem", "position": 3, "name": "How ChatGPT Actually Works: Autocomplete That Read the Internet", "item": "https://rootandroute.online/posts/how-chatgpt-actually-works.html"}]}</script>
+<script>(function(){try{var t=localStorage.getItem('rr-theme');if(t){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<div class="progress-track" aria-hidden="true"><div class="progress-fill"></div></div>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="../index.html" class="logo">Root <span class="amp">&amp;</span> Route</a>
+    <button class="nav-toggle" aria-label="Toggle menu">MENU</button>
+    <nav class="main-nav">
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html" class="active">Trail Log</a>
+      <a href="../quiz.html">Quiz</a>
+      <a href="../notebook.html">Notebook</a>
+      <a href="../about.html">About</a>
+    </nav>
+    <button class="theme-toggle" aria-label="Switch theme">☾</button>
+  </div>
+</header>
+
+<section id="main" class="post-hero">
+  <div class="wrap">
+    <div class="meta-row">
+      <span class="badge badge-trailhead">Trailhead</span>
+      <span class="tag">AI</span>
+    </div>
+    <h1>How ChatGPT Actually Works: Autocomplete That Read the Internet</h1>
+    <p class="lede dek">No database of answers, no search engine underneath — just next-word prediction, scaled until it started looking like thinking.</p>
+    <div class="byline">7 MIN TREK — ROOT &amp; ROUTE</div>
+  </div>
+</section>
+
+<section class="post-body">
+  <div class="wrap content">
+<p>Ask people how ChatGPT works and you'll hear guesses: it searches the internet (no), it has a database of answers (no), it understands language like we do (also no). The real mechanism is simultaneously simpler and stranger, and it fits in one sentence: <strong>a large language model does one thing — predict the next word.</strong></p>
+
+    <h2>Autocomplete, taken to its logical extreme</h2>
+    <p>Your phone keyboard already does a tiny version: type "see you" and it suggests "later." A large language model (LLM) is that same idea trained on a colossal slice of human text — books, articles, code, forums. Show it "the capital of France is" and it predicts "Paris," not because it looked anything up, but because in millions of training examples, that's the word that followed. Generate one word, append it, predict the next, repeat — and out flows a paragraph.</p>
+
+    <h2>The surprise that created the AI boom</h2>
+    <p>Here's the genuinely weird part, the part that surprised the researchers themselves: <strong>predict-the-next-word, done at sufficient scale, starts producing behaviour that looks like reasoning.</strong> To predict text well, the model was forced to internalise the patterns <em>underneath</em> text — grammar, facts, logical structures, the shape of an argument, the conventions of working code. Nobody programmed it to translate French or write Python. Those abilities <em>emerged</em> because translation and code exist in the training data as patterns, and the model got extraordinarily good at patterns. (If you read the first post on this trail — pattern-matching without understanding — this is that idea at maximum volume.)</p>
+
+    <div class="callout">
+      <span class="eyebrow">Trail note</span>
+      <p style="margin:0;">This mechanism explains the model's strangest behaviours. Why does it sometimes state nonsense with total confidence? Because it's producing <em>plausible text</em>, not checked facts — confidence is a writing style, not a truth signal. Why can't it reliably tell you about yesterday's news? Its knowledge froze when training ended. Why does it never say "I don't know" unprompted? Because the training data — human writing — rarely does. The full post on AI's made-up "facts" is the next waypoint on this trail.</p>
+    </div>
+
+    <h2>The vocabulary you'll actually encounter</h2>
+    <p>Four terms cover most conversations. <strong>Training</strong> — the months-long, enormously expensive process of learning patterns from data. <strong>Parameters</strong> — the billions of internal numbers where those patterns live (the "large" in large language model). <strong>Tokens</strong> — the word-chunks the model actually reads and writes; pricing and limits are measured in them. <strong>Context window</strong> — the model's working memory for the current conversation: exceed it and the earliest parts fall out, which is why very long chats "forget" their beginnings. None of this is magic — and knowing it's not magic is exactly what makes these tools usable in real work, which is where this trail heads next.</p>
+  </div>
+
+  <div class="next-waypoint wrap">
+    <a href="ai-hallucinations-why-it-makes-things-up.html">
+      <span class="eyebrow">Next waypoint — Trailhead</span>
+      <h3 style="margin-top:0.6rem;">Why AI Confidently Makes Things Up →</h3>
+    </a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span class="fine">© 2026 Root &amp; Route. Written by someone who's still on the trail too.</span>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../trail-log.html">Trail Log</a>
+      <a href="../about.html">About</a>
+    </nav>
+  </div>
+</footer>
+
+<button class="to-top" aria-label="Back to top">↑</button>
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/notebook.js"></script>
+</body>
+</html>
