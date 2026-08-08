@@ -2,8 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://rootandroute.online/</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>1.0</priority></url>
   <url><loc>https://rootandroute.online/trail-log.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://rootandroute.online/quiz.html</loc><lastmod>2026-08-08</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://rootandroute.online/about.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://rootandroute.online/quiz.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://rootandroute.online/notebook.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://rootandroute.online/about.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://rootandroute.online/posts/osi-model-explained.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://rootandroute.online/posts/vlans-explained-no-jargon.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://rootandroute.online/posts/cloud-computing-for-beginners.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
@@ -48,4 +49,9 @@
   <url><loc>https://rootandroute.online/posts/beyond-vlans-microsegmentation-east-west.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://rootandroute.online/posts/anatomy-of-a-ransomware-attack.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://rootandroute.online/posts/from-logs-to-alerts-detection-engineering.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://rootandroute.online/posts/what-ai-actually-is-and-isnt.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://rootandroute.online/posts/how-chatgpt-actually-works.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://rootandroute.online/posts/ai-hallucinations-why-it-makes-things-up.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://rootandroute.online/posts/prompting-is-a-real-skill.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://rootandroute.online/posts/ai-in-cybersecurity-both-sides-of-the-wall.html</loc><lastmod>2026-08-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 </urlset>

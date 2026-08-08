@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Field Notebook | Root &amp; Route</title>
+<meta name="description" content="Your personal Field Notebook: every passage you've highlighted across Root & Route, saved privately in your browser, exportable as Markdown.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://rootandroute.online/notebook.html">
+<meta property="og:site_name" content="Root &amp; Route">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://rootandroute.online/notebook.html">
+<meta property="og:title" content="Your Field Notebook | Root &amp; Route">
+<meta property="og:description" content="Highlight any sentence on any post and it's saved here — privately, in your browser. Export your notes as Markdown anytime.">
+<meta property="og:image" content="https://rootandroute.online/assets/img/og-card.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1D6F62">
+<script>(function(){try{var t=localStorage.getItem('rr-theme');if(t){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="index.html" class="logo">Root <span class="amp">&amp;</span> Route</a>
+    <button class="nav-toggle" aria-label="Toggle menu">MENU</button>
+    <nav class="main-nav">
+      <a href="index.html">Home</a>
+      <a href="trail-log.html">Trail Log</a>
+      <a href="quiz.html">Quiz</a>
+      <a href="notebook.html" class="active">Notebook</a>
+      <a href="about.html">About</a>
+    </nav>
+    <button class="theme-toggle" aria-label="Switch theme">☾</button>
+  </div>
+</header>
+
+<section id="main" class="post-hero">
+  <div class="wrap">
+    <div class="meta-row">
+      <span class="badge badge-basecamp">Yours only</span>
+      <span class="tag">Private</span>
+      <span class="tag">Stored in your browser</span>
+    </div>
+    <h1>Your Field Notebook</h1>
+    <p class="lede dek">Highlight any sentence on any post and hit <em>Save to Field Notebook</em> — it lands here. Your notes never leave this browser: nothing is uploaded, tracked, or shared. Export them as Markdown whenever you like.</p>
+  </div>
+</section>
+
+<section class="post-body">
+  <div class="wrap content">
+
+    <div id="nb-empty" class="quiz-card" hidden>
+      <span class="eyebrow">Empty pages, for now</span>
+      <p>No notes yet. Open any post, select a passage worth keeping, and a <strong>✎ Save to Field Notebook</strong> button will appear above your selection. Everything you save shows up here, grouped by post.</p>
+      <a class="quiz-btn quiz-btn-primary" href="trail-log.html">Find something worth highlighting →</a>
+    </div>
+
+    <div id="nb-toolbar" class="quiz-topbar" hidden>
+      <span class="eyebrow" id="nb-count"></span>
+      <span>
+        <button class="quiz-btn" id="nb-export">Export as Markdown ↓</button>
+        <button class="quiz-btn" id="nb-clear">Clear all</button>
+      </span>
+    </div>
+
+    <div id="nb-list"></div>
+
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span class="fine">© 2026 Root &amp; Route. Written by someone who's still on the trail too.</span>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="trail-log.html">Trail Log</a>
+      <a href="quiz.html">Quiz</a>
+      <a href="notebook.html">Notebook</a>
+      <a href="about.html">About</a>
+    </nav>
+  </div>
+</footer>
+
+<button class="to-top" aria-label="Back to top">↑</button>
+<script src="assets/js/main.js"></script>
+<script>
+(function () {
+  'use strict';
+  var KEY = 'rr-notebook';
+  function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+  function save(n) { try { localStorage.setItem(KEY, JSON.stringify(n)); } catch (e) {} }
+
+  var empty = document.getElementById('nb-empty');
+  var toolbar = document.getElementById('nb-toolbar');
+  var list = document.getElementById('nb-list');
+  var count = document.getElementById('nb-count');
+
+  function esc(s) {
+    return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  function render() {
+    var notes = load();
+    empty.hidden = notes.length > 0;
+    toolbar.hidden = notes.length === 0;
+    list.innerHTML = '';
+    if (!notes.length) return;
+    count.textContent = notes.length + ' note' + (notes.length === 1 ? '' : 's') + ' in your pack';
+
+    // Group by post, preserving recency order
+    var groups = {}, order = [];
+    notes.forEach(function (n, i) {
+      if (!groups[n.slug]) { groups[n.slug] = { title: n.title, items: [] }; order.push(n.slug); }
+      groups[n.slug].items.push({ note: n, idx: i });
+    });
+
+    order.forEach(function (slug) {
+      var g = groups[slug];
+      var card = document.createElement('div');
+      card.className = 'quiz-card';
+      var h = '<span class="eyebrow"><a href="posts/' + esc(slug) + '.html">' + esc(g.title) + ' →</a></span>';
+      g.items.forEach(function (it) {
+        h += '<blockquote class="nb-quote"><p>' + esc(it.note.text) + '</p>' +
+             '<div class="nb-quote-row"><span class="fine">Saved ' + esc(it.note.when) + '</span>' +
+             '<button class="nb-del" data-idx="' + it.idx + '" aria-label="Delete this note">Remove</button></div></blockquote>';
+      });
+      card.innerHTML = h;
+      list.appendChild(card);
+    });
+
+    Array.prototype.forEach.call(list.querySelectorAll('.nb-del'), function (b) {
+      b.addEventListener('click', function () {
+        var notes = load();
+        notes.splice(parseInt(b.getAttribute('data-idx'), 10), 1);
+        save(notes);
+        render();
+      });
+    });
+  }
+
+  document.getElementById('nb-export').addEventListener('click', function () {
+    var notes = load();
+    if (!notes.length) return;
+    var md = '# My Root & Route Field Notebook\n\nExported ' + new Date().toISOString().slice(0, 10) + ' — https://rootandroute.online\n';
+    var bySlug = {};
+    notes.forEach(function (n) { (bySlug[n.slug] = bySlug[n.slug] || { t: n.title, xs: [] }).xs.push(n); });
+    Object.keys(bySlug).forEach(function (slug) {
+      md += '\n## ' + bySlug[slug].t + '\nhttps://rootandroute.online/posts/' + slug + '.html\n\n';
+      bySlug[slug].xs.forEach(function (n) { md += '> ' + n.text.replace(/\n/g, '\n> ') + '\n\n'; });
+    });
+    var blob = new Blob([md], { type: 'text/markdown' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'root-and-route-field-notebook.md';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    URL.revokeObjectURL(a.href);
+  });
+
+  document.getElementById('nb-clear').addEventListener('click', function () {
+    if (confirm('Delete all notes from your Field Notebook? This cannot be undone.')) {
+      save([]); render();
+    }
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>
