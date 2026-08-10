@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://uatapp.konnectbot.ai; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://uatapp.konnectbot.ai; base-uri 'self'; form-action 'self'; object-src 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Root & Route — A Field Guide to IT & Cybersecurity for Beginners</title>
 <meta name="description" content="Plain-language explanations of IT fundamentals, cybersecurity, networking, and cloud — written for people just starting their journey in tech.">
@@ -212,15 +212,18 @@
     </nav>
   </div>
 </footer>
-<!-- Place this script tag in your HTML file, ideally at the end of the <body> -->
-<!-- Note: Add data-default-path="path-key" to load a specific path directly -->
+
+<script src="assets/js/main.js?v=3"></script>
+
+<!-- Konnectbot chat widget -->
+<!-- Add data-default-path="path-key" to load a specific path directly -->
 <script
   src="https://uatapp.konnectbot.ai/chat-widget.js"
   data-bot-id="64d9e8f6-e164-4343-9738-d2c87dd7d543"
   async
-></script>  
+></script>
+
 <button class="to-top" aria-label="Back to top">↑</button>
-<script src="assets/js/main.js?v=3"></script>
 
 </body>
 </html>
